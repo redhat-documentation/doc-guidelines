@@ -1,0 +1,10 @@
+= Documentation Repositories
+
+AMQ 7 documentation uses the following documentation repositories:
+
+https://github.com/rh-messaging/amq7-documentation-contrib[`amq7-documentation-contrib`^] (GitHub):: A private GitHub repo that hosts all of the AMQ 7 documentation.
+All downstream contributions to the documentation are made in this repo.
+
+https://gitlab.cee.redhat.com/AMQ7-documentation/amq7-documentation[`amq7-docs`^] (GitLab):: A GitLab repo for pushing doc updates to Pantheon for publication on the https://access.redhat.com/products/red-hat-jboss-amq[Red Hat Customer Portal^].
+This repo essentially functions as a "mirror" of amq7-documentation-contrib;
+no doc updates should be made in it.

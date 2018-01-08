@@ -1,0 +1,64 @@
+[[files-and-attributes]]
+= Files and Attributes
+
+== Important Files
+
+|===
+| Standard attributes         | common/attributes.adoc
+| Shared includes             | common/
+| Images                      | images/
+|===
+
+[[amq7-books]]
+== Books
+
+See the link:amq7-content-guide.html[Information
+Architecture Guide] for standard book chapters and content.
+
+|===
+| Introduction                | product-intro/master.adoc
+| Migration                   | product-migration/master.adoc
+| Broker                      | broker/master.adoc
+| Broker JON Guide            | broker-jon/master.adoc
+| Broker release notes        | broker-release-notes/master.adoc
+| Interconnect                | router/master.adoc
+| Interconnect release notes  | router-release-notes/master.adoc
+| Client release notes        | client-release-notes/master.adoc
+| Console                     | console/master.adoc
+| AMQ JMS Client              | client-amqp-jms/master.adoc
+| AMQ C++ Client              | client-amqp-cpp/master.adoc
+| AMQ JavaScript Client       | client-amqp-javascript/master.adoc
+| AMQ Python Client           | client-amqp-python/master.adoc
+| AMQ .NET Client             | client-amqp-dotnet/master.adoc
+| OpenWire JMS Client         | client-openwire-jms/master.adoc
+|===
+
+[[amq7-standard-attributes]]
+== Standard Attributes
+
+|===
+| `\{ProductLongName\}`           | Long product name              | {ProductLongName}
+| `\{ProductName\}`               | Short product name             | {ProductName}
+| `\{ProductVersion\}`            | Product X.Y version            | {ProductVersion}
+| `\{ProductMajorVersion\}`       | Product X version              | {ProductMajorVersion}
+| `\{BrokerCoreBridge\}`          | Core bridge name               | {BrokerCoreBridge}
+| `\{BrokerLongName\}`            | Long broker name               | {BrokerLongName}
+| `\{BrokerName\}`                | Short broker name              | {BrokerName}
+| `\{BrokerVersion\}`             | Broker X.Y version             | {BrokerVersion}
+| `\{RouterLongName\}`            | Long router name               | {RouterLongName}
+| `\{RouterName\}`                | Short router name              | {RouterName}
+| `\{RouterVersion\}`             | Router X.Y version             | {RouterVersion}
+| `\{ClientsLongName\}`           | Long clients name              | {ClientsLongName}
+| `\{ClientsName\}`               | Short clients name             | {ClientsName}
+| `\{ClientsVersion\}`            | Clients X.Y version            | {ClientsVersion}
+| `\{ConsoleLongName\}`           | Long console name              | {ConsoleLongName}
+| `\{ConsoleName\}`               | Short console name             | {ConsoleName}
+| `\{ConsoleVersion\}`            | Console X.Y version            | {ConsoleVersion}
+| `\{ClientAmqpJmsName\}`         | AMQP JMS client name           | {ClientAmqpJmsName}
+| `\{ClientAmqpCppName\}`         | AMQP C++ client name           | {ClientAmqpCppName}
+| `\{ClientAmqpPythonName\}`      | AMQP Python client name        | {ClientAmqpPythonName}
+| `\{ClientAmqpJavaScriptName\}`  | AMQP JavaScript client name    | {ClientAmqpJavaScriptName}
+| `\{ClientAmqpDotNetName\}`      | AMQP .NET client name          | {ClientAmqpDotNetName}
+| `\{ClientCoreJmsName\}`         | Core Protocol JMS client name  | {ClientCoreJmsName}
+| `\{ClientOpenWireJmsName\}`     | OpenWire  JMS client name      | {ClientOpenWireJmsName}
+|===

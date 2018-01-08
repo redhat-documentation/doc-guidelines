@@ -1,0 +1,11 @@
+= Additional Resources
+
+* link:https://gitlab.cee.redhat.com/AMQ7-documentation/amq7-documentation[AMQ 7 docs repo in GitLab^]
+* link:https://doc-stage.usersys.redhat.com/documentation/en-us/ccs_internal_documentation/1.0/html-single/glossary_of_terms_and_conventions_for_product_documentation/[Red Hat Glossary of Terms and Conventions^]
+* link:https://pantheon.cee.redhat.com/#/help[Pantheon user guide^]
+* link:https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation[EAP docs repo^]
+* link:https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/asciidoc-writing-guide.adoc[EAP AsciiDoc style guide^]
+* link:https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/contributor-guide.adoc[EAP contributor guide^]
+* link:https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/create-a-new-guide.adoc[EAP guide creation guide^]
+* link:https://docs.google.com/presentation/d/1AV-qETM104Nuff43ryPR4hBqfY_knB6rF4ozDE_UXvw/edit#slide=id.gc80b71c4f_4_22[EAP presentation on docs workflow^]
+* link:https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/tree/master/internal-resources[More EAP internal resources^]

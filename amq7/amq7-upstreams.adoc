@@ -1,0 +1,12 @@
+We use special `make` targets to fetch and update in-tree copies of upstream content. After using these targets, be sure to commit the changes.
+
+The syntax used is `make refresh-upstream-_UPSTREAM_NAME_`
+
+For example:
+
+[source]
+----
+$ make refresh-upstream-qpid-dispatch
+$ make refresh-upstream-qpid-jms
+$ make refresh-upstream-qpid-proton
+----

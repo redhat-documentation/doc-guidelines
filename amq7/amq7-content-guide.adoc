@@ -1,0 +1,439 @@
+[[information-architecture]]
+= Information Architecture Guidelines
+
+[[architecture-guidelines]]
+== General Guidelines
+
+* Not every chapter or topic presented here is necessary.  Omit
+  elements that are not relevant or important.
+
+* By the same token, the presented chapters and topics here may not be
+  sufficient.  When it makes sense, add new ones, choosing one of the
+  topic extension points shown in the outlines.
+
+* Deviations are expected, but they must be deliberate.
+
+* Headings in italics are not meant to appear literally in the book
+  content.  They are intended only to suggest locations and content.
+
+== Book Outlines
+
+=== Client Outline
+
+[cols="50%a,50%a",options="header",grid="cols"]
+|==================================
+|Element |Description
+2+^|*Overview*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+This content does not get a heading. It answers: What is it?  What does it do?  Why does the user want to use this?
+
+.Standard Client Include Files
+----
+proton-overview-preamble-slug.adoc
+----
+|** Key Features (xref:concept_module[concept template])
+|Key Features::
+
+Core user benefits.  This section is geared toward users who are
+evaluating the software.  It should help them understand what problems
+the software can solve and point to capabilities that differentiate it
+from its peers.
++
+.Standard Client Include Files
+----
+proton-overview-key-features.adoc
+----
+|** Supported Standards and Protocols (xref:reference_module[reference template])
+|Supported Standards and Protocols::
+
+List any standard APIs or ABIs implemented.  List supported wire
+protocols.
+|** Supported Configurations (xref:reference_module[reference template])
+|Supported Configurations::
+
+The machine architectures, operating systems, programming languages,
+compilers, and runtimes that are supported in this product release.
+Where important, also indicate the supported versions.  Enumerate any
+additional constraints such as minimum required resources (memory,
+storage, etc.) or modes of operation.  Offer a link to an associated
+knowledge base article for updated support notes.
+
+|** Document Conventions (xref:reference_module[reference template]) |
+|** Terms and Concepts (xref:reference_module[reference template])
+|Terms and Concepts::
+
+Concepts that are important for understanding how to use this
+component.  What are the most important user-facing entities
+and how do they relate?
++
+.Standard Client Include Files
+----
+proton-overview-key-concepts.adoc
+----
+|** _Overview Topic 1_
+** _Overview Topic N_ |
+|** _Related Information_
+|_Related Information_::
+
+Include links to other resources or internal sections here.
+2+^|*Installation*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
++
+.Standard Client Include Files
+----
+client-installation-preamble.adoc
+----
+|** _Installation Topic 1_
+** _Installation Topic N_
+** _Related Information_ |
+2+^|*Getting Started*
+|** _Introduction (xref:concept_module[concept template])_
+| _Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
++
+.Standard Client Include Files
+----
+client-getting-started-preamble.adoc
+----
+|** _Getting Started Topic 1_
+** _Getting Started Topic N_
+** _Related Information_ | Confidence-building exercises for the user.  What are the necessary
+steps to configure the software in the user's environment, start the
+required components, and perform a basic operation?
+
+This chapter should not include configuration or installation content.
+Instead it should declare as a prerequisite that the user has completed
+one of the install procedures from the previous chapter.
+
+The basic operation should be something with a testable result, and
+the content should show the user what success looks like.
+2+^|*Examples*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
++
+.Standard Client Include Files
+----
+client-examples-preamble.adoc
+----
+|** Sending Messages (xref:procedure_template[procedure template])
+** Receiving Messages (xref:procedure_template[procedure template])
+** Sending Requests and Responses (xref:procedure_template[procedure template])
+** _Examples Topic 1_
+** _Examples Topic N_
+** _Related Information_ |
+2+^|*Configuration*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+|** About Configuration Files and Locations |
+|** _Configuration Topic N_
+** _Configuration Topic 1_ |Configuration Topics::
+
+Present the configuration that is required or important to making the
+component operate at a basic level.  For AMQ components, this
+typically includes some of the network configuration.
+|** _Related Information_|
+2+^|*Using the API*
+|** _Introduction (xref:concept_module[concept template])_ | _Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
++
+.Standard Client Include Files
+----
+client-using-the-api-preamble.adoc
+----
+|** Basic Operation |Basic Operation::
+
+Core messaging API behaviors such as establishing network connections.
++
+* Handling Messaging Events
+* Sending Messages
+* Receiving Messages
+* Connecting to a Remote Peer
+* Listening for Incoming Connections
+* Setting the Container Identity
+|** Network Connections
+** Message Delivery|
+|** Error Handling |
+Error Handling::
+
+How to handle errors in the API.
++
+* Catching Exceptions
+* Handling Protocol Errors
+|** Security |Security::
+
+Configuration of transport-layer security, authentication, and
+authorization. This chapter should expand on the content in
+_Users and Roles_ and _Connections_ chapters to offer more configurability.
++
+* Encrypting Connections
+* Setting the User and Password
+* Using SASL
+|** Logging |Logging::
+
+Configuration of log verbosity, filtering, and output locations.
+
+|** _API Topic 1_
+** _API Topic N_
+** _Related Information_ |
+2+^|*Interoperability*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
++
+.Standard Client Include Files
+----
+client-compatibility-preamble.adoc
+----
+|** Interoperating with Other AMQP Clients (xref:procedure_template[procedure template])
+** Interoperating with JBoss AMQ JMS (xref:procedure_template[procedure template]) |
+|** Connecting to JBoss AMQ Broker (xref:procedure_template[procedure template])  |Connecting to JBoss AMQ Broker ::
+
+What does the user need to configure in order to use the client with
+the broker?  What possible problems should the user check for?
++
+.Standard Client Include Files
+----
+client-compatibility-using-with-the-broker.adoc
+----
+|** Connecting to JBoss AMQ Interconnect (xref:procedure_template[procedure template]) |Connecting to JBoss AMQ Interconnect ::
+
+What does the user need to configure in order to use the client with
+the router?  What possible problems should the user check for?
++
+.Standard Client Include Files
+----
+client-compatibility-using-with-the-router.adoc
+----
+|** _Interoperability Topic 1_
+** _Interoperability Topic N_
+** _Related Information_
+* _Primary Topic 1_
+* _Primary Topic N_ |
+2+^|*Appendices*
+|* Appendix A: Using Your Subscription
+|Using Your Subscription::
+Boilerplate for finding and activating Red Hat software subscriptions.
++
+.Standard Include Files
+----
+installation-using-your-subscription.adoc
+----
+|* _Appendix B_
+* _Appendix N_ |If needed your guide can include lettered appendices.
+|==================================
+
+=== Server Outline
+
+[cols="50%a,50%a",options="header",grid="cols"]
+|==================================
+|Element |Description
+2+^|*Overview*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+This content does not get a heading. It answers: What is it?  What does it do?  Why does the user want to use this?
+
+
+|** Key Features (xref:concept_module[concept template])
+|Key Features::
+
+Core user benefits.  This section is geared toward users who are
+evaluating the software.  It should help them understand what problems
+the software can solve and point to capabilities that differentiate it
+from its peers.
+
+|** Supported Standards and Protocols (xref:reference_module[reference template])
+|Supported Standards and Protocols::
+
+List any standard APIs or ABIs implemented.  List supported wire
+protocols.
+|** Supported Configurations (xref:reference_module[reference template])
+|Supported Configurations::
+
+The machine architectures, operating systems, programming languages,
+compilers, and runtimes that are supported in this product release.
+Where important, also indicate the supported versions.  Enumerate any
+additional constraints such as minimum required resources (memory,
+storage, etc.) or modes of operation.  Offer a link to an associated
+knowledge base article for updated support notes.
+
+|** Document Conventions (xref:reference_module[reference template]) |
+|** Terms and Concepts (xref:reference_module[reference template])
+|Terms and Concepts::
+
+Concepts that are important for understanding how to use this
+component.  What are the most important user-facing entities
+and how do they relate?
+
+|** _Overview Topic 1_
+** _Overview Topic N_ |
+|** _Related Information_
+|_Related Information_::
+
+Include links to other resources or internal sections here.
+2+^|*Installation*
+|** _Introduction (xref:concept_module[concept template])_|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+|** Installing on {operating-system}  (xref:procedure_template[procedure template])
+|Installing on Red Hat Enterprise Linux::
+
+For each supported install method, describe the installation procedure
+in steps.  Use discrete subsections (_Using the Zip File_, _Using
+Packages_) if multiple methods are supported.
+
+Installing on Microsoft Windows::
+
+Describe the installation procedure in steps.  Use Windows-native
+procedures and example commands.
+|*** Using {method-name}  (xref:procedure_template[procedure template])
+** _Installation Topic 1_
+** _Installation Topic N_
+** _Related Information_
+|
+2+^|*Getting Started*
+|** _Introduction (xref:concept_module[concept template])_
+| _Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+|** Starting the {server-name}  (xref:procedure_template[procedure template])
+** _Getting Started Topic 1_
+** _Getting Started Topic N_
+** _Related Information_
+|
+2+^|*Configuration*
+|** _Introduction (xref:concept_module[concept template])_
+** About Configuration Files and Locations (xref:concept_module[concept template])
+** _Configuration Topic 1_
+** _Configuration Topic N_
+** Default Configuration Settings (xref:concept_module[concept template])
+** Essential Configuration Settings (xref:concept_module[concept template])
+** _Related Information_
+|
+2+^|*Network Connections*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+|** _About Topics 1 to N_
+** Configuring Incoming Connections  (xref:procedure_template[procedure template])
+** Configuring Outgoing Connections  (xref:procedure_template[procedure template])
+** _Network Topic 1_
+** _Network Topic N_
+** _Related Information_
+* Addresses, Queues, and Topics
+** _Introduction (xref:concept_module[concept template])_
+** Configuring a Queue (xref:procedure_template[procedure template])
+** Defining Endpoints (xref:procedure_template[procedure template])
+** Consuming Messages (xref:procedure_template[procedure template])
+** Converting Queues (xref:procedure_template[procedure template])
+** Setting Address Security (xref:procedure_template[procedure template])
+** _Addresses, Queues, and Topics Topic 1_
+** _Addresses, Queues, and Topics Topic 2_
+** _Related Information_
+|
+2+^|*Users and Roles*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+
+|** Adding a Guest Account (xref:procedure_template[procedure template])
+|Adding a Guest User::
+
+Essentials of how to add a guest user.  Put detailed information about users in the Security chapter.
+|** Adding Users (xref:procedure_template[procedure template])
+|Adding Users::
+
+Essentials of how to add a user.  Put detailed information about users in the Security chapter.
+|** Setting Permissions (xref:procedure_template[procedure template])
+|Setting permissions::
+
+Essentials of how to add a user to a role and set permissions.  Put detailed information about users in the Security chapter.
+|** Creating a Password File (xref:procedure_template[procedure template])
+|Creating a Password File::
+
+Essential information about creating the file-based password system.
+|** _Users and Roles Topic 1_
+** _Users and Roles Topic N_
+** _Related Information_
+|
+2+^|*Security*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+
+|** Setting Up Encryption (xref:procedure_template[procedure template])
+*** Using SSL/TLS
+*** Using SASL
+** Setting Up Authentication (xref:procedure_template[procedure template])
+*** Using SSL/TLS
+*** Using SASL
+** Securing Incoming Connections (xref:procedure_template[procedure template])
+** Securing Outgoing Connections (xref:procedure_template[procedure template])
+** _Security Topic 1_
+** _Security Topic N_
+** _Related Information_
+* _Primary Topic 1_
+* _Primary Topic N_
+|
+2+^|*Logging*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+|** _Logging Topic 1_
+** _Logging Topic N_
+** _Related Information_
+|Logging Topics::
+
+Configuration of log verbosity, filtering, and output locations.
+2+^|*Management*
+|** _Introduction (xref:concept_module[concept template])_
+|_Introduction_::
+
+Explain the purpose and scope of this chapter.  List any starting
+requirements.
+|** _Management Topic 1_
+** _Management Topic N_
+** _Related Information_
+|Management Topics::
+A chapter for IT managers and sysadmins.  This chapter will house
+more complex topics than other chapters.
+2+^|*Appendices*
+|* Appendix A: Using Your Subscription
+|Using Your Subscription::
+Boilerplate for finding and activating Red Hat software subscriptions.
++
+.Standard Include Files
+----
+installation-using-your-subscription.adoc
+----
+|* _Appendix B_
+* _Appendix N_ |If needed your guide can include lettered appendices.
+|==================================

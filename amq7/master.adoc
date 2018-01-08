@@ -1,0 +1,44 @@
+include::common/attributes.adoc[]
+
+= AMQ 7 Internal Resources
+
+include::amq7-introduction.adoc[leveloffset=+1]
+
+include::amq7-git-setup-guide.adoc[leveloffset=+1]
+
+include::amq7-contributor-guide.adoc[leveloffset=+1]
+
+include::amq7-ccutil-guide.adoc[leveloffset=+1]
+
+include::amq7-make-guide.adoc[leveloffset=+1]
+
+include::amq7-formatting-guide.adoc[leveloffset=+1]
+
+include::amq7-styleguide.adoc[leveloffset=+1]
+
+== Terms and Conventions
+
+The following list of Terms and Conventions are specific to AMQ 7.  In addition to this guide, refer to the link:https://doc-stage.usersys.redhat.com/documentation/en-us/ccs_internal_documentation/1.0/html-single/glossary_of_terms_and_conventions_for_product_documentation/[Red Hat Glossary of Terms and Conventions^] for the usage conventions for the more commonly used documentation terms.
+
+include::amq7-terms-conventions.adoc[leveloffset=+1]
+
+include::amq7-content-guide.adoc[leveloffset=+1]
+
+include::amq7-screenshots.adoc[leveloffset=+1]
+
+include::amq7-admin-guide.adoc[leveloffset=+1]
+
+[appendix]
+include::amq7-files-attributes.adoc[leveloffset=+1]
+
+[appendix]
+include::amq7-git-tips.adoc[leveloffset=+1]
+
+[appendix]
+include::amq7-templates.adoc[leveloffset=+1]
+
+[appendix]
+include::amq7-additional-resources.adoc[leveloffset=+1]
+
+// Revision information
+include::common/revision-info.adoc[]

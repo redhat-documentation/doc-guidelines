@@ -1,0 +1,114 @@
+[[build-configuration]]
+= Configuring Your Environment to Build the Documentation
+
+When you make changes to the documentation, it is a good practice to perform a local test build to verify the book builds successfully and renders as you expect before you submit the merge request back to upstream master. This section describes how to configure your environment to build the documentation.
+
+You can build the books by using either xref:make-tooling[make-based tooling] or ccutil, however, be aware that only ccutil catches build errors such as invalid xrefs and missing includes.
+
+For that reason, you must install ccutil to test the build before you merge your changes.
+
+NOTE: The ccutil utility requires Ruby. If you have not installed Ruby, you can use this command to install it: `yum -y install ruby`
+
+== Install ccutil
+
+.Procedure
+. Configure the engineering and `ccs-tools` repositories by creating two files:
+.. In a text editor, create a repo file with the following lines (where `__VERSION__` is the major release version number of RHEL installed on your personal computer, for example, 7):
++
+[source,options="nowrap",subs="+quotes"]
+----
+[eng-rhel-__VERSION__]
+name=ENG Internal - $releasever
+baseurl=http://download.devel.redhat.com/rel-eng/repos/eng-rhel-__VERSION__/$basearch/
+enabled=1
+gpgcheck=0
+skip_if_unavailable=1
+priority=1
+----
+
+.. Save the file as `/etc/yum.repos.d/eng-rhel-__VERSION__.repo`
+.. In a text editor, create another repo file with the following lines:
++
+[source]
+----
+[ccs-tools]
+name=CCS Tools for RHEL $releasever
+baseurl=http://ccs-tools.usersys.redhat.com/yum/$releasever/$basearch/
+enabled=1
+gpgcheck=0
+skip_if_unavailable=1
+priority=1
+----
+
+.. Save the file as `/etc/yum.repos.d/ccs-tools.repo`
++
+TIP: If you don't have root access, you can't move the files to the correct location
+by using the File Manager. Instead save the file to your home folder and use Terminal
+to copy the files to the correct location:
++
+[source,options="nowrap",subs="+quotes"]
+----
+sudo cp ~/ccs-tools.repo /etc/yum.repos.d/
+sudo cp ~/eng-rhel-__VERSION__.repo /etc/yum.repos.d/
+----
+Remember to replace `__VERSION__` where indicated with the correct version number.
+
+. Verify that you are connected to the internal network and run the following command to install the ccutil utility:
++
+[source]
+----
+$ sudo yum install ccutil
+----
+. Check that ccutil is installed correctly by running the following command:
++
+[source]
+----
+$ ccutil --help
+----
+If ccutil was successfully installed, then you should see the help printed like the example below.
+Example output:
++
+[source]
+----
+Usage: ccutil [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -c, --config CONFIG  Specify a config file to use.
+  --debug              Print debugging information.
+  --verbose            Print detailed information about each step.
+  -v, --version        Print the version of the application.
+  -h, --help           Show this message and exit.
+
+Commands:
+  clean    Clean any build data left on the local machine.
+  compile  Builds the book locally.
+  history  Show the history for a book/article.
+  list     Lists the books/articles currently available.
+  logout   Logout and close any current authenticated sessions.
+  video    Transcode, upload or list videos.
+  whoami   Prints details about authenticated sessions.
+----
+
+== Using ccutil
+
+Ccutil can be used to build a local copy of the documentation for review.
+
+.Procedure
+. Navigate to the guide folder.
+. In *Terminal*, type `./buildGuide.sh`
+. The output can be found in `build/tmp/en-US/html-single/index.html` or you can click the link presented in *Terminal*
++
+[source,options="nowrap",subs="+quotes"]
+----
+Finished html-single
+broker (AsciiDoctor) is located at:  file:///home/__USER__/amq7docs/amq7-documentation-contrib/docs/broker/html/broker.html
+broker (ccutil) is located at:  file:///home/__USER__/amq7docs/amq7-documentation-contrib/docs/broker/build/tmp/en-US/html-single/index.html
+
+----
+
+To share your results with others, publish your results to your personal Red Hat file share.  https://redhat.service-now.com/rh_ess/kb_view.do?sysparm_article=KB0003945[Learn more about setting up your personal file share^].
+
+[[ccutil-references]]
+== References
+
+*  https://gitlab.cee.redhat.com/ccs-tools-documentation/docs2drupal-user-guide/blob/master/ccutil-install.adoc[ccutil Install for EAP^]

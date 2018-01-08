@@ -1,0 +1,34 @@
+= Introduction
+
+This guide is meant to assist contributors to the AMQ 7 documentation.
+
+== Dependencies
+
+* asciidoctor
+* ccutil
+* make
+* python
+
+== Project layout
+
+[source,options="nowrap",subs="+quotes"]
+----
+_BOOK_DIR_/                          # The source for a book
+common/                              # Shared include files
+common/attributes.adoc               # Global book attributes
+images/                              # Shared image files
+scripts/                             # Build scripts
+upstreams/                           # Copies of upstream docs
+----
+
+== Book layout
+
+[source,options="nowrap",subs="+quotes"]
+----
+_BOOK_DIR_/master.adoc               # The main asciidoc entry point
+_BOOK_DIR_/master-docinfo.xml        # Book metadata
+_BOOK_DIR_/common/                   # Symlink to ../commmon/
+_BOOK_DIR_/images/                   # Symlink to ../images/
+_BOOK_DIR_/_CHAPTER_.adoc            # Book-local chapter files
+_BOOK_DIR_/_CHAPTER_-_SECTION_.adoc  # Book-local section files
+----

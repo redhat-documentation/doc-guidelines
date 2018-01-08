@@ -1,0 +1,169 @@
+// This doc can be the basis for an AMQ Admin Guide. For now it just covers merging PRs in amq7-documentation-contrib and pushing them to GitLab for doc builds.
+[[doc-admin-guide]]
+= Administrating AMQ 7 Documentation
+
+This guide describes how to administer the AMQ 7 documentation GitHub and GitLab repositories. All commits, with the exception of internal resources, are to be merged weekly on Friday by the "Mergemaster".
+
+include::amq7-repositories.adoc[leveloffset=+1]
+
+== Branching Overview
+
+The `amq7-documentation-contrib` repo contains several branches, most of which are inactive or deprecated.
+The only ones that you need to use are:
+
+`contrib`:: The default branch.
+All doc contributions are merged into this branch.
+
+`master`:: The master branch for preparing doc builds.
+
+AMQ 7 does not currently use a multi-version branching model.
+Generally speaking, every contribution to `contrib` should apply to the in-flight release.
+Documentation contributions for any future releases should not be merged to `contrib`.
+// Part of moving to the upstream-downstream model will involve coming up with a multi-release branching model.
+
+== Processing Pull Requests
+
+After a pull request has passed SME and peer review, it is ready to be merged into the `contrib` branch in the GitHub repo.
+This can be done piecemeal, but the current practice is for the "Mergemaster" to merge all pull requests on a weekly basis (Friday, 1pm EDT/EST).
+
+=== Open the Pull Request
+
+.Procedure
+. In the `amq7-documentation-contrib` repo, click *Pull Requests*.
+. Verify that the pull request that you want to merge has the *Ready to Merge* label applied.
++
+This label specifies that the changes in the pull request have passed SME and peer reviews.
+. Click the pull request to open it.
+
+=== Review the Pull Request
+
+.Procedure
+. Under the pull request title, verify that the pull request is being merged into `rh-messaging:contrib`.
+. Review the conversation to ensure all comments have been resolved and that there are not any outstanding, glaring issues that need to be addressed.
+. Determine if the pull request can be merged automatically, or if conflicts need to be resolved.
++
+If the pull request can be merged automatically, you will see `This branch has no conflicts with the base branch`.
+
+=== Merge the Pull Request
+
+In most cases, you should be able to merge the pull request automatically.
+However, if there are any conflicts, you must resolve them.
+
+[[automatic-merging]]
+[discrete]
+==== Merging the Pull Request Automatically
+
+.Procedure
+. Click the *Squash and merge* button.
++
+--
+You might need to click the arrow next to *Create a merge commit* to select this option.
+
+Use the squash and merge option rather than the option to create a merge commit. Squashing the commits makes for a cleaner commit history.
+--
+
+. Click *Confirm squash and merge*.
++
+The pull request is merged into `contrib` and closed.
+
+[discrete]
+==== Handling a Pull Request with Conflicts
+
+.Procedure
+. Click *Resolve conflicts* to determine the extent of the conflicts.
++
+--
+* If the conflict is minor, and you can easily see how to resolve it, make the change in the web editor, and then click *Mark as resolved*.
+Your changes are committed and added to the pull request.
+
+* If the conflict is extensive or the resolution is unclear, notify the author and ask him or her to make the necessary corrections.
++
+For additional information about handling complex merge conflicts, see link:https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/contributor-guide.adoc#fix_rebase_merge_conflicts[Fix Rebase Merge Conflicts^].
+--
+
+. When the conflicts are resolved, xref:automatic-merging[merge the pull request].
+
+== Pushing to GitLab for Doc Builds
+
+The `amq7-docs` repo is the source for the AMQ 7 Preview, Stage, and Production environments.
+Therefore, to build the doc, you need to push the content from GitHub to GitLab.
+
+[[merge-to-github]]
+=== Merge to the GitHub `master` branch
+
+In `amq7-documentation-contrib`, you need to merge to `master` everything that you want to be included in the doc build.
+////
+For now this is basically just pushing everything from contrib to master.
+If we move to a different branching model with release branches, then we'll need some more info here about cherry picking commits and merging to the proper branches.
+////
+
+.Procedure
+. In `amq7-documentation-contrib`, navigate to the *Pull requests* tab and then click *New pull request*.
+. Click the *base: contrib* button and select `master`.
++
+The first button should be `base: master`, and the second button should be `compare: contrib`.
+. Click *Create pull request*.
+. In the `Title` field, enter a descriptive name (for example, "Doc Build").
+. Click *Create pull request*.
+. In the pull request, click *Squash and merge*.
++
+All of the commits from `contrib` are merged to `master`, and the pull request is closed.
+
+=== Push to GitLab
+
+After merging to `master` everything that you want to be in the doc build, you pull the changes down to a local branch, and then push the commits to the `amq7-docs` GitLab repo.
+After pushing to `amq7-docs`, Pantheon automatically builds the docs in the Preview and Stage environments.
+
+.Procedure
+. In git, if you do not have a remote repository for `amq7-docs`, then add one:
++
+--
+[options="nowrap",subs="+quotes"]
+----
+$ git remote add -f _REPO_NAME_ git@gitlab.cee.redhat.com:AMQ7-documentation/amq7-documentation.git
+----
+
+For `__REPO_NAME__`, you can use whatever name you want. For simplicity, you should probably name it `amq7-docs` to match the name of the actual repo.
+--
+
+. Fetch the latest from the upstream repository:
++
+[options="nowrap",subs="+quotes"]
+----
+$ git fetch upstream
+----
+
+. Do one of the following:
++
+--
+.Check out a new local branch based on the GitHub `master` branch:
+[options="nowrap",subs="+quotes"]
+----
+$ git checkout -b _BRANCH_NAME_ upstream/master
+----
+
+.Reset an existing local branch with the GitHub `master` branch:
+[options="nowrap",subs="+quotes"]
+----
+$ git checkout _BRANCH_NAME_
+$ git reset --hard _BRANCH_NAME_ upstream/master
+----
+--
+
+. Verify that the branch contains everything that you expect:
++
+[options="nowrap",subs="+quotes"]
+----
+$ git log
+----
+
+. Push the changes to the `master` branch on the `amq7-docs` repo:
++
+[options="nowrap",subs="+quotes"]
+----
+$ git push -f _GITLAB_REMOTE_REPO_ HEAD:master
+----
+
+. If necessary, in `amq7-docs`, verify that everything was pushed to the `master` branch the way you expected.
+
+. Verify that each doc builds successfully on Preview and Stage in Pantheon: link:https://pantheon.cee.redhat.com/#/titles/red-hat-jboss-amq[https://pantheon.cee.redhat.com/#/titles/red-hat-jboss-amq^]
