@@ -235,4 +235,3 @@ $ git fetch upstream
 == References
 
 * https://git-scm.com[Official Git Site^]
-* https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/contributor-guide.adoc[EAP Contributor Guidelines^]

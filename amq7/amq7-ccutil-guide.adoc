@@ -3,7 +3,7 @@
 
 When you make changes to the documentation, it is a good practice to perform a local test build to verify the book builds successfully and renders as you expect before you submit the merge request back to upstream master. This section describes how to configure your environment to build the documentation.
 
-You can build the books by using either xref:make-tooling[make-based tooling] or ccutil, however, be aware that only ccutil catches build errors such as invalid xrefs and missing includes.
+You can build the books by using either xref:make-tooling[make-based tooling] or Red Hat's ccutil, however, be aware that only ccutil catches build errors such as invalid xrefs and missing includes.
 
 For that reason, you must install ccutil to test the build before you merge your changes.
 
@@ -107,8 +107,3 @@ broker (ccutil) is located at:  file:///home/__USER__/amq7docs/amq7-documentatio
 ----
 
 To share your results with others, publish your results to your personal Red Hat file share.  https://redhat.service-now.com/rh_ess/kb_view.do?sysparm_article=KB0003945[Learn more about setting up your personal file share^].
-
-[[ccutil-references]]
-== References
-
-*  https://gitlab.cee.redhat.com/ccs-tools-documentation/docs2drupal-user-guide/blob/master/ccutil-install.adoc[ccutil Install for EAP^]
