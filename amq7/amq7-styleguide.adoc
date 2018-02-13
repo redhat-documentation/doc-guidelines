@@ -8,13 +8,13 @@ When writing content we use the following style guides in order:
 
 . IBM Style Guide (printed)
 . link:https://www.ibm.com/developerworks/library/styleguidelines/[IBM DeveloperWorks Editorial Style Guide^]
-. link:http://brand.redhat.com/elements/[Red Hat Brand Standards^]
+. link:http://brand.redhat.com/[Red Hat Brand Standards^]
 . xref:red-hat-jboss-amq7-conventions[AMQ 7 Terms and Conventions]
-. link:https://doc-stage.usersys.redhat.com/documentation/en-us/ccs_internal_documentation/1.0/html-single/glossary_of_terms_and_conventions_for_product_documentation/[Red Hat Glossary of Terms and Conventions^]
+. Red Hat Glossary of Terms and Conventions
 . link:https://mojo.redhat.com/docs/DOC-28115[Red Hat Corporate Style Guide^]
 . xref:information-architecture[AMQ 7 Documentation Information Architecture Guidelines]
 . xref:screenshot_guidelines[AMQ 7 Screenshot Guidelines]
-. This document (which does include some of the most commonly used rules from the above guides)
+. This document (which does include some of the most commonly used rules from the previous guides)
 
 [[style-guidelines]]
 == Style Guidelines
@@ -52,7 +52,7 @@ When writing content we use the following style guides in order:
 * Don't use contractions, ;).
 * Document IDs are book-scoped, so they don't need the book title in
   them.
-* Terminate bulleted and numbered lists with periods unless the items
+* End bulleted and numbered lists with periods unless the items
   listed are simple names.
 * The words "server" and "broker" are not capitalized unless they
    begin a sentence or appear in a title.
@@ -61,6 +61,24 @@ When writing content we use the following style guides in order:
 * For styling of `++*bold*++` (`*bold*`) in code blocks, use
   `[subs=+quotes]`.
 * Do not use the word 'the' before 'Broker'. It is just 'Broker'
+* When referring the reader to more information, use: "For more information about `__TOPIC__`, see `__RESOURCE__`."
+
+[[naming-files-style]]
+=== Naming Files
+
+.File Names Quick Reference
+[cols="33%,33%a,33%a",options="header"]
+|===
+|Item |Use |Not
+.2+|Custom attributes
+.2+|\`ThisStyle`
+|\`this-style`
+|\`this_style`
+.2+|File and directory names
+.2+|\`this-style`
+|\`this_style`
+|\`ThisStyle`
+|===
 
 [[headings-titles]]
 === Styling Headings and Titles
@@ -170,27 +188,9 @@ in double quotes if it contains a comma.
 |! |Exclamation point (not exclamation mark or bang)
 |===
 
-[[naming-files-style]]
-=== Naming Files
-
-.File Names Quick Reference
-[cols="33%,33%a,33%a",options="header"]
-|===
-|Item |Use |Not
-.2+|Custom attributes
-.2+|\`ThisStyle`
-|\`this-style`
-|\`this_style`
-.2+|File and directory names
-.2+|\`this-style`
-|\`this_style`
-|\`ThisStyle`
-|===
-
 [[style-references]]
 == See Also
 
 * xref:formatted-text-reference[AsciiDoc Format Reference]
 * xref:screenshot_guidelines[Screenshot Guidelines]
 * link:http://titlecase.com[titlecase.com]
-* link:https://doc-stage.usersys.redhat.com/documentation/en-us/ccs_internal_documentation/1.0/html-single/glossary_of_terms_and_conventions_for_product_documentation/[Red Hat Glossary of Terms and Conventions^]

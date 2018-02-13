@@ -1,0 +1,1 @@
+These files are copied from the Modular Docs Initiative and are not updated as frequently as that project.  Please see https://github.com/redhat-documentation/modular-docs/tree/master/modular-docs-manual/files for the most up to date content.
