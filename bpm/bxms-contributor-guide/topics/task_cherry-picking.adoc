@@ -1,0 +1,78 @@
+[id='cherry_picking_branches']
+
+= Cherry-picking Changes Between Branches
+
+If you are working in multiple branches--for example when fixing an issue that is present in multiple versions of the documents--the most efficient way to make the same change in all relevant branches is to make it in one branch, commit it, and cherry-pick it into the other branches using Git.
+
+If the differences between the versions (across branches) of the same document are minimal, the cherry-pick will likely apply cleanly, meaning you save a lot of work as opposed to making the change again manually. However, if the versions are very different, we recommend making the changes by hand. As a general recommendation, try to cherry-pick the commit first. If the cherry-picking fails (that is, you get too many merge conflicts), make the changes in all the branches by hand.
+
+[float]
+== Prerequisites
+
+* More than one branch where changes should be applied (presumably <<_branches,topic branches>>).
+* One or more commits with the changes, applied in one of the relevant branches.
+
+[float]
+== Procedure
+
+.Cherry-picking Changes from One Branch to Another
+. In a terminal application, navigate to the repository.
+. Check out the branch with the changes already applied:
++
+Example:
++
+[source,bash]
+----
+$ git checkout BXMSDOC-474
+----
+. Display the Git log, identify the commits that you want to apply to other branches, and copy their hashsums:
++
+--
+[source,bash]
+----
+$ git log --sparse --oneline
+----
+
+Example output:
+
+[source]
+----
+4b5a575 Finish JS API and move it to Dev Guide
+e1c8dc3 BXMSDOC-474 - peer review of the changes
+e347769 BXMSDOC-474: Task List example
+ad2390e BXMSDOC-474: Changed variable name for consistency
+...
+----
+
+NOTE: The newest commits are displayed on top.
+
+In this example, `4b5a575`, `e1c8dc3`, `e347769`, and `ad2390e` are hashsums. For demonstration purposes, we will cherry-pick the latest two commits, which means the hashsums `e1c8dc3` and `4b5a575` (newest commits are displayed on top).
+--
+. Check out the branch you want to apply the changes to:
++
+Example:
++
+[source,bash]
+----
+$ git checkout BXMSDOC-474-6.3
+----
+. Apply the desired changes using Git's `cherry-pick` command:
++
+--
+Example:
+
+[source,bash]
+----
+$ git cherry-pick e1c8dc3 4b5a575
+----
+
+WARNING: You must apply the changes from oldest to newest, otherwise you can get merge conflicts.
+
+If you get merge conflicts, resolve them. For more information, see <<_resolving_merge_conflicts_using_meld>>.
+--
+. Push the changes.
++
+[source,bash]
+----
+$ git push
+----

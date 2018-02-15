@@ -1,0 +1,95 @@
+
+= Publishing Legacy BXMS 6.x Guides Using Pantheon
+
+Starting with enterprise version 6.4, the documentation is published exclusively through Pantheon.
+
+[float]
+== Prerequisites
+
+* A Pantheon account with publishing permissions. For more information, see <<_pantheon_roles_and_permissions>>.
+* A GitLab account with proper permissions.
+
+[float]
+== Procedure
+
+. In the Enterprise GitLab repository, check out the 6.x preview branch for the product version you want to publish. With version 6.4, for example:
++
+[source,bash]
+----
+$ git checkout 6.4-preview
+----
++
+. Open the `$_$REPOSITORY_PATH_/docs/shared-kie-docs/src/main/asciidoc/document-attributes.adoc` file in a text editor and update the `:REBUILT:` variable. Save the file.
+. Add and commit the changes with a descriptive commit message, for example:
++
+[source,bash]
+----
+$ git commit -m "Update rebuilt variables" docs/shared-kie-docs/src/main/asciidoc/document-attributes.adoc
+----
+. Tag the commit with a tag that describes which version was published and the current date:
++
+--
+[source,bash]
+----
+$ git tag "$VERSION-rel-$DATE"
+----
+
+In this example, `_$VERSION_` is the version of the product, and `_$DATE_` is the current date in the ISO 8601 format (`YYYY-MM-DD`). For example, the following tag is for version 7.0, which is released on Aug 22 2018:
+
+[source,bash]
+----
+$ git tag "6.4-rel-2018-08-22"
+----
+
+Additionally, if you are publishing drafts, for example an alpha draft, use the following format:
+
+[source,bash]
+----
+$ git tag "$VERSION-$BUILD-rel-$DATE-guide"
+----
+
+For example:
+
+[source,bash]
+----
+$ git tag "6.4-alpha-1-rel-28-jun-2018-getting-started-guide"
+----
+
+--
+. Push the changes and tags:
++
+[source,bash]
+----
+$ git push
+$ git push --tags
+----
+. Check out the stage branch for the same product version and rebase it against the preview branch of the same version, for example:
++
+[source,bash]
+----
+$ git checkout 6.4-stage
+$ git rebase 6.4-preview
+----
+. Push the changes in the stage branch:
++
+[source,bash]
+----
+$ git push
+----
+Navigate to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and open the *{bpms}* or *{brms}* product page (or both, if needed), depending on where the new documents need to be published. Wait for preview and stage build jobs to finish. These were started automatically.
+. When the builds complete, click the preview icon image:pantheon-globe-icon.png[] for each document to preview the output.
+. In the guide, locate the new line in the revision history you added earlier in this process to ensure the guide was successfully updated.
+. Repeat for all the guides you want publish.
++
+NOTE: If the guide is not updated, make sure you followed all steps in this procedure. If you are sure you did everything correctly, file a ticket on https://redhat.service-now.com[Helpdesk].
++
+
+. Click the *Publish* button to publish the guide. For multiple guides, select the check box for each guide and click *Bulk actions* -> *Publish* in the upper-right corner of the page.
++
+. Wait for up to a few minutes for the guide to be uploaded to the Customer Portal, then navigate to each guide on the portal and verify the updated revision history line.
+
+[float]
+== Related Information
+
+* https://pantheon.cee.redhat.com/#/help/troubleshooting[Troubleshooting] chapter in the Pantheon User Guide.
+* https://pantheon.cee.redhat.com/#/help/workflow-publishing[Staging and publishing] chapter in the Pantheon User Guide.

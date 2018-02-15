@@ -1,0 +1,46 @@
+
+= Adding BA/DM Documents in Pantheon
+
+With each new release or when new documents become available, new doc titles need to be set up in Pantheon in order for the documents to be published to the Customer Portal.
+
+[float]
+== Prerequisites
+
+* A Pantheon account with publishing permissions. For more information, see <<_pantheon_roles_and_permissions>>.
+
+[float]
+== Procedure
+
+. Go to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and select the *{ba}* or *{dm}* product page, depending on where the new documents need to be added.
++
+If the new documents are for a new product not already listed, then click *Set up new title* directly in the *Products* page. This will add a new product page along with the new document.
++
+. In the selected product page, click *Set up new title* and fill in the following document details:
+* *Yep, repository...*: Select this.
+* *Product*: Enter `Red Hat Business Automation` or `Red Hat Decision Manager`.
+* *Version*: Enter the version number.
+* *GitLab Group*: Select `Documentation - Red Hat JBoss BxMS`.
+* *GitLab Project*: Select `kie-docs-translator`. This is the publishing repo created by the `bxms-translate` script.
+* *Preview Branch*: Select the branch to be published. This is the output preview, but is the same as the stage branch. Example: `7.5.x`.
+* *Stage Branch*: Select the same branch to be published that you selected for the preview branch. Ignore the suggestion to use a separate branch for preview and stage.
+* *Content Title*: Enter the document title exactly as it appears in the doc assembly. If the title is not an exact match, the doc will not build.
+* *Content Directory*: For BA, enter `docs/$ASSEMBLY_FOLDER/src/main/asciidoc/ba`, or for DM, enter `docs/$ASSEMBLY_FOLDER/src/main/asciidoc/dm`. Replace `$ASSEMBLY_FOLDER` with the name of the folder. This specifies the `kie-docs-translator` build path to the assembly build folder for BA or for DM. Example: `docs/product-assembly_guided rules/src/main/asciidoc/dm`.
+* *Additional Content Directories*: Add the following additional directories:
+** `docs/$ASSEMBLY_FOLDER` Top-level folder for the assembly, as a precaution. Example: `docs/product-assembly_guided-rules`
+** `docs/$PRODUCT_GUIDE_FOLDER_WITH_CONTENT`  Top-level folder or folders where actual content is authored for the assembly. You must open the `main.adoc` assembly file for the assembly (in the `kie-docs-translator` https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/kie-docs-translator/tree/master[GitLab repo] or in a text editor) and review the includes to see which product guide folders they point to. Then add a path here for each included product guide folder. Example: If an assembly has includes for both the User Guide and the Getting Started Guide, then specify `docs/product-user-guide` and `docs/getting-started-guide` on separate lines.
+** `docs/shared-kie-docs`  Top-level folder for shared content folder (contains images, document attributes, and other shared assets).
+* *Content Type*: Select `Book`.
+* *Content Markup*: Select `AsciiDoc`.
++
+.Example Setup for New Document
+image::pantheon-new-titles.png[Example Setup for New Document]
++
+. Click *Add additional title* to continue adding other documents with the same product specifications, or click *Submit* to finish.
+. In the product page, click the rebuild icon image:pantheon-rebuild-icon.png[] for each new document to build the preview.
+. When the build completes, click the preview icon image:pantheon-globe-icon.png[] for each document to preview the output.
+
+[float]
+== Related Information
+
+* https://pantheon.cee.redhat.com/#/help/troubleshooting[Troubleshooting] chapter in the Pantheon User Guide.
+* https://pantheon.cee.redhat.com/#/help/workflow-publishing[Staging and publishing] chapter in the Pantheon User Guide.

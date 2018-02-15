@@ -1,0 +1,7 @@
+<productname>Red Hat JBoss BPM Suite</productname>
+<productnumber>7.0</productnumber>
+<subtitle>For Red Hat contributors</subtitle>
+<abstract>
+	<para>The contributor guide for {PRODUCT} for Red Hat contributors.</para>
+</abstract>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />

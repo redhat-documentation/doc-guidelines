@@ -1,0 +1,48 @@
+[id='create_pull_request_fork']
+
+= Create a Pull Request in Your Fork and Assign SME and Peer Reviews
+
+Before you create a pull request for upstream merging, consider creating an initial pull request in your fork first to merge your working branch with your preliminary target branch, for which an SME and peer can validate changes before you merge upstream. Although this initial in-fork pull request is not required, it creates a cleaner upstream pull request later and enables you to resolve potential merge conflicts before you create the upstream pull request.
+
+NOTE: If you choose to skip the in-fork pull request, your SME and peer reviews must be based on the <<create_pull_request_upstream,upstream pull request>>, and you will need to <<cherry_picking_branches,cherry-pick changes>> from the final (SME and peer approved) upstream `master` pull request onto the release branch, if applicable.
+
+[float]
+== Prerequisite
+
+* Your working and target branches have been created in your fork, and the working branch has been updated with changes. See <<make_changes>> for details.
+
+[float]
+== Procedure
+
+. In a web browser, go to your GitHub account and navigate to your personal fork of the `kie-docs` repository.
++
+IMPORTANT: Use only your fork for these steps, not the central `kie-docs` repository.
+
+ . In the *Pull requests* tab, click *New pull request* and create a pull request for the working branch in your fork to be merged with the preliminary target branch in your fork that you created.
+
+ * `*base fork:*` Your own fork (`$USER/kie-docs`)
+ * `*base:*` The preliminary target branch that the working branch will be merged with (`BXMSDOC-1433-master-final`)
+ * `*head fork:*` Your own fork
+ * `*compare:*` The working branch containing the changes to be merged (`BXMSDOC-1433-master`)
+
++
+--
+.Example Pull Request
+image::github-pull-request-fork.png[Example of fork pull request]
+
+
+NOTE: After you select to compare within your own fork, the base fork selection disappears. If you need to restore the fork selections for whatever reason, click *compare across forks* in the description above the forking options.
+
+--
+ifdef::INTERNAL[]
+. In the pull request, add a link to the documentation JIRA and a link to the rendered output from your link:https://mojo.redhat.com/docs/DOC-14590[shared public directory].
+endif::INTERNAL[]
+ifdef::PUBLIC[]
+. In the pull request, add links to any needed documentation resources, such as a related JIRA or a shared public directory with the rendered document preview.
+endif::Public[]
+
+. After SME and peer reviews are complete, merge the pull request in your fork.
++
+You do not need the gatekeeper to accept this first pull request in your fork. The gatekeeper only merges upstream pull requests, which come next.
+
+. As a precaution, after the pull request has been merged, change into the local `BXMSDOC-1433-master-final` branch in your terminal application and run `git pull --rebase` to update your local branch with the merged version from your fork. Then rebuild the output locally to ensure that the updated branch builds successfully. For details about building locally, see <<building_locally,Building and Previewing>>.

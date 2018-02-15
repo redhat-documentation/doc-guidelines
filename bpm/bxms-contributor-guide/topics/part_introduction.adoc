@@ -1,0 +1,16 @@
+
+[preface]
+= Introduction
+
+This guide provides information about the source repository for documentation of Drools and jBPM (KIE community software), and {bpms} and {brms} (Red Hat enterprise products), including its workflow, and the rules you must follow when contributing documentation to the repository.
+
+This guide applies to both the community and enterprise versions, with the differences in content and/or process spelled out explicitly. If you have any questions, <<_contact_information, contact us>>.
+
+Product names are abbreviated as follows throughout this guide:
+
+* *KIE:* Knowledge Is Everything, open source community group for business management software
+* *BPM:* Red Hat Business Process Management products, including {bpms} and {brms}
+* *KIE/BPM:* Both KIE community and Red Hat BPM products, such as the KIE/BPM shared link:https://github.com/kiegroup/kie-docs[kie-docs] repository
+* *BXMS:* Internal abbreviation for all Red Hat BPM products, used only in reference to internal Red Hat projects and tools (example: <<jira-introduction-technical,BXMSDOC JIRA Project>>)
+
+To get started, read the <<_contributing>> section.

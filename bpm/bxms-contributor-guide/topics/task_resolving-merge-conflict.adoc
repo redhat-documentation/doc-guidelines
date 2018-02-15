@@ -1,0 +1,82 @@
+
+= Resolving Merge Conflicts Using Meld
+
+When you try to apply a change to a Git branch, for example while cherry-picking, rebasing, or merging, the branch or commit can contain changes that are incompatible with the existing content. In this case, you must resolve the conflict by modifying the changes until they are compatible.
+
+NOTE: You can resolve merge conflicts without Meld (Git is configured to use a fallback tool in such a case), but this section focuses on Meld because it is comparatively powerful and easy to use.
+
+[float]
+== Prerequisites
+
+* Meld. For more information, see <<_system_requirements>>.
+
+[float]
+== Procedure
+
+.Resolving Merge Conflicts
+. In a terminal application, navigate to the repository and run:
++
+--
+[source,bash]
+----
+$ git mergetool
+----
+
+NOTE: Git can ask if you want to run Meld to resolve the conflicts. If so, press Enter.
+
+When resolving a merge conflict, Meld displays three columns that show the same file in three states (in this order, from the left):
+
+Local (file name that contains "LOCAL"):: The file as is currently committed in the mainline branch.
+Result (unchanged file name):: What the file will look like after you apply the changes you are trying to cherry-pick.
+Remote (file name that contains "REMOTE"):: The changes you are trying to apply.
+
+NOTE: It is recommended to first click *Changes* -> *Merge all* before working on the conflicting areas to apply all non-problematic changes. However, Meld can occasionally interpret the changes wrongly, so always verify that this step did not introduce any errors. If it did, click *View* -> *Refresh* to undo the step and merge the changes manually instead.
+--
+
+. Scroll through the file to look for conflicts, which are highlighted in red.
+
+. Merge the changes either from _Local_ or _Remote_ to the _Result_ column in the middle by clicking the right arrows (_Local_) or left arrows (_Remote_).
++
+Alternatively, you can directly modify the contents of the middle column (_Result_) in case the changes in question are complicated, and merging all of the red area from one of the columns would yield wrong results.
+
+. When you have finished merging changes, select the middle column, click *Save*, and close Meld.
+
+. Repeat the steps above for all files with merge conflicts.
+
+. After you resolve all merge conflicts, add the affected files to stage:
++
+[source,bash]
+----
+$ git add AFFECTED_FILE_1 AFFECTED_FILE_2 ...
+----
+
+. Continue the process that caused the merge conflict (perform only the action that applies in your situation):
++
+--
+Merging::
++
+[source,bash]
+----
+$ git commit
+----
+
+Rebasing::
++
+[source,bash]
+----
+$ git rebase --continue
+----
+
+Cherry-picking::
++
+[source,bash]
+----
+$ git cherry-pick --continue
+----
+--
+
+[float]
+== Related Information
+
+* https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/[GitHub guide] on resolving merge conflicts using command line.
+

@@ -1,0 +1,42 @@
+
+= Pantheon Roles and Permissions
+
+To efficiently manage titles in Pantheon and publish documentation to the Customer Portal, documentation team members should have the following permissions:
+
+NOTE: The permissions are explained in detail in the https://pantheon.cee.redhat.com/#/help/support-permissions[Requesting Permissions] section of the _Pantheon User Guide_.
+
+[float]
+== All Writers
+
+This setting allows all documentation team members to publish content:
+
+* Title Publisher
+
+[float]
+== Documentation Administrator
+
+In addition to the Documentation Program Manager (DPM), one other person in the team should have the following permissions, which allow creating, updating, and deleting the titles in Pantheon:
+
+* Title Manager
+* Title Publisher
+
+[float]
+== DPM
+
+The DPM should have all the permissions that apply to handling the documentation set:
+
+* Title Manager
+* Title Publisher
+* Translation Title Manager
+* Translation Title Publisher
+* User Manager
+
+[float]
+== Translation Team Manager
+
+Since the translations of the documentation set are handled by a separate team, the Translation Team's manager should have at least the following permissions:
+
+* Translation Title Manager
+* Translation Title Publisher
+* User Manager
+

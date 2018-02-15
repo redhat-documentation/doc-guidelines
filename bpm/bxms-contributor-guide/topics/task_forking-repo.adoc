@@ -1,0 +1,69 @@
+[id='fork_upstream_repo']
+
+= Fork the kie-docs Repository and Add Remotes
+
+You must use your own fork of the `kie-docs` repository to commit, push, and review changes before merging the changes (in branches) with the main upstream repository. This provides a safe testing ground to minimize problems upstream. When your contribution is finished, it is reviewed and added into the main repository.
+
+[float]
+== Prerequisites
+
+* Git is installed on your system. For more information, see <<_system_requirements>>.
+* You have a https://github.com/join[GitHub account].
+* link:https://help.github.com/articles/connecting-to-github-with-ssh/[SSH keys] have been generated and added to your GitHub account.
+
+
+[float]
+== Procedure
+
+. In your browser, navigate to the https://github.com/kiegroup/kie-docs[kie-docs repository]. Ensure you are logged in.
+. Click *Fork*.
++
+NOTE: If you are a member of a group on GitHub, you can get prompted to specify where to fork the repository. We recommend that you create the fork in your personal space.
+
++
+Wait for the repository to be forked. You will be redirected automatically into your forked repository.
+
+. In a terminal application, create a directory where you want to work in your forked repository, for example:
++
+[source,bash]
+----
+$ cd ~/$WORKSPACE
+$ mkdir $REPOSITORY_NAME #Example: `repos`
+----
+. Clone your forked repository:
++
+[source,bash]
+----
+$ cd ~/$REPOSITORY_NAME
+$ git clone git@github.com:$USER_NAME/kie-docs.git
+----
++
+The `$USERNAME` is your GitHub user name.
+
+. In the newly cloned `kie-docs` directory, add the upstream `kie-docs` repository as an additional remote called `upstream` so that you can pull changes from the upstream to your forked repository:
++
+[source,bash]
+----
+$ git remote add upstream https://github.com/kiegroup/kie-docs.git
+----
++
+. Verify that the upstream remote has been added:
++
+[source,bash]
+----
+$ git remote -v
+----
+
++
+You should see `origin` (your forked repository) and `upstream` (upstream `kie-docs` repository).
++
+[source,bash]
+----
+origin git@github.com:sterobin/kie-docs.git (fetch)
+origin git@github.com:sterobin/kie-docs.git (push)
+upstream https://github.com/kiegroup/kie-docs.git (fetch)
+upstream https://github.com/kiegroup/kie-docs.git (push)
+----
+
++
+TIP: Consider renaming `origin` your GitHub user name to avoid confusion with other contributors' forks (also named `origin` by default) when you need to collaborate across forks. To rename your remote, go to the `kie-docs` repository in your terminal application and run `git remote rename origin $USERNAME`. Please note that going forward, in any Git commands that refer to `origin` you will need to use the new remote name instead (example: `git push --set-upstream $NEW_NAME $BRANCH_NAME`)

@@ -1,0 +1,99 @@
+
+= Pre-Publishing Checklist
+
+WARNING: This section is obsolete, and will be updated shortly.
+
+Before publishing a new major or minor version of the enterprise documentation set, perform the following checks to ensure the updated version of the documentation is correct.
+
+NOTE: The following checks are mandatory.
+
+Ensure the Maven artifacts match the updated product.::
++
+Affected books:
++
+* Installation Guide (_Supported Component Versions_)
+* Getting Started Guide
+* Possibly others
+
+Ensure product version numbers were updated.::
++
+--
+Update the value of the `\{PRODUCT_VERSION\}` attribute in `docs/shared-kie-docs/src/main/asciidoc/document-attributes.adoc`.  If there is enough time before the release, go over the documentation set and verify if any hard-coded product versions should be replaced with `\{PRODUCT_VERSION\}`.
+
+Affected books:
+
+* All
+--
+
+Consult with Engineering and QE what classes or API end-points were deprecated, if any.::
++
+--
+Affected books:
+
+* Development Guide
+* Migration Guide
+* Possibly others
+--
+
+Ensure all links in the documentation are not broken.::
++
+--
+Make sure links point to pages that exist and do not return HTTP error 404 or a similar error. This check is automatically performed by the internal Emender tool:
+
+* Page with http://ccs-jenkins.gsslab.brq.redhat.com:8080/view/Tests%20-%20BPMS/[BPM Suite tests]
+* Page with http://ccs-jenkins.gsslab.brq.redhat.com:8080/view/Tests%20-%20BRMS/[BRMS tests]
+
+[NOTE]
+====
+You must https://mojo.redhat.com/docs/DOC-1131907#jive_content_id_Filing_an_Operational_Request[file an operational request] for a new batch of test jobs for Emender for each new version of the documentation.
+
+When filing the request, enter the following information:
+
+* What product you want to test: BRMS, BPM Suite
+* What books you want to test: _Enumerate all books_
+* Where the repository is located: https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/bxms-docs
+* On what branches the tests should be run: `$PRODUCT_VERSION-preview`
+* What tests you want performed: Dead links
+====
+
+Affected books:
+
+* All
+--
+
+Verify the supported EAP version and update if necessary.::
++
+--
+Consult QE whether the new version of {PRODUCT} supports a new version of EAP. If so, modify the value of the `\{EAP_VERSION\}` attribute in `docs/shared-kie-docs/src/main/resources/Product/document-attributes.adoc`. If there is enough time before the release, go over the documentation set and verify if any hard-coded EAP versions should be replaced with `\{EAP_VERSION\}`.
+
+Affected books:
+
+* All
+--
+
+Create a chapter in the Migration Guide.::
++
+--
+If there is a need, create a new chapter for migrating from existing versions to the current one. This chapter should include instructions how to migrate, notable changes, and warnings about caveats.
+
+Affected books:
+
+* Migration Guide
+* Possibly Release Notes
+--
+
+Bump the release in the REBUILT variable.::
++
+--
+In all books, update the `:REBUILT:` variable in the `docs/shared-kie-docs/src/main/asciidoc/document-attributes.adoc` file with the timestamp of the latest rebuild. This change is propagated to all the books.
+
+Affected books:
+
+* All
+--
+
+Publish sprint report.::
++
+--
+The DPM, or someone appointed by the DPM, should release a sprint report and send it to mailto:brms-docs@redhat.com[brms-docs@redhat.com] and mailto:bpms-pm-list@redhat.com[bpms-pm-list@redhat.com].
+--

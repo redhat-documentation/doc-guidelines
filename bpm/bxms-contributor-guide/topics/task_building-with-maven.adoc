@@ -1,0 +1,41 @@
+
+= Building Locally with Maven
+
+WARNING: Only community books (those containing a product subdirectory named `community`) can be built locally using Maven.
+
+[float]
+== Prerequisites
+
+* Maven. For more information, see <<_system_requirements>>.
+* A web browser.
+
+[float]
+== Procedure
+
+.Building and Previewing a Book Using Maven
+. In a terminal application, navigate to the repository.
+. Navigate to the directory of the book that you want to build.
++
+For example, for the Drools community documentation, run:
++
+[source,bash]
+----
+$ cd docs/drools-docs
+----
+
+. Build the book by running the following command:
++
+[source,bash]
+----
+$ mvn clean install
+----
+
+. Open a browser to display the result:
++
+[source,bash]
+----
+$ firefox target/generated-docs/html_single/index.html
+----
++
+NOTE: Replace `firefox` with a browser of your choice.
+

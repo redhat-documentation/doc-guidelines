@@ -1,0 +1,89 @@
+[id='cherry_pick_pull_request']
+
+= Create a Release Working Branch and Cherry-Pick the Fork Pull Request
+
+[NOTE]
+====
+Before you begin, please note:
+
+* Skip this section if your document update applies to only a release branch and not to `master`, such as a documented known issue for `7.3.x` that will be resolved in future releases. In that case, you would follow the same steps described in <<make_changes>> to create `7.3.x` working and target branches only (`BXMSDOC-1433-7.3.x` and `BXMSDOC-1433-7.3.x-final`), and no `master` working branch to be cherry-picked.
+* If you chose not to <<create_pull_request_fork,create an in-fork pull request>>, then you must <<create_pull_request_upstream,create an upstream pull request>> first and then follow this section to cherry-pick that final (SME and peer approved) pull request onto the release branch.
+====
+
+The newly updated `master`-based branch in your fork (`BXMSDOC-1433-master-final`) can now be merged to upstream `master`, but it cannot be merged into the relevant release-specific branch, such as `7.3.x`. To be able to merge the new changes into `7.3.x`, you must first create a second working branch based on `7.3.x` and cherry-pick the changes merged in `BXMSDOC-1433-master-final`.
+
+[float]
+== Prerequisites
+
+* SME and peer have approved your changes, and your `master` working branch (`BXMSDOC-1433-master`) has been merged with the target branch (`BXMSDOC-1433-master-final`) in your fork. See <<create_pull_request_fork>> for details.
+
+[float]
+== Procedure
+
+. In your terminal application, change to your `kie-docs` fork and update the `7.3.x` branch:
++
+[source,bash]
+----
+$ git fetch --all
+$ git checkout 7.3.x # If the branch is not listed locally, use git checkout --track origin/7.3.x
+$ git rebase upstream/7.3.x
+$ git push
+----
++
+For details, see <<update_fork>>.
+
+. Create a `7.3.x` target branch and push to your fork:
++
+[source,bash]
+----
+$ git checkout 7.3.x
+$ git checkout -b BXMSDOC-1433-7.3.x-final # New target branch that will cherry-pick BXMSDOC-1433-master-final
+$ git push --set-upstream origin BXMSDOC-1433-7.3.x-final #First-time push only. Next time use `git push`.
+----
++
+For details, see <<make_changes>>.
+
+. In a web browser, go to your GitHub account and navigate to your personal fork of the `kie-docs` repository.
+. Select the `master` target branch that you previously merged (`BXMSDOC-1433-master-final`) and select *Commits*.
+. Next to the *Merge pull request* commit in the commit history, copy or note the merge request hash (7-digit commit number). You can also click the *Copy the full SHA* clipboard icon to copy the full commit hash.
+. In your terminal application, ensure that you are in your newly created `7.3.x` target branch (`BXMSDOC-1433-7.3.x-final`) and run `git cherry-pick $COMMIT_HASH -m 1` to cherry-pick the copied pull request:
+
++
+[source,bash]
+----
+$ git checkout BXMSDOC-1433-7.3.x-final
+$ git cherry-pick 971aee7 -m 1
+$ git push
+----
+
++
+. Build the cherry-picked target branch (`BXMSDOC-1433-7.3.x-final`) locally to ensure that the changes from `master` were incorporated properly.
+
+The `7.3.x` target branch and the `master` target branch are now ready for upstream merging.
+
+.Cherry-Picking a Pull Request vs. a Range of Commits
+[NOTE]
+====
+If cherry-picking the whole pull request is not possible or desired for whatever reason, you can also cherry-pick a range of commits instead.
+
+Consider the following example commit history in GitHub:
+
+image::github-pull-request-range.png[Range of GitHub commits]
+
+Here you can cherry-pick either the whole pull request, as described in this section, or a range of specified commits (all commits if needed):
+
+* Cherry-pick whole pull request: `git cherry-pick 735add3 -m 1`
+* Cherry-pick range of commits: `git cherry-pick 86557a9^..7bd19d0`
+
+When cherry-picking a range of commits, always use the format $OLDEST_COMMIT^..$LATEST_COMMIT, as shown.
+====
+
+Below is a visual overview of the merging and cherry-picking process:
+
+.Overview of Merging and Cherry-Picking Process
+image::github-cherry-pick-overview.png[Cherry-picking overview]
+
+[float]
+== Related Information
+* <<cherry_picking_branches>>
+* link:https://www.tollmanz.com/git-cherry-pick-range/[Cherry Picking a Range of Commits]

@@ -1,0 +1,8 @@
+
+= Repository Location
+
+The repository with both the community and enterprise sources is located on https://www.github.com/droolsjbpm/kie-docs[GitHub]. This repository is publicly accessible, but only members of the {PRODUCT} development and documentation teams can commit to it.
+
+Previously, the enterprise documentation sources were hosted in an internal GitLab instance.footnote:[Internal GitLab: https://gitlab.cee.redhat.com] This repository is no longer used for development and does not accept any further code changes.
+
+NOTE: To contribute to the repository, follow the instructions in <<_contributing>>.

@@ -1,0 +1,50 @@
+
+[id='addressing-jira-issue-{chapter}']
+= Addressing JIRA Issue
+
+[float]
+== Prerequisites
+
+* An account on JBoss JIRA with proper permissions.
+
+[float]
+== Procedure
+
+.Addressing JIRA Issue
+. Ensure that you are logged in to JIRA.
+. Select the issue that you want to address.
+. Click the *Assign to me* link next to the *Assignee* field if the issue is not already assigned to you.
++
+NOTE: If the issue is assigned to someone else, consult them first before taking their issues.
+. Set the issue's status to `IN PROGRESS` by clicking the *In Progress* button at the top of the page.
+. If the issue involves modifying the documentation set, create a draft and make the needed changes. For details, see <<_contributing>>.
+. If you created a pull request, link it to the issue by clicking *Edit* and putting the URL of the pull request in the *Git Pull Request* field.
++
+
+:SME_REVIEW:
+include::snippet_review-workflow.adoc[]
++
+
+:SME_REVIEW!:
+:PEER_REVIEW:
+include::snippet_review-workflow.adoc[]
++
+
+:PEER_REVIEW!:
+. Ensure all pull requests related to the current issue are merged.
+. If there are engineering issues (most likely from the `RHBPMS`, `RHBRMS`, or `BPMSPL` projects) linked to the current issue, add a comment into each of them saying that the documentation was updated.
++
+Example:
++
+[source]
+----
+Documentation was updated. For more information, see BXMSDOC-$ID.
+----
++
+In the example above, `$ID` stands for the issue ID.
+. Mark the current issue as `RESOLVED`.
+
+[float]
+== Related Information
+
+* <<jira-introduction-technical, List of BxMS JIRA projects>>

@@ -1,0 +1,75 @@
+[#mod_doc_conventions]
+= Modular Documentation Conventions
+
+Modular documentation is documentation based on modules, which are reusable building blocks of information with a well-organized structure. The primary types of modules are concept, reference, and procedure modules. Technical writers write modules separately based on module type, and then combine the modules into assemblies. The assembly of modules, often preceded by an introduction, is then generated as a user-story-based document.
+
+Creating documentation in this way makes content reusable, consistent, and well structured, enabling a large body of contributors to work more efficiently to build clear, reliable documentation for end users.
+
+For details about how to create content modules and assemblies, see the link:https://htmlpreview.github.io/?https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/modular-docs-manual.html[Modular Documentation Reference Guide].
+
+== File Names and Anchor Names
+
+To optimize modular documentation, follow these guidelines for naming module files and anchors:
+
+File names:: Give an informative name separated by dashes and indicate the module type (`con` for concept, `ref` for reference, `proc` for procedure) at the end of the name. If applicable, consider also providing a module sub-type (such as `create`, `edit`, `delete`) right before the module type. Indicating the module type and sub-type at the end of the file name instead of the beginning of the file name results in topics being sorted based on subject matter rather than module type. This assortment can be helpful for managing related content.
++
+For assemblies, however, precede the file name with `assembly_`. This sets assembled content apart from the content modules.
++
+.Examples
+* `guided-decision-tables-con.adoc`  (Concept module)
+* `guided-decision-tables-create-proc.adoc`  (Procedure module for creating)
+* `guided-decision-tables-edit-proc.adoc`  (Procedure module for editing)
+* `guided-decision-tables-examples-ref.adoc`  (Reference module with examples)
+* `guided-decision-tables-limitations-ref.adoc`  (Reference module with limitations)
+* `assembly_guided-decision-tables.adoc`  (Assembly of guided decision table modules)
+
+Anchor names:: Provide an anchor using the module file name in the format `+++[id='file-name']+++` for every module so that it can be identified by Asciidoctor when reused or cross-referenced. Ensure that the anchor name is the file name. Do not name the anchor the same as the module heading. Matching the anchor name to the file name, in the format described in this document, instead of to the module heading provides greater stability for files and anchors as module headings change over time.
++
+[source]
+----
+[id='file-name']
+= Module or assembly heading
+
+First sentence of module, or purpose statement of assembly.
+----
++
+.Example 1. Concept module
+[source]
+----
+[id='guided-decision-tables-con']
+= Guided decision tables
+
+The guided decision tables feature works similarly to ...
+----
++
+.Example 2. Procedure module
+[source]
+----
+[id='guided-decision-tables-create-proc']
+= Creating guided decision tables
+
+You can use guided decision tables to ...
+----
++
+.Example 3. Assembly
+[source]
+----
+[id='assembly_guided-decision-tables']
+= Designing a decision service using guided decision tables
+
+As a business analyst, you can ...
+
+include::.../guided-decision-tables-con.adoc
+
+include::.../guided-decision-tables-create-proc.adoc
+
+...
+----
+
+[NOTE]
+.Note on Other Anchor Formats (Not Recommended)
+====
+The format defined here is recommended because it is the most stable and versatile of anchor formats, and supports document attribute variables that enable topics to be reused and cross-referenced properly. For details, see <<reusing-modules>>. Other anchor formats include `+++[[anchor-name]]+++` and `+++[#anchor-name]+++`, but these formats either do not support variables for content reuse or do not support certain character types, such as periods. These limitations cause errors at build time.
+====
+
+For more information about Asciidoc anchors, see the link:http://asciidoctor.org/docs/user-manual/#anchordef[Asciidoctor User Manual].
