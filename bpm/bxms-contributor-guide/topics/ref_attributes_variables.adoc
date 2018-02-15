@@ -1,0 +1,854 @@
+[id='document_attributes']
+= Attributes (Variables)
+
+The {PRODUCT} documentation uses many attributes (variables in other languages) to make writing easier and more consistent. When authoring or modifying content, always use attributes instead of writing the text they replace in full. This way, updating the documentation to a new version or changing the URLs of all books can be done easily.
+
+.Using Attributes
+====
+The typical, simple way:
+
+[source,asciidoc]
+----
+For more information, refer to the https://access.redhat.com/documentation/en/red-hat-jboss-bpm-suite/6.4/single/user-guide/index.html[Red Hat JBoss BPM Suite 6.4 User Guide].
+----
+
+In the example above, when releasing a new version, both the URL and the link text need to be modified. When using attributes, only the declaration of the attribute in the `_REPO_HOME_/docs/shared/document-attributes.adoc` file needs to be updated, and all links to the User Guide will look as follows:
+
+[source,asciidoc]
+----
+For more information, refer to the {URL_USER_GUIDE}[{USER_GUIDE}].
+----
+====
+
+== General Usage
+
+The attributes in this section are used for modifying the building behavior.
+
+REBUILT::
++
+--
+The date the documentation was last rebuilt and published.
+
+.Values of Attribute
+[cols="1,1,1",options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Mon Jun 12, 2017
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+ENTERPRISE_ONLY::
++
+--
+Used for elements present only in the enterprise (downstream) documentation.
+
+Example:
+
+[source,asciidoc]
+----
+\ifdef::ENTERPRISE_ONLY[]
+This feature is supported in {PRODUCT} version 6 and later.
+\endif::[]
+----
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| _set, but empty_
+| _set, but empty_
+| _TBA_
+|===
+--
+
+COMMUNITY_ONLY::
++
+--
+Used for elements present only in the community (upstream) documentation.
+
+Example:
+
+[source,asciidoc]
+----
+\ifdef::COMMUNITY_ONLY[]
+You can run {PRODUCT} on JBoss WildFly.
+\endif::[]
+----
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| _unset_
+| _unset_
+| _TBA_
+|===
+--
+
+== Versioning
+
+When releasing a new version of the documentation, check especially the following variables because they may need updating.
+
+YEAR::
++
+--
+The year the documentation was published.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| 2017
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+ENTERPRISE_VERSION::
++
+--
+The enterprise product version, independent of context (even in the community documentation).
+
+NOTE: Do not use this attribute unless necessary. Use `\{PRODUCT_VERSION\}` instead.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| 7.0
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+COMMUNITY_VERSION::
++
+--
+The community product version, independent of context (even in the enterprise documentation)
+
+NOTE: Do not use this attribute unless necessary. Use `\{PRODUCT_VERSION\}` instead.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| 7.0
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+
+PRODUCT_VERSION::
++
+--
+The version of the product you are building the documentation for.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{ENTERPRISE_VERSION\}
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+RELEASE::
++
+--
+Release string (name) of the product.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Limited Availability CAP Build 2
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+BOM_VERSION::
++
+--
+The Bill of Materials version.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| 7.1.0.Beta2-redhat-1
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+MAVEN_ARTIFACT_VERSION::
++
+--
+The Maven artifact version.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| 7.0.0.CR9-redhat-1
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+== Product Names
+
+The names of the products frequently referenced in the documentation set.
+
+PRODUCT::
++
+--
+The {PRODUCT} product name, dependent on which product the documentation is built for.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Red Hat JBoss BPM Suite
+| Red Hat JBoss BRMS
+| _TBA_
+|===
+--
+
+PRODUCT_BPMSUITE::
++
+--
+The BPM Suite product name, independent of context (even BRMS or community).
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Red Hat JBoss BPM Suite
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+PRODUCT_BRMS::
++
+--
+The BRMS product name, independent of context (even the BPM Suite or community).
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Red Hat JBoss BRMS
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+PLANNER::
++
+--
+The product name of the Business Resource Planner (enterprise) or Optaplanner (community).
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Business Resource Planner
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+WEBSPHERE::
++
+--
+The IBM WebSphere full product name.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| IBM WebSphere Application Server
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+WEBSPHERE_SHORT::
++
+--
+The IBM WebSphere short product name.
+
+NOTE: Do not use unless necessary. Use `\{WEBSPHERE\}` instead.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| IBM WebSphere
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+WEBLOGIC::
++
+--
+The Oracle Weblogic full product name.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Oracle Weblogic Server
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+WEBLOGIC_SHORT::
++
+--
+The Oracle Weblogic short product name.
+
+NOTE: Do not use unless necessary. Use `\{WEBLOGIC\}` instead.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Oracle Weblogic
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+EAP::
++
+--
+The Red Hat JBoss Enterprise Application Platform short product name.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Red Hat JBoss EAP
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+EAP_LONG::
++
+--
+The Red Hat JBoss Enterprise Application Platform full product name.
+
+NOTE: Do not use unless necessary. Use `\{EAP\}` instead.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| Red Hat JBoss Enterprise Application Platform
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+== Book Names
+
+The full names of the books from the {PRODUCT} documentation set.
+
+ADMIN_GUIDE::
++
+--
+The full name of the Administration and Configuration Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} Administration and Configuration Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+PLANNER_GUIDE::
++
+--
+The full name of the Business Resource Planner Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} \{PLANNER\} Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+DEVELOPMENT_GUIDE::
++
+--
+The full name of the Development Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT_BPMSUITE\} Development Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+GETTING_STARTED_GUIDE::
++
+--
+The full name of the Getting Started Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} Getting Started Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+IBM_GUIDE::
++
+--
+The full name of the IBM WebSphere Installation and Configuration Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} \{WEBSPHERE_SHORT\} Installation and Configuration Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+INSTALLATION_GUIDE::
++
+--
+The full name of the Installation Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} Installation Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+MIGRATION_GUIDE::
++
+--
+The full name of the Migration Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT_BPMSUITE\} Migration Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+ORACLE_GUIDE::
++
+--
+The full name of the Oracle Weblogic Installation and Configuration Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} \{WEBLOGIC_SHORT\} Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+RELEASE_NOTES::
++
+--
+The full name of the Release Notes.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} \{PRODUCT_VERSION\} Release Notes
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+USER_GUIDE::
++
+--
+The full name of the User Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{PRODUCT\} User Guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+== URL Components
+
+Components of the URLs of the books and other links. Do not use these attributes in this section anywhere on their own, only as parts of URLs.
+
+URL_COMPONENT_FORMAT::
++
+--
+The URL component containing the view format of the documentation. Usually `single` or `paged`.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| single
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_BASE_ENTERPRISE::
++
+--
+The base URL of all enterprise books.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| https://access.redhat.com/documentation/en-us/\{URL_COMPONENT_PRODUCT\}/\{ENTERPRISE_VERSION\}/\{URL_COMPONENT_FORMAT\}
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_BASE_BPMSUITE::
++
+--
+The base URL for books that are only published for the BPM Suite.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| https://access.redhat.com/documentation/en-us/red-hat-jboss-bpm-suite/\{ENTERPRISE_VERSION\}/\{URL_COMPONENT_FORMAT\}
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_COMPONENT_PRODUCT::
++
+--
+The product name URL component.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| red-hat-jboss-bpm-suite
+| red-hat-jboss-brms
+| _TBA_
+|===
+--
+
+== Book URLs
+
+The full URLs to the current versions of the books in the {PRODUCT} documentation set.
+
+URL_ADMIN_GUIDE::
++
+--
+The full URL of the Administration and Configuration Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_ENTERPRISE\}/administration-and-configuration-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_DEVELOPMENT_GUIDE::
++
+--
+The full URL of the Development Guide.
+
+NOTE: This books is published only for the BPM Suite.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_BPMSUITE\}/development-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_GETTING_STARTED_GUIDE::
++
+--
+The full URL of the Getting Started Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_ENTERPRISE\}/getting-started-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_IBM_GUIDE::
++
+--
+The full URL of the IBM WebSphere Administration and Configuration Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_ENTERPRISE\}/ibm-websphere-installation-and-configuration-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_INSTALLATION_GUIDE::
++
+--
+The full URL of the Installation Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_ENTERPRISE\}/installation-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_ORACLE_GUIDE::
++
+--
+The full URL of the Oracle Weblogic Installation and Configuration Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_ENTERPRISE\}/oracle-weblogic-administration-and-configuration-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_RELEASE_NOTES::
++
+--
+The full URL of the Release Notes.
+
+NOTE: The URL must be updated with every major release of the documentation because the product version string is part of it.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_ENTERPRISE\}/70release-notes
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_MIGRATION_GUIDE::
++
+--
+The full URL of the Migration Guide.
+
+NOTE: This book is published only for the BPM Suite.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_BPMSUITE\}/migration-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--
+
+URL_USER_GUIDE::
++
+--
+The full URL of the User Guide.
+
+.Values of Attribute
+[cols="1,1,1", options="header"]
+|===
+| BPM Suite
+| BRMS
+| Community
+
+| \{URL_BASE_ENTERPRISE\}/user-guide
+| _same as BPM Suite_
+| _TBA_
+|===
+--

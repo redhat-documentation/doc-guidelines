@@ -1,0 +1,19 @@
+
+[id='review-sub-task-lifecycle-{chapter}']
+= Review Status Life Cycle
+
+The review sub-tasks (SME review, peer review, QE review) go through the following statuses. Details are provided in the <<review-status-descriptions-{chapter}>>.
+
+.Review Status Diagram
+image::review-workflow.png[Review Status Diagram,525,425]
+
+[id='review-status-descriptions-{chapter}']
+== Review Status Descriptions
+
+Open:: The reviewer is not working on the issue, and no progress is being made.
+
+Coding in Progress:: The reviewer is looking at the draft or has provided feedback. The issue stays in *Coding in Progress* until the writer makes all the necessary changes.
+
+Resolved:: The review has concluded, and the draft is correct from the reviewer's perspective.
+
+Closed (reason):: The review was stopped because the parent JIRA was closed or the review JIRA is otherwise obsolete. Set the reason for closing accordingly (`Won't Do`, `Duplicate`, `Rejected`, or other).

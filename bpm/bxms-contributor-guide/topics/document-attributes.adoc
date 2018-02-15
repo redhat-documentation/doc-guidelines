@@ -1,0 +1,9 @@
+:brms: Red Hat JBoss BRMS
+:bpms: Red Hat JBoss BPM Suite
+:ba: Red Hat Business Automation
+:dm: Red Hat Decision Manager
+
+:GUIDE_VERSION: 0.1-alpha
+:GUIDE_BUILD_DATE: February 2018
+
+:PRODUCT: KIE/BPM

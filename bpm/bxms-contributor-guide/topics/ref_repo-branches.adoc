@@ -1,0 +1,31 @@
+
+= Branches
+
+The branches in the {PRODUCT} documentation repository are named as follows, and contain the following versions of the documentation:
+
+NOTE: The version of the community and enterprise documentation in one branch may not be the same. Always check what version of the documentation you want to work on.
+
+[cols="1,1,1,2", opts=header]
+|===
+| Branch Name
+| Community Version
+| Enterprise Version
+| Contents
+
+| master
+| 7.0 and updates
+| 7.0 and updates
+| Latest community upstream version
+
+| 6.5.x
+| 6.5 and updates
+| N/A
+| The source code for the enterprise documentation is not available for versions older than 7.0.
+
+| $VERSION.x
+| $VERSION and updates
+| N/A
+| The source code for the enterprise documentation is not available for versions older than 7.0.
+|===
+
+

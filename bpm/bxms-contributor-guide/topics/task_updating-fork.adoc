@@ -1,0 +1,45 @@
+[id='update_fork']
+
+= Update Your Fork Branches
+
+Before you begin working on new documentation changes, update the relevant branch in your fork against the upstream `kie-docs` repository to get the latest changes to that branch. If you do not update your fork branch before making your changes, your branch will be out of date and could result in merge conflicts when you merge.
+
+[float]
+== Procedure
+. In your terminal application, change to the `kie-docs` directory and fetch latest changes from all remote repositories (your fork, upstream, and any others you have added):
++
+[source,bash]
+----
+$ cd $REPOSITORY_NAME/kie-docs
+$ git fetch --all
+----
+. Check out the branch that will be affected by your changes, rebase it against the upstream version to get the latest changes, and push to your fork.
++
+IMPORTANT: You must rebase each branch individually against its upstream counterpart in order to get latest changes for that branch. This is important because typically you will need to merge documentation changes in both the `master` branch and the affected release-specific branch (example: `7.3.x`). For details, see <<cherry_pick_pull_request>>.
+
++
+Example 1: Updating fork `master` against upstream `master`
++
+[source,bash]
+----
+$ git checkout master
+$ git rebase upstream/master
+$ git push
+----
+
++
+Example 2: Updating fork `7.3.x` against upstream `7.3.x`
++
+[source,bash]
+----
+$ git checkout 7.3.x
+$ git rebase upstream/7.3.x
+$ git push
+----
+
++
+.The Branch Is Not Listed in My Terminal Application
+[NOTE]
+====
+To bring the branch into your local directory, run `git checkout --track $FORK_REMOTE_NAME/$BRANCH_NAME`. For example, if your fork remote is `origin` and the branch that you need is `7.3.x`, then enter `git checkout --track origin/7.3.x`
+====

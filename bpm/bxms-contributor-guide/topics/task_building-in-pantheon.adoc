@@ -1,0 +1,29 @@
+
+= Building in Pantheon
+
+You can build and preview books in https://pantheon.cee.redhat.com[Pantheon], the internal CCS build system. Because Pantheon only supports building the mainline branches (`$VERSION-preview` or `$VERSION-stage`) of the repository, use Pantheon when you want to publish or review the current stage of the book before publishing.
+
+[float]
+== Prerequisites
+* Access to https://pantheon.cee.redhat.com[Pantheon] (Red Hat associates only).
+* The latest documentation is present in the Gitlab repository. For further information, see the `bxms-translate` section of the https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[proposal-d] repository.
+
+[float]
+== Procedure
+
+.Building and Previewing a Book on Pantheon
+. Go to the relevant page on Pantheon with titles ("a title" is a term in Pantheon that means a book build job for a particular product version):
++
+* The https://pantheon.cee.redhat.com/\#/titles/red-hat-jboss-bpm-suite[BPM Suite] title page.
+* The https://pantheon.cee.redhat.com/#/titles/red-hat-jboss-brms[BRMS] title page.
+. Find the title that you want to rebuild and click the adjacent *Rebuild* button (two arrows in a circle, the rightmost button in the cluster on the right side).
++
+The build is queued, and the page refreshes automatically to show progress. The number in the rebuild icon indicates the position in the build queue (lower is better).
+. Click the *View Document in Preview* button (a globe icon, the leftmost button in the same cluster as above).
+
+[float]
+== Related Information
+
+* https://pantheon.cee.redhat.com/#/help[Pantheon User Guide].
+
+

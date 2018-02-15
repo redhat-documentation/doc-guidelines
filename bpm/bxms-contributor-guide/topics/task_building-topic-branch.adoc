@@ -1,0 +1,26 @@
+
+= Previewing a Topic Branch Online
+
+[float]
+== Prerequisites
+
+* A topic branch in the BxMS GitLab main repository. For more information about topic branches, see <<_procedure_making_changes>>.
+
+[float]
+== Procedure
+
+Newly created topic branches are automatically picked up and built by the CCS Jenkins build system after a couple of minutes. Later, all changes to that branch trigger a rebuild of that branch immediately.
+
+To preview the content from your topic branch online, do the following:
+
+.Preview Content from Topic Branch
+. In a web browser, navigate to the CCS Jenkins web interface:
++
+* http://ccs-jenkins.gsslab.brq.redhat.com:8080/view/Topic%20branches%20-%20BPMS/[BPM Suite] builds.
+* http://ccs-jenkins.gsslab.brq.redhat.com:8080/view/Topic%20branches%20-%20BRMS/[BRMS] builds.
+. Find and click the job for the book and branch you are interested in.
+. Click *Last Successful Artifacts*.
+. Click *index.html*.
+
+NOTE: You can provide the URL to the `index.html` file to a reviewer because anyone on Red Hat's internal network can access it.
+

@@ -1,0 +1,33 @@
+[id='bxmsdoc-issue-lifecycle-{chapter}']
+= BXMSDOC Issue Life cycle
+
+During its standard life cycle, an issue in the documentation JIRA project (<<bxmsdoc-{chapter}, BXMSDOC>>) goes through the following statuses. Details are provided in the <<jira-status-descriptions-{chapter}>>.
+
+.JIRA Status Diagram
+image::jira-workflow.png[JIRA Status Diagram]
+
+[id='jira-status-descriptions-{chapter}']
+== BXMSDOC JIRA Status Descriptions
+
+Open:: Every filed issue starts in the *Open* status. This status means no one is actively working on the issue, and no progress is being done.
+
+.Set Label for Non-Portal Updates
+[NOTE]
+====
+If a document update will not affect the Red Hat Customer Portal, such as an update to a community document, then set the JIRA *Label* to `no_cp-impact`. This enables the documentation team to better organize and prioritize documentation efforts.
+====
+
+Coding in Progress:: The assignee is working on the issue, and no draft is available for review at the moment. The issue can also be blocked because the writer has requested information from an SME that is essential for finishing the draft. Look in the comment section of the issue for details.
+
+SME Review:: The assignee has finished a draft of the issue, has created a sub-task called _SME Review: $NAME_OF_ISSUE_, and has assigned the sub-task to a developer or a QE engineer (subject matter expert) to review the content for technical accuracy.
+
+Peer Review:: The SME has approved of the draft and has resolved the relevant _SME Review_ sub-task. The assignee has created a sub-task called _Peer Review: $NAME_OF_ISSUE_ and has assigned it to a CCS associate (a peer) to review the content for compliance to writing style, naming conventions, corporate requirements, and more.
+
+Pull Request Sent:: The Peer has approved the draft and has resolved the relevant _Peer Review_ sub-task. The assignee has notified the gatekeeper that the pull request has been reviewed and approved by all reviewers, and is ready to be merged with the specified mainline branch in the `kie-docs` repository.
+
+Resolved:: The updated topic branch was merged into the relevant mainline branch in the upstream `kie-docs` repository, and is pending publication on the Customer Portal. If the update does not affect the Customer Portal, and the *Label* has been set to `no_cp_impact`, then you can skip this status and set the issue to `CLOSED > DONE`.
+
+Closed (reason):: Use the `CLOSED` status and reason as follows:
+* *For Customer Portal updates:* When the resolved issue has been published to the Customer Portal, set the status and reason to `CLOSED > DONE`. Until publication in the Portal, the update must remain `RESOLVED`.
+* *For non-Portal updates:* When the resolved issue has been merged upstream, or if not an upstream change, has been approved and otherwise made available, set the status to `CLOSED > DONE`.
+* *For issues that will not be fixed:* Set the status to `CLOSED` and give a reason for not completing the issue (`Won't Do`, `Duplicate`, `Rejected`, or other).

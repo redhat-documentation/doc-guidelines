@@ -1,0 +1,286 @@
+[id='reusing-modules']
+= Reusing Modules in Assemblies
+
+When you create content in modules, you can use the same module multiple times in an assembly without having to replicate information in multiple source files. However, in order to facilitate module reuse, you must embed a document attribute variable in the anchor name for the module and then define that variable in the assembly each time the reused module appears. If the variable is not embedded and assigned, an error appears at build time reporting the duplicated anchor ID.
+
+.Error at Build Time When Anchor Has No Variable
+====
+[source]
+----
+ID "$ANCHOR_NAME" is duplicated in the source content
+$BUILD_PATH fails to validate
+----
+====
+
+This error is resolved by adding and defining a document variable.
+
+[float]
+== Procedure
+
+. In the module file that will be reused, add the `+++{context}+++` suffix with an underscore to the anchor name in the format `[id='anchor-name_+++{context}+++']`.
+
++
+NOTE: Although you can use any document variable that clearly indicates the variable in question, such as `+++{product}+++` or `+++{chapter}+++`, the `+++{context}+++` variable is recommended. This variable indicates more generally that the same module can be reused in the specified "context" of one section of a document or another, regardless of whether that section is product-specific or not, whether it is a whole chapter or a small assembly, or some other limitation.
+
++
+.Two Modules to Be Reused: Module A and Module B
+[source]
+----
+[id='module-A-being-reused_{context}']
+= Module A heading
+----
++
+[source]
+----
+[id='module-B-being-reused_{context}']
+= Module B heading
+----
+
+ . In the assembly file or the master book file, define the `+++:context:+++` variable, separated by dashes, in the format `+++:context:+++ variable-name`. Where in the assembly you place the `+++:context:+++` variable and how you define it depends on whether a module is included once in multiple assemblies, or is included multiple times in a single assembly.
++
+Module Included Once in Multiple Assemblies:: If the reused modules are included only once in this assembly and in at least one other assembly, define an assembly-level variable in the format `+++:context: assembly-name+++` and place it immediately following the assembly heading. This indicates that any reused modules in the entire assembly are appearing in the context of that assembly.
++
+In the examples below, the reused modules are identified with an asterisk (*). Do not use asterisks in your own assemblies.
+
++
+.Assembly 1
+[source]
+----
+[id='assembly_name-of-assembly-1']
+= Assembly 1 heading
+:context: assembly-1-name
+...
+
+include::some-module-not-being-reused.adoc
+
+*include::module-A-being-reused.adoc
+
+include::some-module-not-being-reused.adoc
+
+*include::module-B-being-reused.adoc
+
+...
+----
+
++
+.Assembly 2
+[source]
+----
+[id='assembly_name-of-assembly-2']
+= Assembly 2 heading
+:context: assembly-2-name
+...
+
+include::some-module-not-being-reused.adoc
+
+*include::module-A-being-reused.adoc
+
+include::some-module-not-being-reused.adoc
+
+*include::module-B-being-reused.adoc
+
+...
+----
+
++
+Module Included Multiple Times in a Single Assembly:: If a module is included multiple times in the same assembly, define a variable specific to a section or a chapter of that assembly in the format `+++:context: section-name+++`, and place it immediately above the included section for which it specifies the context. This  indicates that the reused module is appearing in the context of that section of the assembly.
++
+In the examples below, the reused modules are identified with an asterisk (*). Do not use asterisks in your own assemblies.
++
+.Assembly
+[source]
+----
+[id='assembly_name-of-assembly']
+= Assembly heading
+...
+
+include::some-module-not-being-reused.adoc
+
+:context: section-1-name
+*include::module-A-being-reused.adoc
+
+include::some-module-not-being-reused.adoc
+
+:context: section-2-name
+*include::module-A-being-reused.adoc
+
+...
+----
+
++
+. Return to the reused module file, and at the top of the file add a comment that identifies which assemblies the module has been added to. This helps to track reused modules in the future.
+
++
+[source]
+----
+// Module included in the following assemblies:
+//
+// assembly_name-of-assembly-1.adoc
+// assembly_name-of-assembly-2.adoc
+
+[id='module-A-being-reused_{context}']
+= Module A heading
+----
+
+.Cross-Referencing Reused Modules
+[NOTE]
+====
+To cross-reference a reused module, specify both the anchor name and the `+++{context}+++` variable as defined in the assembly:
+
+[source]
+----
+xref:anchor-name_context-variable-name[]
+----
+
+Example:
+
+[source]
+----
+For details, see xref:module-A-being-reused_assembly-1-name[].
+----
+====
+
+[float]
+== Practical Example 1: Reusing Modules in Multiple Assemblies
+
+You want to reuse the "Creating Assets" procedure module and the "Projects" concept module in two assemblies: in an "Asset Definitions" assembly and in a "Business Rules" assembly.
+
+The module files contain the following content:
+
+.projects-con.adoc
+[source]
+----
+// Module included in the following assemblies:
+//
+// assembly_asset-definitions.adoc
+// assembly_business-rules.adoc
+
+[id='projects-con_{context}']
+= Projects
+----
+
+.assets-create-proc.adoc
+[source]
+----
+// Module included in the following assemblies:
+//
+// assembly_asset-definitions.adoc
+// assembly_business-rules.adoc
+
+[id='assets-create-proc_{context}']
+= Creating Assets
+----
+
+The assembly files contain the following content. The reused modules are identified with an asterisk (*). Do not use asterisks in your own assemblies.
+
+.assembly_asset-definitions.adoc
+[source]
+----
+[id='assembly_asset-definitions']
+= Asset definitions
+:context: asset-definitions
+...
+
+include::organizational-units-con.adoc
+
+include::repositories-con.adoc
+
+*include::projects-con.adoc
+
+include::organizational-units-con.adoc
+
+include::packages-create-proc.adoc
+
+*include::assets-create-proc.adoc
+
+include::dependencies-add-proc.adoc
+
+...
+----
+
+.assembly_business-rules.adoc
+[source]
+----
+[id='assembly_business-rules']
+= Business rules
+:context: business-rules
+...
+
+include::business-processes-con.adoc
+
+*include::projects-con.adoc
+
+include::project-types-ref.adoc
+
+include::packages-con.adoc
+
+*include::assets-create-proc.adoc
+
+...
+----
+
+For all cross-references to the reused modules, specify which context (assembly) you want to link to. For example, you can link to the "Creating Assets" procedure module as it appears either in the "Asset Definitions" assembly or in the "Business Rules" assembly. Create cross-references in the format `+++xref:anchor-name_context-variable-name[]+++`:
+
+[source]
+----
+For details, see xref:assets-create-proc_asset-definitions[].
+----
+
+or
+
+[source]
+----
+For details, see xref:assets-create-proc_business-rules[].
+----
+
+[float]
+== Practical Example 2: Reusing a Module in a Single Assembly
+
+You want to reuse the "Projects" concept module twice in the "Business Rules" assembly.
+
+The module file contains the following content:
+
+.projects-con.adoc
+[source]
+----
+[id='projects-con_{context}']
+= Projects
+----
+
+The assembly file contains the following content. The reused modules are identified with an asterisk (*). Do not use asterisks in your own assemblies.
+
+.assembly_business-rules.adoc
+[source]
+----
+[id='assembly_business-rules']
+= Business rules
+...
+
+:context: introduction
+*include::projects-con.adoc
+
+include::organizational-units-con.adoc
+
+include::asset-types-ref.adoc
+
+:context: asset-types
+*include::projects-con.adoc
+
+include::dependencies-con.adoc
+
+...
+----
+
+For all cross-references to the reused module, specify which context (section) you want to link to. For example, you can link to the "Projects" module as it appears either in the "Introduction" or in the "Asset Types" section. Create cross-references in the format `+++xref:anchor-name_context-variable-name[]+++`:
+
+[source]
+----
+For details, see xref:projects-con_introduction[].
+----
+
+or
+
+[source]
+----
+For details, see xref:projects-con_asset-types[].
+----

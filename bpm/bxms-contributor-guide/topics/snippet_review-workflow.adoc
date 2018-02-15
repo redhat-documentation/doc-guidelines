@@ -1,0 +1,27 @@
+. Have the issue reviewed by
+ifdef::SME_REVIEW[]
+an SME:
++
+NOTE: In the case of SME reviews, it must always be a QE engineer performing the review.
+endif::[]
+ifdef::PEER_REVIEW[a peer:]
+
+.. Find a suitable
+ifdef::SME_REVIEW[SME]
+ifdef::PEER_REVIEW[CCS associate]
+to do the review. See <<_contact_information>> if you are unsure whom to contact.
+.. Create a sub-task to track the progress of the
+ifdef::SME_REVIEW[SME]
+ifdef::PEER_REVIEW[peer]
+review, and assign it to the reviewer:
+... Click *More* -> *Create sub-task*.
+... Fill in ``
+ifdef::SME_REVIEW[SME]
+ifdef::PEER_REVIEW[Peer]
+Review: __$NAME_OF_ISSUE__`` in the Summary, where `__$NAME_OF_ISSUE__` is the name of the parent issue.
+... Fill in a description of what you want the assignee to review, or point to the pull request.
+.. Set the parent issue's status to
+ifdef::SME_REVIEW[`SME REVIEW`.]
+ifdef::PEER_REVIEW[`PEER REVIEW`.]
+.. Incorporate the feedback from the reviewer.
+.. Ensure the review sub-task is marked as `RESOLVED`.

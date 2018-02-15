@@ -1,0 +1,45 @@
+
+[id='jira-introduction-{chapter}']
+= JIRA Introduction
+
+The issues with the product documentation are hosted on JBoss https://issues.jboss.org[JIRA], an issue tracking system used by multiple Red Hat JBoss Middleware products. Software-related issues are hosted on JIRA as well. For detailed instructions on how to create a product documentation (BXMS) task in JIRA, see the https://mojo.redhat.com/docs/DOC-1081009[BxMS documentation] Mojo page.
+
+The product uses several JIRA projects to track the issues:
+
+[cols="1a,3a", options="header"]
+|===
+| Project
+| Description
+
+| [id="bxmsdoc-{chapter}"]
+https://issues.jboss.org/projects/BXMSDOC[BXMSDOC]
+| Issues, plans, and tasks for the BPM Suite, BRMS, and Business Resource Planner documentation.
+ifdef::INTERNAL[]
+
+NOTE: You will likely be assigned to issues from this project only, as this is where most of the BxMS documentation team's work is tracked.
+endif::[]
+
+ifdef::INTERNAL[]
+| https://issues.jboss.org/projects/BPMSPL[BPMSPL]
+| Enterprise features planned for the next release. These issues often require changes in documentation, so they are typically linked to <<bxmsdoc-{chapter}, BXMSDOC>> issues that track how the features are documented.
+endif::[]
+
+| https://issues.jboss.org/projects/RHBRMS[RHBRMS]
+| Issues with the BRMS software. These issues often require changes in documentation, so they are typically linked to <<bxmsdoc-{chapter}, BXMSDOC>> issues that track how the features are documented.
+
+| https://issues.jboss.org/projects/RHBPMS[RHBPMS]
+| Issues with the BPM Suite software. These issues often require a change in the documentation, so they are typically linked to <<bxmsdoc-{chapter}, BXMSDOC>> issues that track how the features are documented.
+
+
+| https://issues.jboss.org/projects/DROOLS[DROOLS]
+| Issues with the Drools software.
+
+| https://issues.jboss.org/projects/JBPM[JBPM]
+| Issues with the jBPM software.
+
+| https://issues.jboss.org/projects/PLANNER[PLANNER]
+| Issues with the Optaplanner (Business Resource Planner) software.
+
+| https://issues.jboss.org/projects/GUVNOR[GUVNOR]
+| Issues with the Workbench/Business Central software.
+|===
