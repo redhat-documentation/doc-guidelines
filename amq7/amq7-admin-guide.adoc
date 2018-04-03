@@ -11,15 +11,11 @@ include::amq7-repositories.adoc[leveloffset=+1]
 The `amq7-documentation-contrib` repo contains several branches, most of which are inactive or deprecated.
 The only ones that you need to use are:
 
-`contrib`:: The default branch.
-All doc contributions are merged into this branch.
+`contrib`:: The default branch. All doc contributions are merged into this branch, regardless of release.
 
 `master`:: The master branch for preparing doc builds.
 
-AMQ 7 does not currently use a multi-version branching model.
-Generally speaking, every contribution to `contrib` should apply to the in-flight release.
-Documentation contributions for any future releases should not be merged to `contrib`.
-// Part of moving to the upstream-downstream model will involve coming up with a multi-release branching model.
+`release-amq-7.<version-number>.x`:: The branch for an AMQ 7.x.y doc release.
 
 == Processing Pull Requests
 
@@ -167,3 +163,118 @@ $ git push -f _GITLAB_REMOTE_REPO_ HEAD:master
 . If necessary, in `amq7-docs`, verify that everything was pushed to the `master` branch the way you expected.
 
 . Verify that each doc builds successfully on Preview and Stage in Pantheon: link:https://pantheon.cee.redhat.com/#/titles/red-hat-jboss-amq[https://pantheon.cee.redhat.com/#/titles/red-hat-jboss-amq^]
+
+== Preparing AMQ Documentation for Release
+
+When an AMQ product release is ready, there are several tasks you must complete to prepare the documentation for the release and push it to Pantheon for publication on the customer portal.
+
+=== Creating a Release Branch
+
+When it is time to publish the AMQ docs for a release, you should create a release branch.
+
+.Procedure
+
+. Create a release branch from master:
++
+--
+Release branch names should follow this syntax: `release-amq-7._VERSION_NUMBER_.x`.
+
+[options="nowrap",subs="+quotes"]
+----
+git fetch upstream
+git checkout -b release-amq-7.1.x upstream/master
+git push upstream HEAD:release-amq-7.1.x
+----
+--
+
+. Push the release branch to GitLab:
++
+--
+[options="nowrap",subs="+quotes"]
+----
+git push amq-docs HEAD:release-amq-7.1.x
+----
+--
+
+. In Pantheon, navigate to the release.
+
+. For each title, click the drop-down for the `Preview` branch, select *Edit Configuration*, and then select the release branch that you created.
+
+. Repeat the previous step for the `Stage` branch.
+
+=== Tagging a Release
+
+A tag represents a snapshot of the repository at a particular point in time. After creating a release branch, you should create a tag to identify exactly what was delivered for the release. If you ever need to republish the documentation on the release branch (such as for a hotfix or asynchronous doc update after the initial release), the tag will identify what was originally published.
+
+.Procedure
+
+. Check out the release branch.
++
+[options="nowrap",subs="+quotes"]
+----
+git checkout release-amq-7.1.x 
+----
+
+. Create the tag.
++
+[options="nowrap",subs="+quotes"]
+----
+git tag 7.1.0 -m "Release 7.1"
+----
+
+. Push the tag to the GitHub repo.
++
+[options="nowrap",subs="+quotes"]
+----
+git push upstream HEAD --tags 7.1.0
+----
+
+. In the GitHub repo, view the tag to verify that it looks correct.
+
+=== Cherry-picking a Commit to a Release Branch
+
+Even though release branches are created at the end of the release process (typically immediately prior to publishing the docs on the portal), it may be necessary to update a doc in this release after the release has been published. You can do this by cherry-picking the commit to the release branch.
+
+.Procedure
+
+. Merge the PR into the default branch just as you would normally do.
+
+. Fetch the latest changes from GitHub:
++
+[options="nowrap",subs="+quotes"]
+----
+git fetch upstream
+----
+
+. Create a new topic branch from the release branch.
++
+--
+In this example, a new branch for AMQDOC-2752 is being created for the 7.1.x release branch.
+
+[options="nowrap",subs="+quotes"]
+----
+git checkout -b amqdoc-2752 upstream/release-amq-7.1.x
+----
+--
+
+. Using GitHub or the `git log` command, find the number of the commit that was merged to contrib.
+
+. Cherry pick the commit into your topic branch.
++
+[options="nowrap",subs="+quotes"]
+----
+git cherry-pick cafd2a9
+----
+
+. Push the changes to your own forked repo:
++
+[options="nowrap",subs="+quotes"]
+----
+git push origin HEAD
+----
+
+. In GitHub, create a PR from your topic branch with the cherry-picked commit to the release branch.
+
+. Merge the PR. Be sure to change the “base fork” to the release branch.
+
+. If necessary, push to Pantheon to build the docs that are affected by the cherry-picked commit.
