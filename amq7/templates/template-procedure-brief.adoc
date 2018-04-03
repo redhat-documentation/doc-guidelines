@@ -7,10 +7,13 @@
 // * ID: [id='doing-procedure-a']
 // * Title: = Doing procedure A
 
+//declare context for ID Generation
+:context: brief-template
+
 // The ID is used as an anchor for linking to the module. Avoid changing it after the module has been published to ensure existing links are not broken.
 [id='doing-one-procedure_{context}']
 // The `context` attribute enables module reuse. Every module's ID includes {context}, which ensures that the module has a unique ID even if it is reused multiple times in a guide.
-= Doing one procedure
+= Brief template: Doing one procedure
 // Start the title with a verb, such as Creating or Create. See also _Wording of headings_ in _The IBM Style Guide_.
 
 This paragraph is the procedure module introduction: a short description of the procedure.
@@ -30,4 +33,4 @@ This paragraph is the procedure module introduction: a short description of the 
 [discrete]
 == Additional Resources
 
-* 
+*

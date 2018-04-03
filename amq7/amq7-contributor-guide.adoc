@@ -53,6 +53,9 @@ $ git checkout -b _BRANCH_NAME_
 $ git status
 $ git add _FILE_NAME_
 ----
++
+NOTE: It is best to not use `git add *`.  Adding everything can accidentally add files you do not intend to. It is better to use the command reflected here.
+
 . Build your changes by using xref:build-configuration[ccutil] or xref:make-tooling[make-based tooling] to confirm your edits are correct
 .. If adding an entirely new section or making complex edits, be sure to share your build on your Red Hat fileshare so that you can provide a link to those reviewing your content
 +
@@ -66,6 +69,21 @@ $ ./buildGuide.sh
 [source,options="nowrap",subs="+quotes"]
 ----
 $ git commit -a -m "__MESSAGE__"
+----
+. Verify that your commit only includes the files you edited.
++
+[source,options="nowrap",subs="+quotes"]
+----
+[amqdoc2870 f144b8d] AMQDOC 2870: Add note about not committing all
+ 1 file changed, 2 insertions(+)
+----
+..  If the number of files edited in your commit is more than than you worked on, you might have added files you did not intend to.
+. If you have been working on your edits for a while, it is possible that content in the repository has changed. It is good practice to fetch any new content before your push your changes to your fork.
++
+[source,options="nowrap",subs="+quotes"]
+----
+$ git fetch --all
+$ git rebase origin/contrib
 ----
 . Push your changes to your fork
 +

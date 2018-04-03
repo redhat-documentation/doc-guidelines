@@ -9,6 +9,8 @@
 * *Do not include any personally identifying information*.
 * Capture just the part of the screen or window that users must focus on; *do not include window headers in the final screenshots unless completely necessary*.
 * Manipulate your screenshots to *condense important information* in them and limit empty GUI space and other inconsequential parts.
+* Give the image file the same name as the anchor used in it (which is the same as or similar to the module heading) separated by dashes. Add the `image` prefix a with an underscore to the file. For example, `image_guided-decision-example.adoc` for a screenshot or image in the guided decision module.
+
 
 [[screenshot-general]]
 == General Guidelines

@@ -1,11 +1,9 @@
 [[templates]]
 = Templates
 
-The following templates must be used to produce consistent modular documentation for AMQ 7.
+The following templates must be used to produce consistent modular documentation for AMQ 7. link:https://github.com/rh-messaging/amq7-documentation-contrib/blob/contrib/internal/templates/templates.zip[Download the `adoc` files in zip format].
 
 include::templates/template-procedure.adoc[leveloffset=+1]
-
-include::templates/template-procedure-brief.adoc[leveloffset=+1]
 
 include::templates/template-concept.adoc[leveloffset=+1]
 
