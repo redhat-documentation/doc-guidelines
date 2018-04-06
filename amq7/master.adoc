@@ -41,4 +41,4 @@ include::amq7-templates.adoc[leveloffset=+1]
 include::amq7-additional-resources.adoc[leveloffset=+1]
 
 // Revision information
-include::common/revision-info.adoc[]
+//include::common/revision-info.adoc[]

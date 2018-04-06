@@ -27,7 +27,7 @@ First sentence of topic.
 [NOTE]
 .Note on Other Anchor Formats (Not Recommended)
 ====
-The format defined here is recommended because it is the most stable and versatile of anchor formats, and supports variables that enable topics to be reused and cross-referenced properly. Other anchor formats include `+[[anchor-name]]+` and `+[#anchor-name]+`, but these formats either do not support variables for content reuse or do not support certain character types, such as periods. These limitations cause errors at build time.
+The format defined here is recommended because it is the most stable and versatile of anchor formats, and supports variables that enable topics to be reused and cross-referenced properly. Other anchor formats include `\[[anchor-name]]` and `+[#anchor-name]+`, but these formats either do not support variables for content reuse or do not support certain character types, such as periods. These limitations cause errors at build time.
 ====
 
 File names:: Give the module file the same name as the anchor used in it (which is the same as or similar to the module heading), also separated by dashes. Add a prefix with an underscore to the file name to indicate the module type in the format `prefix_file-name`. Use `snip_` for a snippet, `con_` for concept, `ref_` for reference, `proc_` for procedure, `assembly_` for assembly, and `image_` for images and screenshots.
