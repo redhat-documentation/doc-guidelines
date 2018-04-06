@@ -10,6 +10,7 @@ services:
 before_install:
   - mkdir -p output/amq7
   - mkdir -p output/bpm/topics
+  - cp index.html output/
   - cp -r bpm/shared/ output/bpm/topics/
   - docker pull asciidoctor/docker-asciidoctor
 
