@@ -1,0 +1,34 @@
+sudo: required
+
+branches:
+  only:
+  - master # Name of the branch from which to publish
+
+services:
+  - docker
+
+before_install:
+  - mkdir -p output/amq7
+  - mkdir -p output/bpm/topics
+  - cp -r bpm/shared/ output/bpm/topics/
+  - docker pull asciidoctor/docker-asciidoctor
+
+script:
+  - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html-amq7 asciidoctor/docker-asciidoctor asciidoctor --destination-dir=/documents/output/amq7 --out-file=index.html amq7/master.adoc
+  - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html-bpm asciidoctor/docker-asciidoctor asciidoctor --destination-dir=/documents/output/bpm --out-file=index.html bpm/bxms-contributor-guide/public/master.adoc
+
+after_error:
+  - docker logs asciidoc-to-html-amq7
+  - docker logs asciidoc-to-html-bpm
+
+after_failure:
+  - docker logs asciidoc-to-html-amq7
+  - docker logs asciidoc-to-html-bpm
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN # Set in travis-ci.org dashboard
+  local_dir: output
+  on:
+    branch: master
