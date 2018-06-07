@@ -16,7 +16,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== AMQ Broker (noun)
 [[amq-broker]]
-*Description*: A component of Red Hat JBoss AMQ, it is a full-featured, message-oriented middleware broker. It offers specialized queueing behaviors, message persistence, and manageability.
+*Description*: A component of Red Hat AMQ, it is a full-featured, message-oriented middleware broker. It offers specialized queueing behaviors, message persistence, and manageability.
 
 *Use it*: yes
 
@@ -27,7 +27,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== AMQ Clients (noun)
 [[amq-clients]]
-*Description*: A suite of messaging libraries supporting multiple languages and platforms. It enables users to write messaging applications that send and receive messages. AMQ Clients is a component of Red Hat JBoss AMQ.
+*Description*: A suite of messaging libraries supporting multiple languages and platforms. It enables users to write messaging applications that send and receive messages. AMQ Clients is a component of Red Hat AMQ.
 
 *Use it*: yes
 
@@ -44,7 +44,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 
 *Incorrect forms*: A-MQ Console, Red Hat Console, JBoss Console
 
-*See also*: 
+*See also*:
 
 [discrete]
 ==== AMQ Core Protocol JMS (noun)
@@ -60,7 +60,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== AMQ Interconnect (noun)
 [[amq-interconnect]]
-*Description*: A component of Red Hat JBoss AMQ, it is a messaging router that provides flexible routing of messages between any AMQP-enabled endpoints, whether they are clients, servers, brokers, or any other entity that can send or receive standard AMQP messages.
+*Description*: A component of Red Hat AMQ, it is a messaging router that provides flexible routing of messages between any AMQP-enabled endpoints, whether they are clients, servers, brokers, or any other entity that can send or receive standard AMQP messages.
 
 *Use it*: yes
 
@@ -126,7 +126,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== broker cluster (noun)
 [[broker-cluster]]
-*Description*: A group of brokers to be grouped together in order to share message processing load. In JBoss A-MQ 6, this was called a _network of brokers_.
+*Description*: A group of brokers to be grouped together in order to share message processing load. In A-MQ 6, this was called a _network of brokers_.
 
 *Use it*: yes
 
@@ -159,7 +159,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== connection (noun)
 [[connection]]
-*Description*: A channel for communication between two peers on a network. For JBoss AMQ, connections can be made between containers (clients, brokers, and routers). These are sometimes also called network connections.
+*Description*: A channel for communication between two peers on a network. For AMQ, connections can be made between containers (clients, brokers, and routers). These are sometimes also called network connections.
 
 *Use it*: yes
 
@@ -181,7 +181,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== connector (noun)
 [[connector]]
-*Description*: A configurable entity for JBoss AMQ brokers and routers. They define an outgoing connection from either a router to another endpoint, or from a broker to another endpoint.
+*Description*: A configurable entity for AMQ brokers and routers. They define an outgoing connection from either a router to another endpoint, or from a broker to another endpoint.
 
 *Use it*: yes
 
@@ -278,17 +278,6 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 *See also*: xref:amq-interconnect[AMQ Interconnect]
 
 [discrete]
-==== JBoss AMQ (noun)
-[[jboss-amq]]
-*Description*: The short product name for Red Hat JBoss AMQ.
-
-*Use it*: yes
-
-*Incorrect forms*: A-MQ, AMQ, Red Hat A-MQ, Red Hat AMQ
-
-*See also*: xref:red-hat-jboss-amq-term[Red Hat JBoss AMQ]
-
-[discrete]
 ==== JMS (noun)
 [[jms]]
 *Description*: The Java Message Service API for sending messages between clients.
@@ -324,13 +313,24 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== listener (noun)
 [[listener]]
-*Description*: A configurable entity for JBoss AMQ routers and messaging APIs. A listener defines a context for accepting multiple, incoming connections on a particular TCP address and port.
+*Description*: A configurable entity for AMQ routers and messaging APIs. A listener defines a context for accepting multiple, incoming connections on a particular TCP address and port.
 
 *Use it*: yes
 
 *Incorrect forms*:
 
 *See also*: xref:connection[connection]
+
+[discrete]
+==== live-only (noun)
+[[live-only]]
+*Description*: A broker high availability policy for scaling down brokers. If the broker is shut down, its messages and transaction state are copied to another live broker.
+
+*Use it*: yes
+
+*Incorrect forms*: live only
+
+*See also*:
 
 [discrete]
 ==== master-slave group (noun)
@@ -412,7 +412,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== MQTT (noun)
 [[mqtt]]
-*Description*: MQ Telemetry Transport protocol. It is a lightweight, client-to-server, publish/subscribe messaging protocol (http://mqtt.org/). JBoss AMQ Broker supports MQTT.
+*Description*: MQ Telemetry Transport protocol. It is a lightweight, client-to-server, publish/subscribe messaging protocol (http://mqtt.org/). AMQ Broker supports MQTT.
 
 *Use it*: yes
 
@@ -423,7 +423,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== OpenWire (noun)
 [[openwire]]
-*Description*: A cross-language wire protocol that enables JMS clients to communicate with JBoss AMQ Broker (http://activemq.apache.org/openwire.html).
+*Description*: A cross-language wire protocol that enables JMS clients to communicate with AMQ Broker (http://activemq.apache.org/openwire.html).
 
 *Use it*: yes
 
@@ -456,7 +456,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== qdmanage (noun)
 [[qdmanage]]
-*Description*: A generic AMQP management client used for managing JBoss AMQ Interconnect.
+*Description*: A generic AMQP management client used for managing AMQ Interconnect.
 
 *Use it*: yes
 
@@ -467,7 +467,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== qdstat (noun)
 [[qdstat]]
-*Description*: A management client used for monitoring the status of a JBoss AMQ Interconnect router network.
+*Description*: A management client used for monitoring the status of a AMQ Interconnect router network.
 
 *Use it*: yes
 
@@ -478,7 +478,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== queue (noun)
 [[queue]]
-*Description*: A stored sequence of messages. In JBoss AMQ, queues are hosted on brokers.
+*Description*: A stored sequence of messages. In AMQ, queues are hosted on brokers.
 
 *Use it*: yes
 
@@ -498,15 +498,13 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 *See also*: xref:consumer[consumer], xref:source[source], xref:sender[sender]
 
 [discrete]
-==== Red Hat JBoss AMQ (noun)
+==== Red Hat AMQ (noun)
 [[red-hat-jboss-amq-term]]
-*Description*: A lightweight messaging platform that delivers information and easily integrates applications. It consists of several components (message broker, interconnect router, and clients) that support a variety of configurations. Always use the full product name (Red Hat JBoss AMQ) or short product name (JBoss AMQ).
+*Description*: A lightweight messaging platform that delivers information and easily integrates applications. It consists of several components (message broker, interconnect router, and clients) that support a variety of configurations. Always use the full product name (Red Hat AMQ) or short product name (AMQ).
 
 *Use it*: yes
 
-*Incorrect forms*: A-MQ, AMQ, Red Hat A-MQ, Red Hat AMQ
-
-*See also*: xref:jboss-amq[JBoss AMQ]
+*Incorrect forms*: A-MQ, Red Hat A-MQ
 
 [discrete]
 ==== router (noun)
@@ -555,7 +553,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== session (noun)
 [[session]]
-*Description*: A serialized context for producing and consuming messages. Sessions are established between JBoss AMQ peers over connections. Sending and receiving links are established over sessions. Use this term with caution, as users typically do not need to understand it to use JBoss AMQ.
+*Description*: A serialized context for producing and consuming messages. Sessions are established between AMQ peers over connections. Sending and receiving links are established over sessions. Use this term with caution, as users typically do not need to understand it to use AMQ.
 
 *Use it*: with caution
 
@@ -610,7 +608,7 @@ Responsible person: Ben Hardesty (bhardest@redhat.com)
 [discrete]
 ==== STOMP (noun)
 [[stomp]]
-*Description*: Simple (or Streaming) Text Oriented Message Protocol. It is a text-oriented wire protocol that enables STOMP clients to communicate with STOMP brokers. JBoss AMQ Broker can accept connections from STOMP clients.
+*Description*: Simple (or Streaming) Text Oriented Message Protocol. It is a text-oriented wire protocol that enables STOMP clients to communicate with STOMP brokers. AMQ Broker can accept connections from STOMP clients.
 
 *Use it*: yes
 

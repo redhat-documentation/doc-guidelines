@@ -1,5 +1,5 @@
 [[formatted-text-reference]]
-= AsciiDoc Format Reference
+= AsciiDoc format reference
 
 Tips for which AsciiDoc markup to use when formatting text.
 

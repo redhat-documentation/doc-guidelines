@@ -1,5 +1,5 @@
 [[make-tooling]]
-= Using Make With AMQ 7 Documentation
+= Using Make With AMQ 7 documentation
 
 When you make changes to the documentation, it is a good practice to do a local test build to verify the book builds successfully and renders as you expect before you submit the merge request back to upstream master.
 
@@ -7,7 +7,7 @@ Make is a useful tool for building your documentation and pushing it to your pub
 
 You can also build your documentation with xref:build-configuration[ccutil]. Be aware that only ccutil catches build errors such as invalid xrefs and missing includes.
 
-== Make Commands to Build Documentation
+== Make commands to build documentation
 
 [source,options="nowrap",subs="+quotes"]
 ----
@@ -31,6 +31,6 @@ The entry point for the resulting output is `build/welcome/index.html` in your c
 
 To publish your results to your personal file share, use make publish. It copies the local output to a Red Hat file server. link:https://redhat.service-now.com/rh_ess/kb_view.do?sysparm_article=KB0003945[Learn more about setting up your personal file share^].
 
-== Make Commands to Refresh Upstreams
+== Make commands to refresh upstream repositories
 
 include::amq7-upstreams.adoc[]

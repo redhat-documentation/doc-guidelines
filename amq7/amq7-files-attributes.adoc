@@ -1,7 +1,7 @@
 [[files-and-attributes]]
-= Files and Attributes
+= Files and attributes
 
-== Important Files
+== Important files
 
 |===
 | Standard attributes         | common/attributes.adoc
@@ -10,7 +10,7 @@
 |===
 
 [[anchor-and-file-names]]
-== Anchor Names and File Names
+== Anchor names and file names
 
 To optimize modular documentation, follow these guidelines for naming module anchors and files:
 
@@ -25,7 +25,7 @@ First sentence of topic.
 ----
 +
 [NOTE]
-.Note on Other Anchor Formats (Not Recommended)
+.Note on other anchor formats (Not Recommended)
 ====
 The format defined here is recommended because it is the most stable and versatile of anchor formats, and supports variables that enable topics to be reused and cross-referenced properly. Other anchor formats include `\[[anchor-name]]` and `+[#anchor-name]+`, but these formats either do not support variables for content reuse or do not support certain character types, such as periods. These limitations cause errors at build time.
 ====
@@ -45,13 +45,13 @@ File names:: Give the module file the same name as the anchor used in it (which 
 Learn more in the link:https://redhat-documentation.github.io/modular-docs/[Modular Documentation Reference Guide^].
 
 [[amq7-books]]
-== Books
+== AMQ 7 books
 
 |===
 | Introduction                | product-intro/master.adoc
 | Migration                   | product-migration/master.adoc
 | Broker                      | broker/master.adoc
-| Broker JON Guide            | broker-jon/master.adoc
+| Broker JON guide            | broker-jon/master.adoc
 | Broker release notes        | broker-release-notes/master.adoc
 | Interconnect                | router/master.adoc
 | Interconnect release notes  | router-release-notes/master.adoc
@@ -66,7 +66,7 @@ Learn more in the link:https://redhat-documentation.github.io/modular-docs/[Modu
 |===
 
 [[amq7-standard-attributes]]
-== Standard Attributes
+== Standard attributes
 
 |===
 | `\{ProductLongName\}`           | Long product name              | {ProductLongName}

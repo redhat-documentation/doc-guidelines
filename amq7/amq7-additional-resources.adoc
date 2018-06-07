@@ -1,4 +1,4 @@
-= Additional Resources
+= Additional resources
 
 * link:https://gitlab.cee.redhat.com/AMQ7-documentation/amq7-documentation[AMQ 7 docs repo in GitLab^]
 * link:https://doc-stage.usersys.redhat.com/documentation/en-us/ccs_internal_documentation/1.0/html-single/glossary_of_terms_and_conventions_for_product_documentation/[Red Hat Glossary of Terms and Conventions^]

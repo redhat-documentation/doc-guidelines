@@ -1,8 +1,8 @@
 [[style-guide]]
-= Style Guidelines
+= Style guidelines
 
 [[style-guides]]
-== Style Guides to Reference
+== Style guides to reference
 
 When writing content we use the following style guides in order:
 
@@ -17,16 +17,16 @@ When writing content we use the following style guides in order:
 . This document (which does include some of the most commonly used rules from the previous guides)
 
 [[style-guidelines]]
-== Style Guidelines
+== Style guidelines
 
 [[general-styles]]
-=== General Styles
+=== General styles
 
-.General Quick Reference
+.General quick reference
 [cols="33%,33%a,33%a",options="header"]
 |===
 |Item |Use |Not
-|Filesystem names and paths, symbols, and literals.  | \`filename`  |
+|File system names and paths, symbols, and literals.  | \`filename`  |
 |GUI items (_Match the capitalization of the button_)  |\*bold*  |
 |Navigation link text |\*bold*  |
 |Superuser console commands  | $ sudo  |#
@@ -46,7 +46,7 @@ When writing content we use the following style guides in order:
 |Heartbeating |heartbeating |heart-beating
 |===
 
-.Additional General Guidelines
+.Additional general guidelines
 * Stick to one file per chapter unless the content is too long,
   excluding reusable topics.
 * Don't use contractions, ;).
@@ -64,7 +64,7 @@ When writing content we use the following style guides in order:
 * When referring the reader to more information, use: "For more information about `__TOPIC__`, see `__RESOURCE__`."
 
 [[naming-files-style]]
-=== Naming Files
+=== Naming files
 
 .File Names Quick Reference
 [cols="33%,33%a,33%a",options="header"]
@@ -83,9 +83,9 @@ When writing content we use the following style guides in order:
 Learn more about naming files in the xref:files-and-attributes[Files and Attributes] appendix.
 
 [[headings-titles]]
-=== Styling Headings and Titles
+=== Styling headings and titles
 
-AMQ 7 uses sentence cases headings for modules, tables, and figures.
+AMQ 7 uses sentence-case headings for modules, tables, and figures.
 
 .Headings Quick Reference
 [cols="33%,33%a,33%a",options="header"]
@@ -109,7 +109,7 @@ The format defined here is recommended because it is the most stable and versati
 
 Learn more about reusing content in the link:https://redhat-documentation.github.io/modular-docs/#reusing-modules[Modular Documentation Reference Guide^].
 
-.IDs Quick Reference
+.IDs quick reference
 [cols="33%,33%a,33%a",options="header"]
 |===
 |Item |Use |Not
@@ -120,27 +120,25 @@ Learn more about reusing content in the link:https://redhat-documentation.github
 |===
 
 [[replaceables]]
-=== Styling Replaceables
+=== Styling replaceables
 
-.Replaceables Quick Reference
+Replaceable values in the text and code should be styles using monospace, lowercase, arrow brackets, and hyphens.
+
+.Replaceables quick reference
 [cols="50%,50%a",options="header"]
 |===
 |Item |Use
-|Replaceable value |\`\_SOME_VAR_`
-|Location of broker instance |\`\_BROKER_INSTANCE_DIR_`
-|Component install directory |\`\_INSTALL_DIR_`
+|Replaceable value |\`<some-value>`
+|Location of broker instance |\`<broker-instance-dir>`
+|Component install directory |\`<install-dir>`
 |===
 
 TIP: If using a replaceable within a source block, you will need to add
 `subs="+quotes"`` to the source tag for it to render. (For example : `++[source,options="nowrap",subs="+quotes"]++`).
 
-.Additional Replaceable Guidelines
-* Use callouts for replaceables in code segments to make it clear to the user
-  that a replaceable is present.
+=== Styling links
 
-=== Styling Links
-
-.Links Quick Reference
+.Links quick reference
 [cols="33%,33%a,33%a",options="header"]
 |===
 |Item |Use |Not
@@ -161,21 +159,21 @@ IMPORTANT: Links with attributes (including the subject and body segments on mai
 are a feature unique to Asciidoctor. When they are enabled, you must surround the link text
 in double quotes if it contains a comma.
 
-.Additional Link Guidelines
+.Additional link guidelines
 * Refer to the top-level sections of books as chapters, not sections
   or topics.
 * Do not split link paths across lines when wrapping text. This will cause issues with the doc builds.
 
 [[punctuation-guide]]
-=== Styling Punctuation
+=== Styling punctuation
 
-.General Punctuation Guidelines
+.General punctuation guidelines
 * Do not refer to an individual punctuation mark or special character by its symbol alone.
 * Use the name alone, or use the name followed by the symbol in parentheses.
 * Use the name alone if the punctuation mark or special character is standard, such as a comma or period, and including the symbol would clutter the text.
 * Include the symbol in parentheses when a punctuation mark or special character is not well known or when including the symbol improves clarity.
 
-.Punctuation Quick Reference
+.Punctuation quick reference
 [cols="30%,70%a",options="header"]
 |===
 |Character |Name
@@ -192,7 +190,7 @@ in double quotes if it contains a comma.
 |===
 
 [[style-references]]
-== See Also
+== See also
 
 * xref:formatted-text-reference[AsciiDoc Format Reference]
 * xref:screenshot_guidelines[Screenshot Guidelines]

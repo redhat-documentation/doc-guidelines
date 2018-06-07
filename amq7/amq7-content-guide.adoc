@@ -1,4 +1,4 @@
 [[information-architecture]]
-= Information Architecture Guidelines
+= Information architecture guidelines
 
 At Red Hat, we write modular documentation that is based on user-stories. This means that each assembly documents a user story. Learn more in the link:https://redhat-documentation.github.io/modular-docs/[Modular Documentation Reference Guide^].

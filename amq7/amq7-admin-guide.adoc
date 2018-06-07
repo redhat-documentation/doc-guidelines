@@ -1,12 +1,12 @@
 // This doc can be the basis for an AMQ Admin Guide. For now it just covers merging PRs in amq7-documentation-contrib and pushing them to GitLab for doc builds.
 [[doc-admin-guide]]
-= Administrating AMQ 7 Documentation
+= Administrating AMQ 7 documentation
 
 This guide describes how to administer the AMQ 7 documentation GitHub and GitLab repositories. All commits, with the exception of internal resources, are to be merged weekly on Friday by the "Mergemaster".
 
 include::amq7-repositories.adoc[leveloffset=+1]
 
-== Branching Overview
+== Branching overview
 
 The `amq7-documentation-contrib` repo contains several branches, most of which are inactive or deprecated.
 The only ones that you need to use are:
@@ -17,12 +17,12 @@ The only ones that you need to use are:
 
 `release-amq-7.<version-number>.x`:: The branch for an AMQ 7.x.y doc release.
 
-== Processing Pull Requests
+== Processing pull requests
 
 After a pull request has passed SME and peer review, it is ready to be merged into the `contrib` branch in the GitHub repo.
 This can be done piecemeal, but the current practice is for the "Mergemaster" to merge all pull requests on a weekly basis (Friday, 1pm EDT/EST).
 
-=== Open the Pull Request
+=== Opening the pull request
 
 .Procedure
 . In the `amq7-documentation-contrib` repo, click *Pull Requests*.
@@ -31,7 +31,7 @@ This can be done piecemeal, but the current practice is for the "Mergemaster" to
 This label specifies that the changes in the pull request have passed SME and peer reviews.
 . Click the pull request to open it.
 
-=== Review the Pull Request
+=== Reviewing the pull request
 
 .Procedure
 . Under the pull request title, verify that the pull request is being merged into `rh-messaging:contrib`.
@@ -40,14 +40,14 @@ This label specifies that the changes in the pull request have passed SME and pe
 +
 If the pull request can be merged automatically, you will see `This branch has no conflicts with the base branch`.
 
-=== Merge the Pull Request
+=== Merge the pull request
 
 In most cases, you should be able to merge the pull request automatically.
 However, if there are any conflicts, you must resolve them.
 
 [[automatic-merging]]
 [discrete]
-==== Merging the Pull Request Automatically
+==== Merging the pull request automatically
 
 .Procedure
 . Click the *Squash and merge* button.
@@ -63,7 +63,7 @@ Use the squash and merge option rather than the option to create a merge commit.
 The pull request is merged into `contrib` and closed.
 
 [discrete]
-==== Handling a Pull Request with Conflicts
+==== Handling a pull request with conflicts
 
 .Procedure
 . Click *Resolve conflicts* to determine the extent of the conflicts.
@@ -79,7 +79,7 @@ For additional information about handling complex merge conflicts, see link:http
 
 . When the conflicts are resolved, xref:automatic-merging[merge the pull request].
 
-== Pushing to GitLab for Doc Builds
+== Pushing to GitLab for doc builds
 
 The `amq7-docs` repo is the source for the AMQ 7 Preview, Stage, and Production environments.
 Therefore, to build the doc, you need to push the content from GitHub to GitLab.
@@ -162,13 +162,13 @@ $ git push -f _GITLAB_REMOTE_REPO_ HEAD:master
 
 . If necessary, in `amq7-docs`, verify that everything was pushed to the `master` branch the way you expected.
 
-. Verify that each doc builds successfully on Preview and Stage in Pantheon: link:https://pantheon.cee.redhat.com/#/titles/red-hat-jboss-amq[https://pantheon.cee.redhat.com/#/titles/red-hat-jboss-amq^]
+. Verify that each doc builds successfully on Preview and Stage in Pantheon: link:https://pantheon.cee.redhat.com/#/titles/red_hat_amq[https://pantheon.cee.redhat.com/#/titles/red_hat_amq^]
 
-== Preparing AMQ Documentation for Release
+== Preparing AMQ documentation for release
 
 When an AMQ product release is ready, there are several tasks you must complete to prepare the documentation for the release and push it to Pantheon for publication on the customer portal.
 
-=== Creating a Release Branch
+=== Creating a release branch
 
 When it is time to publish the AMQ docs for a release, you should create a release branch.
 
@@ -202,7 +202,7 @@ git push amq-docs HEAD:release-amq-7.1.x
 
 . Repeat the previous step for the `Stage` branch.
 
-=== Tagging a Release
+=== Tagging a release
 
 A tag represents a snapshot of the repository at a particular point in time. After creating a release branch, you should create a tag to identify exactly what was delivered for the release. If you ever need to republish the documentation on the release branch (such as for a hotfix or asynchronous doc update after the initial release), the tag will identify what was originally published.
 
@@ -212,7 +212,7 @@ A tag represents a snapshot of the repository at a particular point in time. Aft
 +
 [options="nowrap",subs="+quotes"]
 ----
-git checkout release-amq-7.1.x 
+git checkout release-amq-7.1.x
 ----
 
 . Create the tag.
@@ -231,7 +231,7 @@ git push upstream HEAD --tags 7.1.0
 
 . In the GitHub repo, view the tag to verify that it looks correct.
 
-=== Cherry-picking a Commit to a Release Branch
+=== Cherry-picking a commit to a release branch
 
 Even though release branches are created at the end of the release process (typically immediately prior to publishing the docs on the portal), it may be necessary to update a doc in this release after the release has been published. You can do this by cherry-picking the commit to the release branch.
 

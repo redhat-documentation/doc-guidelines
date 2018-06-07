@@ -15,17 +15,20 @@
 
 // Product attributes
 
-:ProductLongName: Red Hat JBoss AMQ
+:ProductLongName: Red Hat AMQ
 :ProductName: AMQ
 :ProductVersion: 7.1
 :ProductMajorVersion: 7
-:QpidJmsVersion: 0.26.0
-:ProtonVersion: 0.18.0
+:QpidJmsVersion: 0.30.0
+:ProtonVersion: 0.21.0
+:DispatchRouterVersion: 1.0.1
 :ExampleQueue: examples
 :ExampleAuthInstruction: Enable anonymous access.
+:PreviousMajorVersion: 6
+:PreviousProductName: A-MQ {PreviousMajorVersion}
+:PreviousProductLongName: Red Hat JBoss {PreviousProductName} {PreviousMajorVersion}
 
 // Component attributes
-
 
 :BrokerCoreBridge: Core Bridge
 :BrokerLongName: {ProductLongName} Broker
@@ -37,46 +40,53 @@
 :RouterUpstreamDir: upstreams/qpid-dispatch
 :ClientsLongName: {ProductLongName} Clients
 :ClientsName: {ProductName} Clients
-:ClientsVersion: 1.2
-:ClientAmqpJmsName: {ProductName} JMS
+:ClientsVersion: 2.0
 :ClientAmqpCppName: {ProductName} C++
-:ClientAmqpPythonName: {ProductName} Python
-:ClientAmqpJavaScriptName: {ProductName} JavaScript
 :ClientAmqpDotNetName: {ProductName} .NET
+:ClientAmqpJavaScriptName: {ProductName} JavaScript
+:ClientAmqpJmsName: {ProductName} JMS
+:ClientAmqpJmsLongName: {ProductLongName} JMS
+:ClientAmqpPythonName: {ProductName} Python
+:ClientAmqpRubyName: {ProductName} Ruby
 :ClientCoreJmsName: {ProductName} Core Protocol JMS
 :ClientOpenWireJmsName: {ProductName} OpenWire JMS
 :ConsoleLongName: {ProductLongName} Console
 :ConsoleName: {ProductName} Console
 :ConsoleVersion: 1.0
+:PreviousClientAmqpJmsLongName: {PreviousProductLongName} JMS
 
 // Book names
 
-:ProductIntroBook: Introducing {ProductLongName} {ProductMajorVersion}
-:ProductMigrationBook: Migrating to {ProductLongName} {ProductMajorVersion}
 :BrokerBook: Using {BrokerName}
-:BrokerReleaseNotesBook: {BrokerName} {BrokerVersion} Release Notes
 :BrokerJonBook: Using JON with {BrokerName}
-:RouterBook: Using {RouterName}
-:RouterReleaseNotesBook: {RouterName} {RouterVersion} Release Notes
+:BrokerReleaseNotesBook: {BrokerName} {BrokerVersion} Release Notes
 :ClientAmqpCppBook: Using the {ClientAmqpCppName} Client
 :ClientAmqpDotNetBook: Using the {ClientAmqpDotNetName} Client
 :ClientAmqpJavaScriptBook: Using the {ClientAmqpJavaScriptName} Client
 :ClientAmqpJmsBook: Using the {ClientAmqpJmsName} Client
 :ClientAmqpPythonBook: Using the {ClientAmqpPythonName} Client
-:ClientCoreJmsBook: Using the {ClientCoreJmsName}
+:ClientAmqpRubyBook: Using the {ClientAmqpRubyName} Client
+:ClientCoreJmsBook: Using the {ClientCoreJmsName} Client
 :ClientOpenWireJmsBook: Using the {ClientOpenWireJmsName} Client
+:ClientOverviewBook: {ClientsName} Overview
 :ClientReleaseNotesBook: {ClientsName} {ClientsVersion} Release Notes
 :ConsoleBook: Using {ConsoleName}
 :ConsoleReleaseNotesBook: {ConsoleName} {ConsoleVersion} Release Notes
+:ProductIntroBook: Introducing {ProductLongName} {ProductMajorVersion}
+:ProductMigrationBook: Migrating to {ProductLongName} {ProductMajorVersion}
+:RouterBook: Using {RouterName}
+:RouterReleaseNotesBook: {RouterName} {RouterVersion} Release Notes
 
 // Book links
 
-:BookUrlBase: https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.1/html-single
+:BookUrlBase: https://access.redhat.com/documentation/en-us/red_hat_amq/7.1/html-single
 
-:ProductIntroBookUrl: {BookUrlBase}/introducing_red_hat_jboss_amq_7/
+:DispatchRouterUrlBase: https://qpid.apache.org/releases/qpid-dispatch-{DispatchRouterVersion}
+
+:ProductIntroBookUrl: {BookUrlBase}/introducing_red_hat_amq_7/
 :ProductIntroBookLink: link:{ProductIntroBookUrl}[{ProductIntroBook}]
 
-:ProductMigrationBookUrl: {BookUrlBase}/migrating_to_red_hat_jboss_amq_7/
+:ProductMigrationBookUrl: {BookUrlBase}/migrating_to_red_hat_amq_7/
 :ProductMigrationBookLink: link:{ProductMigrationBookUrl}[{ProductMigrationBook}]
 
 :BrokerBookUrl: {BookUrlBase}/using_amq_broker/
@@ -94,9 +104,6 @@
 :RouterReleaseNotesBookUrl: {BookUrlBase}/amq_interconnect_1.0_release_notes/
 :RouterReleaseNotesBookLink: link:{RouterReleaseNotesBookUrl}[{RouterReleaseNotesBook}]
 
-:ClientReleaseNotesBookUrl: {BookUrlBase}/amq_clients_1.2_release_notes/
-:ClientReleaseNotesBookLink: link:{ClientReleaseNotesBookUrl}[{ClientReleaseNotesBook}]
-
 :ClientAmqpCppBookUrl: {BookUrlBase}/using_the_amq_cpp_client/
 :ClientAmqpCppBookLink: link:{ClientAmqpCppBookUrl}[{ClientAmqpCppBook}]
 
@@ -112,8 +119,20 @@
 :ClientAmqpPythonBookUrl: {BookUrlBase}/using_the_amq_python_client/
 :ClientAmqpPythonBookLink: link:{ClientAmqpPythonBookUrl}[{ClientAmqpPythonBook}]
 
-:ClientOpenWireJmsBookUrl: {BookUrlBase}/using_the_amq_openwire_jms-client/
+:ClientAmqpRubyBookUrl: {BookUrlBase}/using_the_amq_ruby_client/
+:ClientAmqpRubyBookLink: link:{ClientAmqpRubyBookUrl}[{ClientAmqpRubyBook}]
+
+:ClientCoreJmsBookUrl: {BookUrlBase}/using_the_amq_core_protocol_jms_client/
+:ClientCoreJmsBookLink: link:{ClientCoreJmsBookUrl}[{ClientCoreJmsBook}]
+
+:ClientOpenWireJmsBookUrl: {BookUrlBase}/using_the_amq_openwire_jms_client/
 :ClientOpenWireJmsBookLink: link:{ClientOpenWireJmsBookUrl}[{ClientOpenWireJmsBook}]
+
+:ClientOverviewBookUrl: {BookUrlBase}/amq_clients_overview/
+:ClientOverviewBookLink: link:{ClientOverviewBookUrl}[{ClientOverviewBook}]
+
+:ClientReleaseNotesBookUrl: {BookUrlBase}/amq_clients_2.0_release_notes/
+:ClientReleaseNotesBookLink: link:{ClientReleaseNotesBookUrl}[{ClientReleaseNotesBook}]
 
 :ConsoleBookUrl: {BookUrlBase}/using_amq_console/
 :ConsoleBookLink: link:{ConsoleBookUrl}[{ConsoleBook}]
@@ -132,6 +151,9 @@
 :ClientAmqpPythonApiUrl: https://qpid.apache.org/releases/qpid-proton-{ProtonVersion}/proton/python/api
 :ClientAmqpPythonApiLink: link:{ClientAmqpPythonApiUrl}[API reference^]
 
+:ClientAmqpRubyApiUrl: https://qpid.apache.org/releases/qpid-proton-{ProtonVersion}/proton/ruby/api
+:ClientAmqpRubyApiLink: link:{ClientAmqpRubyApiUrl}[API reference^]
+
 :JavaSeApiUrl: https://docs.oracle.com/javase/8/docs/api
 :JavaEeApiUrl: http://docs.oracle.com/javaee/7/api
 
@@ -143,8 +165,9 @@
 :AmqpSpecUrl: http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-overview-v1.0-os.html
 :AmqpSpecLink: link:{AmqpSpecUrl}[AMQP 1.0 specification^]
 
-:CustomerPortalUrl: https://access.redhat.com/products/red-hat-jboss-amq
-:CustomerPortalLink: link:{CustomerPortalUrl}[Red Hat Customer Portal^]
+:CustomerPortalName: Red Hat Customer Portal
+:CustomerPortalUrl: https://access.redhat.com/products/red-hat-amq
+:CustomerPortalLink: link:{CustomerPortalUrl}[{CustomerPortalName}^]
 
 :JBossMavenRepoUrl: https://maven.repository.redhat.com/
 :JBossMavenRepoLink: link:{JBossMavenRepoUrl}[JBoss Enterprise Maven Repository^]
@@ -158,13 +181,16 @@
 :KerberosConfigurationGuideUrl: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system-level_authentication_guide/#authconfig-kerberos
 :KerberosConfigurationGuideLink: link:{KerberosConfigurationGuideUrl}[Configuring Kerberos^]
 
-:qdmanageManPageUrl: https://qpid.apache.org/releases/qpid-dispatch-1.0.0/man/qdmanage.html
+:qdmanageManPageUrl: {DispatchRouterUrlBase}/man/qdmanage.html
 :qdmanageManPageLink: link:{qdmanageManPageUrl}[qdmanage man page^]
 
-:qdrouterdManPageUrl: https://qpid.apache.org/releases/qpid-dispatch-1.0.0/man/qdrouterd.html
+:qdrouterdManPageUrl: {DispatchRouterUrlBase}/man/qdrouterd.html
 :qdrouterdManPageLink: link:{qdrouterdManPageUrl}[qdrouterd man page^]
 
-:qdstatManPageUrl: https://qpid.apache.org/releases/qpid-dispatch-1.0.0/man/qdstat.html
+:qdrouterdConfManPageUrl: {DispatchRouterUrlBase}/man/qdrouterd.conf.html
+:qdrouterdConfManPageLink: link:{qdrouterdConfManPageUrl}[qdrouterd.conf man page^]
+
+:qdstatManPageUrl: {DispatchRouterUrlBase}/man/qdstat.html
 :qdstatManPageLink: link:{qdstatManPageUrl}[qdstat man page^]
 
 :SupportedConfigurationsUrl: https://access.redhat.com/articles/2791941

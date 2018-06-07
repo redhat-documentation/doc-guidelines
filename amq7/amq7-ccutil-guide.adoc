@@ -1,5 +1,5 @@
 [[build-configuration]]
-= Configuring Your Environment to Build the Documentation
+= Configuring your environment to build the documentation
 
 When you make changes to the documentation, it is a good practice to perform a local test build to verify the book builds successfully and renders as you expect before you submit the merge request back to upstream master. This section describes how to configure your environment to build the documentation.
 
@@ -9,7 +9,7 @@ For that reason, you must install ccutil to test the build before you merge your
 
 NOTE: The ccutil utility requires Ruby. If you have not installed Ruby, you can use this command to install it: `yum -y install ruby`
 
-== Install ccutil
+== Installing ccutil
 
 .Procedure
 . Configure the engineering and `ccs-tools` repositories by creating two files:
@@ -42,7 +42,7 @@ priority=1
 
 .. Save the file as `/etc/yum.repos.d/ccs-tools.repo`
 +
-TIP: If you don't have root access, you can't move the files to the correct location
+TIP: If you do not have root access, you can not move the files to the correct location
 by using the File Manager. Instead save the file to your home folder and use Terminal
 to copy the files to the correct location:
 +
