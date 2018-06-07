@@ -1,6 +1,6 @@
 include::common/attributes.adoc[]
 
-= AMQ 7 Internal Resources
+= AMQ 7 internal resources
 
 include::amq7-introduction.adoc[leveloffset=+1]
 
@@ -16,7 +16,7 @@ include::amq7-formatting-guide.adoc[leveloffset=+1]
 
 include::amq7-styleguide.adoc[leveloffset=+1]
 
-== Terms and Conventions
+== Terms and conventions
 
 The following list of Terms and Conventions are specific to AMQ 7.  In addition to this guide, see the _Red Hat Glossary of Terms and Conventions_ for the usage conventions for the more commonly used documentation terms.
 
@@ -41,4 +41,4 @@ include::amq7-templates.adoc[leveloffset=+1]
 include::amq7-additional-resources.adoc[leveloffset=+1]
 
 // Revision information
-//include::common/revision-info.adoc[]
+include::common/revision-info.adoc[]

@@ -1,7 +1,7 @@
 [[git-tips]]
-= Git Tips
+= Git tips
 
-== Delete Branches
+== Deleting branches
 
 To delete all of your branches except the branch you are on:
 
@@ -19,7 +19,7 @@ $ git checkout contrib
 $ git branch -D _BRANCH_NAME_
 ----
 
-== Resolve Conflicts
+== Resolving conflicts
 
 To resolve a merge conflict in an existing pull request:
 
@@ -31,7 +31,7 @@ $ git pull --rebase upstream contrib
 $ git push -f origin HEAD
 ----
 
-== Reset Your Fork
+== Reseting your fork
 
 If your fork is both ahead of and behind the origin you can reset your fork to match the origin and start with a clean slate.
 
@@ -44,10 +44,16 @@ $ git pull upstream contrib
 $ git push origin contrib --force
 ----
 
-== Access Another Writer’s Unmerged Commits
+== Accessing another writer’s unmerged commits
 
 This is the process you can use if you need commits another writer has submitted in a merge request that is not yet merged.
 
+. Make sure you are on the contrib branch
++
+[source,options="nowrap",subs="+quotes"]
+----
+$ git checkout contrib
+----
 . Check out a new topic branch from upstream/contrib as you normally do.
 +
 [source,options="nowrap",subs="+quotes"]
@@ -69,10 +75,27 @@ $ git remote add -f _USER_ git@github.com:__USER__/amq7-documentation-contrib.gi
 $ git rebase _USER_/_MERGE_REQUEST_BRANCH_
 ----
 +
-(you'll see the following response)
+(you will see the following response)
 +
 [source,options="nowrap",subs="+quotes"]
 ----
 First, rewinding head to replay your work on top of it...
 Fast-forwarded _NEW_TOPIC_BRANCH_ to _USER_/_MERGE_REQUEST_BRANCH_
+----
+
+=== Committing to another writer's branch
+
+If you have made changes to the content in someone else's branch you'll want to be sure to commit them back to that same branch/PR.
+
+. While in your working branch, commit your changes
++
+[source,options="nowrap",subs="+quotes"]
+----
+$ git commit -m "__MESSAGE__"
+----
+. Push your changes to the existing PR
++
+[source,options="nowrap",subs="+quotes"]
+----
+$ git push _USER_ HEAD:__MERGE_REQUEST_BRANCH__
 ----

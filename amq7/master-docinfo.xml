@@ -1,6 +1,6 @@
 <productname>{ProductLongName}</productname>
 <productnumber>{ProductVersion}</productnumber>
-<subtitle>For Use with {ProductLongName} {ProductVersion}</subtitle>
+<subtitle>For use with {ProductLongName} {ProductVersion}</subtitle>
 <abstract>
   <para>This guide helps contribute to the documentation.</para>
 </abstract>
