@@ -7,25 +7,26 @@ A _user story_ focuses on a task that the product can complete.
 
 The following tables contrasts the differences between user stories and features:
 
-._Feature_ based table of contents
+._Feature_ based table of contents (toc)
 [options="header"]
 |====
-|Heading|Description
-|Title, Che IDE Basics.
-|Heading 1, Overview.
-|Heading 2, Projects and Files.
-|Heading 3, Editor and Code Assistance.
-|Heading 4, Debugging.
+|toc| Heading
+|Title| Che IDE Basics.
+|Heading 1| Overview.
+|Heading 2| Projects and Files.
+|Heading 3| Editor and Code Assistance.
+|Heading 4| Debugging.
 |====
 
 ._User story_ based table of contents
 [options="header"]
 |====
-|Title, Setting up your first project using the Che IDE.
-|Heading 1, Understanding the purpose of Che.
-|Heading 2, Creating a Project and adding a File.
-|Heading 3, Using Editor to write code and engaging Code Assistance.
-|Heading 4, Debugging Locally.
+|toc| Heading
+|Title| Setting up your first project using the Che IDE.
+|Heading 1| Understanding the purpose of Che.
+|Heading 2| Creating a Project and adding a File.
+|Heading 3| Using Editor to write code and engaging Code Assistance.
+|Heading 4| Debugging Locally.
 |====
 
 In summary, user stories inform the user as to how they achieve a pertinent goal.

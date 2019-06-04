@@ -1,5 +1,5 @@
-[id="concept-user-story-and-modular-docs-101-{context}"]
-= User story and modular docs 101
+[id="concept-user-story-and-modular-docs-{context}"]
+= User story and modular docs
 
 This document teaches you to create documentation that is based on a user story, and is created using a Modular Docs framework.
 The Modular Docs framework consists of four templates:

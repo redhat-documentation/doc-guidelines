@@ -2,7 +2,7 @@
 = Working with user stories and modular docs
 :context: assembly-working-with-user-stories-and-modular-docs
 
-include::concept-user-story-and-modular-docs-101.adoc[leveloffset=+2]
+include::concept-user-story-and-modular-docs.adoc[leveloffset=+2]
 
 include::reference-user-story-principle.adoc[leveloffset=+2]
 
