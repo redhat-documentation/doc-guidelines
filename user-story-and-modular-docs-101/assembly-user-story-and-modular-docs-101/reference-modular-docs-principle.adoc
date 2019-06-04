@@ -1,0 +1,18 @@
+[id="reference-modular-docs-principle-{context}"]
+= Modular docs principle
+
+The Modular Docs framework consists of four templates:
+
+* An assembly template.
+* A concept template.
+* A procedure template.
+* A reference template.
+
+If you create documentation to this framework, the end result is a documentation set that is modular by design.
+
+.Additional resources
+
+* link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_ASSEMBLY_a-collection-of-modules.adoc[A collection of modules].
+* link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_CONCEPT_concept-explanation.adoc[Concept explanation].
+* link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_PROCEDURE_doing-one-procedure.adoc[Doing one procedure].
+* link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_REFERENCE_reference-material.adoc[Reference material].
