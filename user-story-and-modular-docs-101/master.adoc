@@ -2,11 +2,9 @@
 = User story and modular docs
 :context: assembly-user-story-and-modular-docs
 
-include::concept-user-story-and-modular-docs-101.adoc[leveloffset=+2]
+include::assembly-user-story-and-modular-docs-101/assembly-user-story-and-modular-docs-101.adoc[leveloffset=+2]
 
-include::reference-user-story-principle.adoc[leveloffset=+2]
-
-include::reference-modular-docs-principle.adoc[leveloffset=+2]
+include::assembly-combining-user-stories-and-modular-docs/assembly-combining-user-stories-and-modular-docs.adoc[leveloffset=+2]
 
 == Combining user stories and modular docs
 
