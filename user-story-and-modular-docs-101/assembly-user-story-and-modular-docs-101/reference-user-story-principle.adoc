@@ -29,4 +29,4 @@ The following tables contrasts the differences between user stories and features
 |Heading 4| Debugging Locally.
 |====
 
-In summary, user stories inform the user as to how they achieve a pertinent goal.
+In summary, user stories inform the user as to how _they_ achieve a pertinent goal.

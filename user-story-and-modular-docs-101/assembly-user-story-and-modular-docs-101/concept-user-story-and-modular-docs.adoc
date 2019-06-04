@@ -10,7 +10,3 @@ The Modular Docs framework consists of four templates:
 * A reference template.
 
 If you create documentation to this framework, the end result is a documentation set that is modular by design.
-
-.Additional resources
-
-* link:https://opensource.com/article/17/9/modular-documentation[Modular documentation: How to make both writers and users happy].

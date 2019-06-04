@@ -2,13 +2,11 @@
 = User story and modular docs
 :context: assembly-user-story-and-modular-docs
 
-include::assembly-user-story-and-modular-docs-101/assembly-user-story-and-modular-docs-101.adoc[leveloffset=+2]
-
-include::assembly-combining-user-stories-and-modular-docs/assembly-combining-user-stories-and-modular-docs.adoc[leveloffset=+2]
+include::assembly-user-story-and-modular-docs-101/assembly-user-story-and-modular-docs-101.adoc[leveloffset=+1]
 
 == Combining user stories and modular docs
 
-include::concept-combining-user-stories-and-modular-docs.adoc[leveloffset=+1]
+include::assembly-combining-user-stories-and-modular-docs/assembly-combining-user-stories-and-modular-docs.adoc[leveloffset=+1]
 
 // Restore the context to what it was before this assembly.
 ifdef::parent-context[:context: {parent-context}]
