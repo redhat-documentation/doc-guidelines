@@ -1,0 +1,12 @@
+[id="concept-user-story-and-modular-docs-{context}"]
+= User story and modular docs
+
+This document teaches you to create documentation that is based on a user story, and is created using a Modular Docs framework.
+The Modular Docs framework consists of four templates:
+
+* An assembly template.
+* A concept template.
+* A procedure template.
+* A reference template.
+
+If you create documentation to this framework, the end result is a documentation set that is modular by design.

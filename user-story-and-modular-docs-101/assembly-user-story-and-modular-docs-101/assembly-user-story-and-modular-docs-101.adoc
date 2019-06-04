@@ -1,0 +1,13 @@
+[id="assembly-working-with-user-stories-and-modular-docs"]
+= Working with user stories and modular docs
+:context: assembly-working-with-user-stories-and-modular-docs
+
+include::concept-user-story-and-modular-docs.adoc[leveloffset=+2]
+
+include::reference-user-story-principle.adoc[leveloffset=+2]
+
+include::reference-modular-docs-principle.adoc[leveloffset=+2]
+
+// Restore the context to what it was before this assembly.
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

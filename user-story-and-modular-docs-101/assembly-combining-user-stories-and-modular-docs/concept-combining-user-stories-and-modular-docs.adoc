@@ -1,0 +1,15 @@
+[id="concept-combining-user-stories-and-modular-docs-{context}"]
+= Combining user stories and modular docs
+
+A user story is documented by populating an assembly file with predefined files (a concept file, a procedure file, and a reference file) from the Modular Docs framework.
+It is important to note that none of the module types are obligatory.
+The following illustrates a generic user-story structure in docs source code:
+
+[source,bash]
+----
+assembly.adoc
+    |________ concept-module.adoc
+    |________ procedure-module.adoc
+    |________ procedure-module.adoc
+    |________ reference-module.adoc
+----
