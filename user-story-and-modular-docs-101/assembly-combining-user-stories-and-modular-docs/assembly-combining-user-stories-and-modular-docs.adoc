@@ -1,4 +1,4 @@
-[id="assembly-combining-user-stories-and-modular-docs-{context}"]
+[id="assembly-combining-user-stories-and-modular-docs"]
 = Combining user stories and modular docs
 :context: assembly-combining-user-stories-and-modular-docs
 
