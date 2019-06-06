@@ -1,0 +1,14 @@
+[id="reference-user-story-and-modular-docs-example-{context}"]
+= User story and modular docs example
+
+The first heading in this document, *User story and modular docs*, was created to the following structure:
+
+[source,bash]
+----
+master.adoc
+    |________ assembly-user-story-and-modular-docs-101 (folder)
+        |________ assembly-user-story-and-modular-docs-101.adoc
+        |________ concept-user-story-and-modular-docs.adoc
+        |________ reference-user-story-principle.adoc
+        |________ reference-modular-docs-principle.adoc
+----
