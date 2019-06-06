@@ -6,7 +6,7 @@ include::concept-combining-user-stories-and-modular-docs.adoc[leveloffset=+2]
 
 include::reference-user-story-and-modular-docs-example.adoc[leveloffset=+2]
 
-// include::procedure-user-story-and-modular-docs-example.adoc[leveloffset=+2]
+include::procedure-user-story-and-modular-docs-example.adoc[leveloffset=+2]
 
 // Restore the context to what it was before this assembly.
 ifdef::parent-context[:context: {parent-context}]

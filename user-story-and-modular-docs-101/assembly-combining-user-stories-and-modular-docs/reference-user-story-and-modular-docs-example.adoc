@@ -6,7 +6,7 @@ The first heading in this document, *User story and modular docs*, was created t
 [source,bash]
 ----
 master.adoc
-    |________ assembly-user-story-and-modular-docs-101
+    |________ assembly-user-story-and-modular-docs-101 (folder)
         |________ assembly-user-story-and-modular-docs-101.adoc
         |________ concept-user-story-and-modular-docs.adoc
         |________ reference-user-story-principle.adoc

@@ -1,0 +1,63 @@
+[id="procedure-creating-a-user-story-using-modular-docs-{context}"]
+= Creating a user story using modular docs
+
+This section describes how to create an assembly similar to the  *User story and modular docs* example.
+
+.Prerequisites
+
+* Access to a modular docs framework, for example, link:https://github.com/redhat-documentation/modular-docs[The Modular Documentation Project Source Repository].
+
+.Procedure
+
+. Create a folder and name it _assembly-user-story-and-modular-docs-101_.
+
+. Within this folder, create an *adoc* file and name it _assembly-user-story-and-modular-docs-101.adoc_.
+
+. Open the *assembly-user-story-and-modular-docs-101.adoc* file and add the contents from an _assembly_ component, for example, link:https://raw.githubusercontent.com/redhat-documentation/modular-docs/master/modular-docs-manual/files/TEMPLATE_ASSEMBLY_a-collection-of-modules.adoc[TEMPLATE_ASSEMBLY_a-collection-of-modules.adoc].
+
+. Within this folder, create an *adoc* file and name it _concept-user-story-and-modular-docs.adoc_.
+
+. Open the *concept-user-story-and-modular-docs.adoc* file and add the contents from an _concept_ component, for example, link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_CONCEPT_concept-explanation.adoc[TEMPLATE_CONCEPT_concept-explanation.adoc].
+
+. Within this folder, create an *adoc* file and name it _reference-user-story-principle.adoc_.
+
+. Open the *reference-user-story-principle.adoc* file and add the contents from an reference component, for example, link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_REFERENCE_reference-material.adoc[TEMPLATE_REFERENCE_reference-material.adoc].
+
+. Within this folder, create an *adoc* file and name it _reference-modular-docs-principle.adoc_.
+
+. Open the *reference-modular-docs-principle.adoc* file and add the contents from an reference component, for example, link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_REFERENCE_reference-material.adoc[TEMPLATE_REFERENCE_reference-material.adoc].
+
+. Edit the *assembly-user-story-and-modular-docs-101.adoc* and include the *concept-user-story-and-modular-docs.adoc*, *reference-user-story-principle.adoc*, and *reference-user-story-principle.adoc* files.
+
+.Verification steps
+
+. The folder structure should resemble:
++
+[source,bash]
+----
+assembly-user-story-and-modular-docs-101 (folder)
+    |________ assembly-user-story-and-modular-docs-101.adoc
+    |________ concept-user-story-and-modular-docs.adoc
+    |________ reference-user-story-principle.adoc
+    |________ reference-modular-docs-principle.adoc
+----
+.Additional resources
++
+. The *assembly-user-story-and-modular-docs-101.adoc* should resemble:
+
+  [id="assembly-working-with-user-stories-and-modular-docs"]
+  = Working with user stories and modular docs
+  :context: assembly-working-with-user-stories-and-modular-docs
+  // include the concept
+  include::concept-user-story-and-modular-docs.adoc[leveloffset=+2]
+  // include the first reference
+  include::reference-user-story-principle.adoc[leveloffset=+2]
+  // include the second reference
+  include::reference-modular-docs-principle.adoc[leveloffset=+2]
+  // Restore the context to what it was before this assembly.
+  ifdef::parent-context[:context: {parent-context}]
+  ifndef::parent-context[:!context:]
+
+== Additional resources
+
+* link:https://github.com/redhat-documentation/modular-docs[The Modular Documentation Project Source Repository].
