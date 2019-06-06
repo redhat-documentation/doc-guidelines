@@ -1,7 +1,7 @@
 include::./upstream-attributes.adoc[]
 
 [id="assembly-user-story-and-modular-docs"]
-= User story and modular docs
+= User story and modular docs training
 :context: assembly-user-story-and-modular-docs
 
 include::./assembly-user-story-and-modular-docs-101/assembly-user-story-and-modular-docs-101.adoc[leveloffset=+1]

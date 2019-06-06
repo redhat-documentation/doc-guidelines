@@ -1,0 +1,9 @@
+
+*~
+build/
+html/
+.zanata-cache/
+.DS_Store
+*/.DS_Store
+.tags
+.idea

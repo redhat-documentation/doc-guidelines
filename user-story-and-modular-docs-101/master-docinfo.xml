@@ -1,0 +1,8 @@
+<title>User story and modular docs training 101</title>
+<productname>{ProductName}</productname>
+<productnumber>{DocInfoProductNumber}</productnumber>
+<subtitle>For {ProductName} {ProductRelease}</subtitle>
+<release>{DocInfoProductNumber}</release>
+<abstract>
+    <para>This document provides training on how to write user stories and modular docs.</para>
+</abstract>

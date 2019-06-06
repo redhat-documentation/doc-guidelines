@@ -1,0 +1,11 @@
+:toc:
+:toclevels: 4
+:numbered:
+
+:ProductName: User story and mod docs training
+:ProductRelease: 1.0
+:ProductVersion: 1.0
+:LatestVersion: 1.0
+
+:DocInfoProductName: user_story_and_mod_docs_training
+:DocInfoProductNumber: 1.0
