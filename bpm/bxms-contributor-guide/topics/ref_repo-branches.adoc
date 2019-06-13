@@ -1,31 +1,40 @@
+[id='ref_kie-docs-repo-branches']
 
-= Branches
+= Branches in kie-docs repository
 
-The branches in the {PRODUCT} documentation repository are named as follows, and contain the following versions of the documentation:
+The branches in the {GROUP} documentation repository consist of a `master` branch with the latest content, and `$VERSION.x.x` branches that correlate with {GROUP_KIE} community software release versions. The branch version does not correlate with the {GROUP_BA} version, so
 
-NOTE: The version of the community and enterprise documentation in one branch may not be the same. Always check what version of the documentation you want to work on.
-
+.Example branches in {GROUP_BOTH} repository as of August 2018
 [cols="1,1,1,2", opts=header]
 |===
-| Branch Name
-| Community Version
-| Enterprise Version
+| Branch name
+| Community software version
+| Enterprise software version
 | Contents
 
 | master
-| 7.0 and updates
-| 7.0 and updates
-| Latest community upstream version
+| Latest release, plus unreleased updates
+| Latest release, plus unreleased updates
+| Latest documentation, plus unreleased updates
 
-| 6.5.x
-| 6.5 and updates
-| N/A
-| The source code for the enterprise documentation is not available for versions older than 7.0.
+| 7.5.x
+| 7.5.0.Final
+| 7.0
+| Documentation for Drools/jBPM 7.5.0.Final and for {DM_INIT} 7.0
 
-| $VERSION.x
-| $VERSION and updates
-| N/A
-| The source code for the enterprise documentation is not available for versions older than 7.0.
+| 7.7.x
+| 7.7.0.Final
+| 7.0
+| Documentation for Drools/jBPM 7.7.0.Final and for {PAM_INIT} 7.0
+
+
+| 7.11.x
+| 7.11.0.Final
+| 7.1
+| Documentation for Drools/jBPM 7.11.0.Final and for {DM_INIT}/{PAM_INIT} 7.1
+
+| ...
+| ...
+| ...
+| ...
 |===
-
-

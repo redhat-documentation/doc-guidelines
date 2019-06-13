@@ -1,5 +1,5 @@
 
-= Pre-Publishing Checklist
+= Pre-publishing checklist
 
 WARNING: This section is obsolete, and will be updated shortly.
 
@@ -64,7 +64,7 @@ Affected books:
 Verify the supported EAP version and update if necessary.::
 +
 --
-Consult QE whether the new version of {PRODUCT} supports a new version of EAP. If so, modify the value of the `\{EAP_VERSION\}` attribute in `docs/shared-kie-docs/src/main/resources/Product/document-attributes.adoc`. If there is enough time before the release, go over the documentation set and verify if any hard-coded EAP versions should be replaced with `\{EAP_VERSION\}`.
+Consult QE whether the new version of {GROUP} supports a new version of EAP. If so, modify the value of the `\{EAP_VERSION\}` attribute in `docs/shared-kie-docs/src/main/resources/Product/document-attributes.adoc`. If there is enough time before the release, go over the documentation set and verify if any hard-coded EAP versions should be replaced with `\{EAP_VERSION\}`.
 
 Affected books:
 

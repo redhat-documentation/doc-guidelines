@@ -10,8 +10,6 @@ You can build and preview books in https://pantheon.cee.redhat.com[Pantheon], th
 
 [float]
 == Procedure
-
-.Building and Previewing a Book on Pantheon
 . Go to the relevant page on Pantheon with titles ("a title" is a term in Pantheon that means a book build job for a particular product version):
 +
 * The https://pantheon.cee.redhat.com/\#/titles/red-hat-jboss-bpm-suite[BPM Suite] title page.
@@ -22,8 +20,6 @@ The build is queued, and the page refreshes automatically to show progress. The 
 . Click the *View Document in Preview* button (a globe icon, the leftmost button in the same cluster as above).
 
 [float]
-== Related Information
+== Additional resources
 
 * https://pantheon.cee.redhat.com/#/help[Pantheon User Guide].
-
-

@@ -1,0 +1,97 @@
+[id='merge_pull_request_fork']
+
+= Merge the pull request in your fork and rebase the final branch
+
+After SME and peer reviews are complete, you must merge the pull request in your fork. You do not need the gatekeeper to accept this first pull request in your fork. The gatekeeper only merges upstream pull requests, which come next.
+
+After merging the pull request, you must rebase the final branch on the current upstream master branch in order to resolve any conflicts before merging upstream.
+
+[float]
+== Prerequisites
+
+* The pull request from your working branch to your target (final) branch has been created. See  <<create_pull_request_fork>> for details.
+
+* You have made all necessary changes and pushed them to your working branch.
+
+[NOTE]
+====
+In this example, you are developing documentation under the `master` branch, as is most common, and your target/final branch is `BXMSDOC-1433-master-final`. Replace the branch names as apropriate.
+====
+
+[float]
+== Procedure
+
+. In a web browser, access the in-fork pull request (from `BXMSDOC-1433-master` into `BXMSDOC-1433-master-final`).
+. Scroll down to the green merge button, click the drop-down arrow on the button, and select *Squash and merge*. This action merges all your changes into the final branch _as a single commit_; a commit that contains the contents from multiple commits, like the one in this case, is called a _squashed commit_.
+. Check out the local `BXMSDOC-1433-master-final` branch and pull latest changes from your fork:
++
+--
+[source,bash]
+----
+$ git checkout BXMSDOC-1433-master-final
+$ git pull --rebase
+----
+
+This step is necessary for two reasons:
+
+* Populates your local copy of the `BXMSDOC-1433-master-final` branch with the latest squashed commit that you will need to cherry-pick onto the release working branch. For details about cherry-picking, see <<cherry_pick_pull_request>>.
+* Enables you to rebuild the output locally to ensure that the updated branch builds successfully. For details about building locally, see <<building_locally,Building and Previewing>>.
+--
+. In your terminal application, fetch the latest upstream changes and rebase your newly merged `BXMSDOC-1433-master-final` branch on upstream master:
++
+[source,bash]
+----
+$ git fetch --all
+$ git checkout BXMSDOC-1433-master-final
+$ git rebase upstream/master
+----
+. Check the command-line output to see if any conflicts are reported.
++
+--
+If no conflicts are reported, force-push the branch into your fork:
+
+[source,bash]
+----
+$ git push --force
+----
+
+*Do not run `git pull --rebase`, as git prompts you to do.*
+
+If conflicts are reported and Meld is installed, see <<resolving-merge-conflict>>.
+
+If conflicts are reported and Meld is not installed, run `git status` to view the conflicting files and, in your text editor, open and edit every file for which the conflict is reported. The conflicting parts are highlighted in your text editor as follows:
+
+[source]
+----
+If you have questions, please
+<<<<<<< HEAD
+open an issue
+=======
+ask your question in IRC.
+>>>>>>> branch-a
+----
+
+Decide which version should be in the final branch and delete the other version, as well as the markup (`===` `<<<` `>>>` lines). If you are using the Atom editor, you can see the changes highlighted in different colors and *Use me* buttons are available for each possible version; click the *Use me* button for the version that you want to keep and the editor removed the markup automatically.
+ 
+You can also make other changes in the files as necessary (for example, to make the merged version fit logically).
+
+Make sure to scroll through the entire "conflicted" file for any other conflicts, and make sure that every "conflicted" file is in final form. 
+
+TIP: You can use full-text search to check in which files you still need to resolve conflicts. Open the entire tree in the Atom editor and use the *Find > Find in Project* menu option to search for `>>>>`.
+
+Edit and save all files where conflicts are present. Then `git add` the files and continue the rebase:
+
+[source,bash]
+----
+$ git add --all
+$ git rebase --continue
+----
+
+If new conflicts are reported, repeat the same steps for any conflicting files. However, if you used the squashing procedure correctly, git normally reports only one set of conflicts, as only one commit is applied.
+--
+. When no more conflicts are reported for the rebase, force-push the branch into your fork:
++
+[source,bash]
+----
+$ git push --force
+----

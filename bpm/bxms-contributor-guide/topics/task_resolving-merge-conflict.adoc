@@ -1,19 +1,17 @@
+[id='resolving-merge-conflict']
+= Resolving merge conflicts using Meld
 
-= Resolving Merge Conflicts Using Meld
-
-When you try to apply a change to a Git branch, for example while cherry-picking, rebasing, or merging, the branch or commit can contain changes that are incompatible with the existing content. In this case, you must resolve the conflict by modifying the changes until they are compatible.
+When you try to apply a change to a Git branch, for example while cherry-picking, rebasing, or merging, the branch or commit can contain changes that are incompatible with the existing content. You can use Meld to view the conflicting content in the files you are trying to merge and then select the version of the content you want to keep. This resolves the conflict so that you can merge.
 
 NOTE: You can resolve merge conflicts without Meld (Git is configured to use a fallback tool in such a case), but this section focuses on Meld because it is comparatively powerful and easy to use.
 
 [float]
 == Prerequisites
 
-* Meld. For more information, see <<_system_requirements>>.
+* Meld. For more information, see <<ref_required-doc-tools>>.
 
 [float]
 == Procedure
-
-.Resolving Merge Conflicts
 . In a terminal application, navigate to the repository and run:
 +
 --
@@ -76,7 +74,6 @@ $ git cherry-pick --continue
 --
 
 [float]
-== Related Information
+== Additional resources
 
 * https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/[GitHub guide] on resolving merge conflicts using command line.
-

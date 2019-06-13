@@ -1,13 +1,13 @@
-[#mod_doc_conventions]
-= Modular Documentation Conventions
+[id='mod_doc_conventions']
+= Modular documentation conventions
 
 Modular documentation is documentation based on modules, which are reusable building blocks of information with a well-organized structure. The primary types of modules are concept, reference, and procedure modules. Technical writers write modules separately based on module type, and then combine the modules into assemblies. The assembly of modules, often preceded by an introduction, is then generated as a user-story-based document.
 
 Creating documentation in this way makes content reusable, consistent, and well structured, enabling a large body of contributors to work more efficiently to build clear, reliable documentation for end users.
 
-For details about how to create content modules and assemblies, see the link:https://htmlpreview.github.io/?https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/modular-docs-manual.html[Modular Documentation Reference Guide].
+For details about how to create content modules and assemblies, see the link:https://redhat-documentation.github.io/modular-docs/[Modular Documentation Reference Guide].
 
-== File Names and Anchor Names
+== File names and anchor names
 
 To optimize modular documentation, follow these guidelines for naming module files and anchors:
 
@@ -67,7 +67,7 @@ include::.../guided-decision-tables-create-proc.adoc
 ----
 
 [NOTE]
-.Note on Other Anchor Formats (Not Recommended)
+.Note on other anchor formats (not recommended)
 ====
 The format defined here is recommended because it is the most stable and versatile of anchor formats, and supports document attribute variables that enable topics to be reused and cross-referenced properly. For details, see <<reusing-modules>>. Other anchor formats include `+++[[anchor-name]]+++` and `+++[#anchor-name]+++`, but these formats either do not support variables for content reuse or do not support certain character types, such as periods. These limitations cause errors at build time.
 ====

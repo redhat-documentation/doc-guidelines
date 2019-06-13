@@ -1,14 +1,13 @@
 [id='create_pull_request_upstream']
 
-= Create Upstream Pull Requests
+= Create upstream pull requests
 
 After all reviews are complete and your `master` and release target branches in your fork (`BXMSDOC-1433-master-final` and `BXMSDOC-1433-7.3.x-final`) are ready to be merged upstream, you create an upstream pull request for each branch: one for upstream `master` and one for upstream `7.3.x`.
-
 
 [float]
 == Prerequisites
 
-* Your `master` working branch (`BXMSDOC-1433-master`) has been approved by the SME and peer reviewers and merged with the preliminary target branch in your fork (`BXMSDOC-1433-master-final`). See <<create_pull_request_fork>> for details.
+* Your `master` working branch (`BXMSDOC-1433-master`) has been approved by the SME and peer reviewers and merged with the preliminary target branch in your fork (`BXMSDOC-1433-master-final`). See <<merge_pull_request_fork>> for details.
 * You have created a target branch based on the relevant release (`BXMSDOC-1433-7.3.x-final`) and have cherry-picked the changes from the `master` target branch (`BXMSDOC-1433-master-final`) onto it in your fork. See <<cherry_pick_pull_request>> for details.
 
 [float]
@@ -27,7 +26,7 @@ For the upstream `master` pull request:
 
 +
 --
-.Example Pull Request for Upstream master
+.Example pull request for upstream master
 image::github-pull-request-upstream-01.png[Example of upstream `master` pull request]
 
 For the upstream `7.3.x` pull request:
@@ -39,7 +38,7 @@ For the upstream `7.3.x` pull request:
 
 +
 --
-.Example Pull Request for Upstream 7.3.x
+.Example pull request for upstream 7.3.x
 image::github-pull-request-upstream-02.png[Example of upstream `7.3.x` pull request]
 
 

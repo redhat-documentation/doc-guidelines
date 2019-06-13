@@ -1,9 +1,19 @@
-:brms: Red Hat JBoss BRMS
-:bpms: Red Hat JBoss BPM Suite
-:ba: Red Hat Business Automation
-:dm: Red Hat Decision Manager
 
-:GUIDE_VERSION: 0.1-alpha
-:GUIDE_BUILD_DATE: February 2018
+ifdef::INTERNAL[]
+include::document-attributes-int.adoc[]
+endif::INTERNAL[]
 
-:PRODUCT: KIE/BPM
+ifdef::PUBLIC[]
+include::document-attributes-pub.adoc[]
+endif::PUBLIC[]
+
+:PAM: Red Hat Process Automation Manager
+:PAM_INIT: RHPAM
+:DM: Red Hat Decision Manager
+:DM_INIT: RHDM
+
+:GUIDE_BUILD_DATE: September 2018
+
+:GROUP_BOTH: KIE/BA
+:GROUP_BA: Red Hat Business Automation
+:GROUP_KIE: KIE

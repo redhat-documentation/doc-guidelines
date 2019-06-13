@@ -1,0 +1,68 @@
+[id='task_build-assemblies-locally']
+
+= Building {GROUP_BA} assemblies locally
+
+Before pushing content changes to the `kie-docs` repository, always build {GROUP_BA} assemblies locally first using the `ba-build` script to check how the book renders with your changes. The `ba-build` script is in the `proposal-d` repository in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab]. This script uses either Asciidoctor or `ccutil` to compile {GROUP} documents from the `kie-docs` repository structure in a way that supports single sourcing between community and enterprise documentation.
+
+IMPORTANT: If you have reused (single-sourced) modules between {GROUP_KIE} community and {GROUP_BA} documents, you must build both the enterprise assembly and the community document locally before pushing to `kie-docs`. For information about building community documents, see <<task_build-community-locally>>.
+
+[float]
+== Prerequisites
+
+* Asciidoctor and `ccutil` are installed. For more information, see <<ref_required-doc-tools>>.
+* You have access to the `proposal-d` repository in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab], and a locally cloned copy of `proposal-d`. For more information, see the `README` file of the `proposal-d` repository.
+
+[float]
+== Procedure
+
+. In your terminal application, navigate to your locally cloned `proposal-d` repository containing the `ba-build` script and pull the latest version of the `master` branch to ensure you have the latest tool:
++
+[source]
+----
+$ cd ~/proposal-d
+$ git pull --rebase
+----
+. In your terminal application, navigate to your local copy of the `kie-docs` repo, switch to the branch containing the changes that you want to build (example: `BXMSDOC-1234-master` branch), and navigate to the product-specific build folder within the relevant assembly.
++
+--
+For example, navigate to the following folder to build the {DM} version of an assembly:
+
+[source]
+----
+$ cd ~/kie-docs/assemblies/$ASSEMBLY_FOLDER/dm
+----
+--
+. Run `ba-build` to preview the source with `ccutil` or run `ba-build -a` to preview the source with Asciidoc:
++
+--
+.Preview with `ccutil`
+[source]
+----
+$ ba-build
+$ google-chrome build/tmp/en-US/html-single/index.html
+----
+
+.Preview as a pdf file with `ccutil`
+[source]
+----
+$ ba-build -p
+$ evince build/tmp/en-US/pdf/*.pdf
+----
+
+
+.Preview with Asciidoctor
+[source]
+----
+$ ba-build -a
+$ google-chrome build/master.html
+----
+
+NOTE: Replace `google-chrome` with a browser of your choice.
+
+--
+
+[float]
+== Additional resources
+
+* https://pantheon.cee.redhat.com/help/user-guide/#ccutil-commands[List of ccutil commands] on the Pantheon help site
+* `proposal-d` repository in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab]
