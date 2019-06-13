@@ -1,3 +1,7 @@
+:toc: left
+:linkattrs:
+:toclevels: 2
+
 = OpenJDK documentation contributor guide
 
 include::introduction.adoc[leveloffset=+1]
