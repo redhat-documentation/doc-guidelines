@@ -11,6 +11,7 @@ endif::PUBLIC[]
 :PAM_INIT: RHPAM
 :DM: Red Hat Decision Manager
 :DM_INIT: RHDM
+:PLANNER: Red Hat Business Optimizer
 
 :GUIDE_BUILD_DATE: September 2018
 
