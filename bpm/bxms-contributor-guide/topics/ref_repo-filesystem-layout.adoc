@@ -1,60 +1,47 @@
+[id='ref_kie-docs-repo-structure']
 
-= Filesystem Layout
+= Filesystem layout of kie-docs repository
 
-The general structure of the repository follows the CCS-wide https://github.com/silasrh/cp-docs-repo-template/tree/master/[standard AsciiDoc repository] layout with some changes.
+The following is the general structure of the `kie-docs` repository:
 
 ----
-.
-├── docs <1>
-│   ├── optaplanner-wb-es-docs <2>
-│   │   └── src
-│   │       └── main
-│   │           └── asciidoc
-│   │               ├── bpms <3>
-│   │               │   ├── master.adoc <4>
-│   │               │   ├── master-docinfo.xml <5>
-│   │               │   └── (topics -> ..) <6>
-│   │               ├── brms
-│   │               │   ├── master.adoc
-│   │               │   ├── master-docinfo.xml -> ../bpms/master-docinfo.xml <7>
-│   │               │   └── (topics -> ..) <6>
-│   │               ├── *.adoc <8>
-│   │               └── (product-shared-docs -> ../../../../shared-kie-docs/src/main/asciidoc/Product) <9>
-│   ├── shared-kie-docs <10>
-|   |      └── src
-│   |           └── main
-│   |               └── asciidoc
-|   |                     ├── Product <11>
-|   |                     |     ├── images <12>
-|   |                     |     |     ├── foo.png
-|   |                     |     |     └── ...
-|   |                     |     ├── author-group.adoc
-|   |                     |     ├── document-attributes.adoc
-|   |                     |     ├── document-attributes-bpms.adoc
-|   |                     |     ├── document-attributes-brms.adoc
-|   |                     |     ├── images
-|   |                     |     ├── legal-notice.adoc
-|   |                     |     ├── versioning-information.adoc
-|   |                     |     └── xpaas_maven_mirror_url.adoc
-|   |                     |
-|   |                     └── ... 
-|  ...
+├── _artifacts
+├── _images
+├── assemblies
+    ├── assembly_dmn-models
+        ├── dm
+            ├── master-docinfo.xml
+            └── master.adoc
+        ├── drools
+        ├── jbpm
+        ├── pam
+        └── main.adoc
+    ├── ...
+├── doc-content
+    ├── drools-docs
+        └── src
+            └── main
+                └── asciidoc
+                    ├── DMN
+                        ├──dmn-elements-con.adoc
+                        ├── ...
+                    ├── ...
+    ├── enterprise-only
+        ├── installation
+            ├──controller-con.adoc
+            ├── ...
+        ├── ...
+    ├── ...
+├── ...
 └── README.adoc
 ----
-<1> Directory with sources
-<2> A book directory (In this case, the Optaplanner/Business Resource Planner Guide). Note that the book has configuration for both the community and the enterprise products (`brms` for BRMS, `bpms` for the BPM Suite).
-<3> A product directory (In this case, Red Hat JBoss BPM Suite). For more information, see the paragraph below.
-<4> The Master AsciiDoc file (This is the file you compile when building the book).
-<5> A metadata file with information for Pantheon and/or ccutil. Asciidoctor or Maven do not use this file.
-<6> A symlink to the `../topics` directory. This symlink has been removed from the repository due to the issues with Windows build tools. It is added at build time by the `bxms-build` script.
-<7> All enterprise product directories share the same `master-docinfo.xml` file with metadata, so it is symlinked here.
-<8> The directory with all the AsciiDoc source files for the particular book. You can find files for all the product configurations here (if applicable).
-<9> A symlink to the shared directory. Using this link, you can easily include shared files from the book's private files. This symlink has been removed from the repository due to the issues with Windows build tools. It is added at build time by the `bxms-build` script.
 
-<10> The directory that contains files used in more than one book. This is a shared resource with community books.
-<11> The directory that contains files used in product books.  
-<12> The directory with all the images from all product books. Since the path to this directory is set as the default images directory, you can include images simply by their name without a path.
+The following are descriptions of some of the core folders in this repository structure:
 
-[id='product_directories']
-The `brms` and `bpms` enterprise product directories each contain files necessary for building the particular book for one of the enterprise products. {brms} is shipped both as a part of {bpms} and as a separate product, so it requires its own documentation. If a product directory is missing, it means that the book does not exist for that particular product (for example, {brms} has no _Migration Guide_ available). The same applies for the `community` directory. If a book directory does not contain this subdirectory, the book is built only for enterprise.
+* *_artifacts:* Directory with document attributes that render according to target output (community, enterprise, or a specific product).
+* *_images:* Directory with all images used in documentation, divided by relevant sub-directory.
+* *assemblies:* List of assembly folders used to build content for the Red Hat Customer Portal. Each assembly folder includes a `main.adoc` assembly file that defines the assembly (document) content, and product-specific build folders (`dm`, `drools`, `jbpm`, `pam`) that compile the assembly into the rendered output for {DM}, Drools, jBPM, or {PAM}. Each product-specific build folder contains a `master-docinfo.xml` and `master.adoc` files with metadata required for publishing to the Red Hat Customer Portal.
++
+NOTE: Only the enterprise `dm` and `pam` folders are currently used in production. The community `drools` and `jbpm` folders are preview build folders that are currently not used to build community documents. To build community documents, run `mvn clean install -Dfull` at the `kie-docs`, `kie-docs/doc-content`, or `kie-docs/doc-content/$DOC_FOLDER`. For more information about building community or enterprise documents, see <<building_locally>>.
 
+* *doc-content:* Directory with all `.adoc` content files. Community `drools-docs`, `jbpm-docs`, and `optaplanner-wb-es-docs` folders are in a Maven structure to enable a `mvn clean install -Dfull` build. All content files in community folders are or can be used in enterprise assembly builds from the `assemblies` folder for the Red Hat Customer Portal. Content files in the `enterprise-only` folder either apply only to {GROUP_BA} products or are files that have not yet been reconciled with community content.

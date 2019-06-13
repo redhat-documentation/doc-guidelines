@@ -1,0 +1,26 @@
+[id='task_build-community-locally']
+
+= Building {GROUP_KIE} community documents locally
+
+Community documents are found in the `drools-docs`, `jbpm-docs`, and `optaplanner-wb-es-docs` folders in `kie-docs/doc-content`. These folders are in a Maven structure, so you can build them using the `mvn clean install -Dfull` command.
+
+Before pushing community content changes to the `kie-docs` repository, always build {GROUP_KIE} documents locally first using Maven to check how the book renders in Asciidoc with your changes.
+
+IMPORTANT: If you have reused (single-sourced) modules between {GROUP_KIE} community and {GROUP_BA} documents, you must build both the enterprise assembly and the community document locally before pushing to `kie-docs`. For information about building enterprise documents, see <<task_build-assemblies-locally>>.
+
+[float]
+== Prerequisite
+Maven 3.5.4 or later is installed. For more information, see <<ref_required-doc-tools>>.
+
+[float]
+== Procedure
+In a terminal application, navigate to the `kie-docs` repository, run a Maven build to build all community documents, and open the rendered Asciidoc output to verify your changes.
+
+[source]
+----
+$ cd ~kie-docs
+$ mvn clean install -Dfull
+$ google-chrome doc-content/drools-docs/target/generated-docs/html_single/index.html
+----
+
+NOTE: Replace `google-chrome` with a browser of your choice. Replace `drools-docs` with the community doc that you want to verify.

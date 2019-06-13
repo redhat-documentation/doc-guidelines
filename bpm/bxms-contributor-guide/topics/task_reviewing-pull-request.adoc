@@ -1,22 +1,16 @@
 
-[id='reviewing-pull-request-writers-{chapter}']
-= Reviewing Pull Request (Writers)
+[id='reviewing-pull-request-writers']
+= Reviewing pull requests (writers)
 
-Each pull request is subject to the same review from the Engineering team, and from the CCS Gatekeeper or a writer.
-
-.GitHub Pull Request Flowchart
-image::github-pull-request-flowchart.png[]
-
-NOTE: A writer can be appointed to perform tasks marked "Gatekeeper," especially in situations when too many contributions must be reviewed in a short time frame.
+Review pull requests in GitHub to ensure that all content is validated before merging with the related `kie-docs` branch.
 
 [float]
-= Prerequisites
+= Prerequisite
 
-* GitHub account with the https://github.com/kiegroup/[KIE Group] membership. To get your account added to the group, <<_contact_information, contact someone>> from the team.
+You have a GitHub account with the https://github.com/kiegroup/[KIE Group] membership. To get your account added to the group, <<_contact_information, contact someone>> from the team.
 
 [float]
 = Procedure
-
 . Select a pull request to review from the https://github.com/kiegroup/kie-docs/pulls[pull requests] page.
 . If the pull request is not filed as a solution of an issue that is already tracked in JIRA, create a https://issues.jboss.org/projects/BXMSDOC[new issue] and track the review progress there:
 .. Create an issue of the *Task* type.
@@ -28,6 +22,7 @@ NOTE: A writer can be appointed to perform tasks marked "Gatekeeper," especially
 . Build the document locally and review it:
 +
 NOTE: Automatic building of the contributions is pending.
+
 +
 .. In a terminal application, navigate to the product repository.
 .. Add the contributor's repository as a Git remote:
@@ -53,10 +48,11 @@ $ git checkout $BRANCH
 .. For each book, navigate to its directory and <<building_locally,build it locally>> using Asciidoctor--or ccutil in case of enterprise books--for the relevant product configurations, such as `bpms`, `brms` or `community`.
 +
 NOTE: The community product configurations can not be built using ccutil.
+
 .. Provide feedback in the pull request:
 ** Comment on individual lines when your suggestion or requirement is very specific and only targets content on that line.
 ** Comment on the whole change set under the *Conversation* tab with suggestions or requirements that apply to the entire change set.
-** When reviewing, make sure the contribution meets all of the enterprise <<style_requirements, requirements>>.
+** When reviewing, make sure the contribution meets all of the enterprise <<ref_corporate-style, requirements>>.
 .. Wait for the contributor to provide fixes to the problems you or Engineering found, if any.
 .. If the contributor addressed all the problems, or no problems were found, accept the pull request by clicking *Merge pull request*.
 .. If the changes in the pull request should be applied to other branches as well, <<cherry_picking_branches, cherry-pick>> the changes to the relevant branches.

@@ -1,5 +1,4 @@
-
-= Adding BA/DM Documents in Pantheon
+= Adding {GROUP_BA} documents in Pantheon
 
 With each new release or when new documents become available, new doc titles need to be set up in Pantheon in order for the documents to be published to the Customer Portal.
 
@@ -11,13 +10,13 @@ With each new release or when new documents become available, new doc titles nee
 [float]
 == Procedure
 
-. Go to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and select the *{ba}* or *{dm}* product page, depending on where the new documents need to be added.
+. Go to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and select the *{PAM}* or *{DM}* product page, depending on where the new documents need to be added.
 +
 If the new documents are for a new product not already listed, then click *Set up new title* directly in the *Products* page. This will add a new product page along with the new document.
 +
 . In the selected product page, click *Set up new title* and fill in the following document details:
 * *Yep, repository...*: Select this.
-* *Product*: Enter `Red Hat Business Automation` or `Red Hat Decision Manager`.
+* *Product*: Enter `{PAM}` or `{DM}`.
 * *Version*: Enter the version number.
 * *GitLab Group*: Select `Documentation - Red Hat JBoss BxMS`.
 * *GitLab Project*: Select `kie-docs-translator`. This is the publishing repo created by the `bxms-translate` script.
@@ -36,11 +35,3 @@ If the new documents are for a new product not already listed, then click *Set u
 image::pantheon-new-titles.png[Example Setup for New Document]
 +
 . Click *Add additional title* to continue adding other documents with the same product specifications, or click *Submit* to finish.
-. In the product page, click the rebuild icon image:pantheon-rebuild-icon.png[] for each new document to build the preview.
-. When the build completes, click the preview icon image:pantheon-globe-icon.png[] for each document to preview the output.
-
-[float]
-== Related Information
-
-* https://pantheon.cee.redhat.com/#/help/troubleshooting[Troubleshooting] chapter in the Pantheon User Guide.
-* https://pantheon.cee.redhat.com/#/help/workflow-publishing[Staging and publishing] chapter in the Pantheon User Guide.

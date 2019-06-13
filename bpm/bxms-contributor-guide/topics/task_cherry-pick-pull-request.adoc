@@ -1,6 +1,6 @@
 [id='cherry_pick_pull_request']
 
-= Create a Release Working Branch and Cherry-Pick the Fork Pull Request
+= Create a release working branch and cherry-pick the fork pull request
 
 [NOTE]
 ====
@@ -15,7 +15,16 @@ The newly updated `master`-based branch in your fork (`BXMSDOC-1433-master-final
 [float]
 == Prerequisites
 
-* SME and peer have approved your changes, and your `master` working branch (`BXMSDOC-1433-master`) has been merged with the target branch (`BXMSDOC-1433-master-final`) in your fork. See <<create_pull_request_fork>> for details.
+* SME and peer have approved your changes, your `master` working branch (`BXMSDOC-1433-master`) has been merged with the target branch (`BXMSDOC-1433-master-final`) in your fork, and your local target branch has been updated and rebased. See <<merge_pull_request_fork>> for details.
++
+If you do not update this local target branch, then when you try to cherry-pick the relevant commit or commits, one of the following errors can appear:
++
+[source,bash]
+----
+fatal: bad object
+or
+fatal: bad revision
+----
 
 [float]
 == Procedure
@@ -25,7 +34,7 @@ The newly updated `master`-based branch in your fork (`BXMSDOC-1433-master-final
 [source,bash]
 ----
 $ git fetch --all
-$ git checkout 7.3.x # If the branch is not listed locally, use git checkout --track origin/7.3.x
+$ git checkout 7.3.x # If the branch is not listed locally, use git checkout --track upstream/7.3.x
 $ git rebase upstream/7.3.x
 $ git push
 ----
@@ -45,45 +54,54 @@ For details, see <<make_changes>>.
 
 . In a web browser, go to your GitHub account and navigate to your personal fork of the `kie-docs` repository.
 . Select the `master` target branch that you previously merged (`BXMSDOC-1433-master-final`) and select *Commits*.
-. Next to the *Merge pull request* commit in the commit history, copy or note the merge request hash (7-digit commit number). You can also click the *Copy the full SHA* clipboard icon to copy the full commit hash.
-. In your terminal application, ensure that you are in your newly created `7.3.x` target branch (`BXMSDOC-1433-7.3.x-final`) and run `git cherry-pick $COMMIT_HASH -m 1` to cherry-pick the copied pull request:
-
+. Find the squashed commit in the commit history that corresponds to your pull request; normally this is the top commit. Copy or note the commit hash (7-digit commit number). You can also click the *Copy the full SHA* clipboard icon to copy the full commit hash.
++
+IMPORTANT: If you did not use *Squash and merge* to merge your changes, the changes might be present as several commits, not one commit. For the procedure to cherry-pick them, see <<cherrypick-range>>
++
+. In your terminal application, ensure that you are in your newly created `7.3.x` target branch (`BXMSDOC-1433-7.3.x-final`) and run `git cherry-pick $COMMIT_HASH` to cherry-pick the copied pull request:
 +
 [source,bash]
 ----
 $ git checkout BXMSDOC-1433-7.3.x-final
-$ git cherry-pick 971aee7 -m 1
+$ git cherry-pick 971aee7
 $ git push
 ----
-
++
+[NOTE]
+====
+If the `git cherry-pick $COMMIT_HASH` command displays an error message, try `git cherry-pick $COMMIT_HASH -m 1`.
+====
 +
 . Build the cherry-picked target branch (`BXMSDOC-1433-7.3.x-final`) locally to ensure that the changes from `master` were incorporated properly.
 
 The `7.3.x` target branch and the `master` target branch are now ready for upstream merging.
 
-.Cherry-Picking a Pull Request vs. a Range of Commits
-[NOTE]
-====
-If cherry-picking the whole pull request is not possible or desired for whatever reason, you can also cherry-pick a range of commits instead.
+Below is a visual overview of the merging and cherry-picking process:
 
-Consider the following example commit history in GitHub:
+.Overview of the merging and cherry-picking process
+image::github-cherry-pick-overview.png[Cherry-picking overview]
+
+[id="cherrypick-range"]
+== Cherry-picking a range of commits
+
+If you did not use *Squash and merge* to merge your changes into the final branch, the changes might be present in the final branch as a range of commits. Also, in some cases, you might want to cherry-pick a range of commits from the working branch instead of the complete set of changes.
+
+Avoid such operations if possible, as there is a greater risk of merge conflicts or other Git issues.
+
+Consider the following example commit history in the working branch in GitHub:
 
 image::github-pull-request-range.png[Range of GitHub commits]
 
-Here you can cherry-pick either the whole pull request, as described in this section, or a range of specified commits (all commits if needed):
+In the final branch, these commits are "squashed" into a single commit. So you can cherry-pick either the whole set of changes, as described in this section, or a range of specified commits (all commits if needed):
 
-* Cherry-pick whole pull request: `git cherry-pick 735add3 -m 1`
+* Cherry-pick whole pull request: `git cherry-pick 735add3`
 * Cherry-pick range of commits: `git cherry-pick 86557a9^..7bd19d0`
 
 When cherry-picking a range of commits, always use the format $OLDEST_COMMIT^..$LATEST_COMMIT, as shown.
-====
 
-Below is a visual overview of the merging and cherry-picking process:
-
-.Overview of Merging and Cherry-Picking Process
-image::github-cherry-pick-overview.png[Cherry-picking overview]
+After completing the cherry-picking, push the new branch with `git push`.
 
 [float]
-== Related Information
+== Additional resources
 * <<cherry_picking_branches>>
 * link:https://www.tollmanz.com/git-cherry-pick-range/[Cherry Picking a Range of Commits]

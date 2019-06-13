@@ -1,7 +1,6 @@
 include::document-attributes.adoc[]
 
-ifdef::INTERNAL[= {PRODUCT} Internal Documentation Contributor Guide]
-ifdef::PUBLIC[= {PRODUCT} Documentation Contributor Guide]
+= Contributing to {GROUP} documentation
 :doctype: book
 :sectnums:
 :toc: left
@@ -12,40 +11,22 @@ ifdef::PUBLIC[= {PRODUCT} Documentation Contributor Guide]
 :sourcedir: .
 :imagesdir: topics/shared/images
 
-For {PRODUCT}
-ifdef::INTERNAL[documentation team members.]
-ifdef::PUBLIC[contributors.]
+For {GROUP} documentation contributors.
 
-include::part_introduction.adoc[]
+:sectnums!:
+include::ref_update-2018-08-31.adoc[leveloffset=+1]
+:sectnums:
+include::part_introduction.adoc[leveloffset=+1]
 
+include::ref_required-doc-tools.adoc[leveloffset=+1]
 
-// PART: Technical Information
-= Technical Information
-:chapter: technical
+include::ref_kie-docs-repo.adoc[leveloffset=+1]
 
-_Repository, Files, and Processes_
+include::ref_repo-filesystem-layout.adoc[leveloffset=+2]
 
-This section contains information about the source code, repository, and processes that are required when working with the {PRODUCT} repository.
+include::ref_repo-branches.adoc[leveloffset=+2]
 
-[id='general_technical_info']
-== General
-
-include::ref_system-requirements.adoc[leveloffset=+2]
-
-=== Repository
-
-include::ref_repo-location.adoc[leveloffset=+3]
-
-include::ref_repo-filesystem-layout.adoc[leveloffset=+3]
-
-include::ref_repo-branches.adoc[leveloffset=+3]
-
-include::ref_metadata.adoc[leveloffset=+3]
-
-[id='_contributing']
-== Contributing to the kie-docs Repository
-
-include::task_basic-workflow.adoc[leveloffset=+2]
+include::ref_contributing.adoc[leveloffset=+1]
 
 include::task_forking-repo.adoc[leveloffset=+2]
 
@@ -55,107 +36,63 @@ include::task_making-changes.adoc[leveloffset=+2]
 
 include::task_create-pull-request-fork.adoc[leveloffset=+2]
 
+include::task_merge-pull-request-fork.adoc[leveloffset=+2]
+
 include::task_cherry-pick-pull-request.adoc[leveloffset=+2]
 
 include::task_create-pull-request-upstream.adoc[leveloffset=+2]
 
+include::task_cherry-picking.adoc[leveloffset=+1]
 
-== Troubleshooting
-
-include::task_resolving-merge-conflict.adoc[leveloffset=+2]
-
-include::task_cherry-picking.adoc[leveloffset=+2]
+include::task_resolving-merge-conflict.adoc[leveloffset=+1]
 
 [id='building_locally']
-== Building and Previewing
+== Building and previewing
 
-:TOOL_ASCIIDOCTOR:
-include::task_building-locally.adoc[leveloffset=+2]
-:TOOL_ASCIIDOCTOR!:
+include::task_build-assemblies-locally.adoc[leveloffset=+2]
 
-ifdef::INTERNAL[]
-:TOOL_CCUTIL:
-include::task_building-locally.adoc[leveloffset=+2]
-:TOOL_CCUTIL!:
-endif::INTERNAL[]
-
-include::task_building-with-maven.adoc[leveloffset=+2]
+include::task_build-community-locally.adoc[leveloffset=+2]
 
 ifdef::INTERNAL[]
-// Deprecated; We will not have topic branches in Github
-//include::task_building-topic-branch.adoc[leveloffset=+2]
+== Publishing in Pantheon
 
-include::task_building-in-pantheon.adoc[leveloffset=+2]
-endif::INTERNAL[]
+include::task_adding-docs-in-pantheon.adoc[leveloffset=+2]
 
+include::task_publishing-BA-DM-docs-with-pantheon.adoc[leveloffset=+2]
 
-ifdef::INTERNAL[]
-== Publishing
+include::task_publishing-BXMS-docs-with-pantheon.adoc[leveloffset=+2]
 
-include::ref_pre-publishing-checklist.adoc[leveloffset=+2]
-
-=== Pantheon
-
-include::task_adding-docs-in-pantheon.adoc[leveloffset=+3]
-
-include::task_publishing-BA-DM-docs-with-pantheon.adoc[leveloffset=+3]
-
-include::task_publishing-BXMS-docs-with-pantheon.adoc[leveloffset=+3]
-
-include::ref_pantheon-roles-and-permissions.adoc[leveloffset=+3]
+include::ref_pantheon-roles-and-permissions.adoc[leveloffset=+2]
 
 endif::INTERNAL[]
 
+include::ref_jira-introduction.adoc[leveloffset=+1]
 
-== Issue Tracker Workflows
+include::ref_jira-issue-lifecycle.adoc[leveloffset=+2]
 
-=== JIRA
+include::ref_review-lifecycle.adoc[leveloffset=+2]
 
-include::ref_jira-introduction.adoc[leveloffset=+3]
+include::task_addressing-jira-issue.adoc[leveloffset=+2]
 
-include::ref_jira-issue-lifecycle.adoc[leveloffset=+3]
-
-include::ref_review-lifecycle.adoc[leveloffset=+3]
-
-include::task_addressing-jira-issue.adoc[leveloffset=+3]
-
-=== GitHub
-
-include::ref_github-introduction.adoc[leveloffset=+3]
+include::ref_github-pull-request-reviews.adoc[leveloffset=+1]
 
 ifdef::INTERNAL[]
-include::task_reviewing-pull-request.adoc[leveloffset=+3]
+include::task_reviewing-pull-request.adoc[leveloffset=+2]
 endif::[]
-
-// PART: Requirements
-[id='style_requirements']
-= Style Requirements
-
-_Acceptance criteria for internal and external contributions_
 
 include::ref_mod-doc-conventions.adoc[leveloffset=+1]
 
 include::task_reusing-modules.adoc[leveloffset=+2]
 
+include::task_reusing-modules-community-enterprise.adoc[leveloffset=+3]
+
 include::ref_attributes_variables.adoc[leveloffset=+1]
 
-== Corporate-Specific Requirements
-
-_To be written._
-
-
-// PART: Other Information
-= Other Information
+include::ref_corporate-style.adoc[leveloffset=+1]
 
 include::ref_contact.adoc[leveloffset=+1]
-
-ifdef::INTERNAL[]
-== SME, QE Contacts
-
-_To be written._
-endif::INTERNAL[]
 
 [appendix]
 = Version Information
 
-Version of this document: {GUIDE_VERSION}, built {GUIDE_BUILD_DATE}
+Document last updated {GUIDE_BUILD_DATE}

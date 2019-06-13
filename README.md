@@ -16,7 +16,7 @@ This guide provides information about the source repository and contributions gu
 
 ### KIE/BPM
 
-[KIE/BPM Documentation Contributor Guide](https://redhat-documentation.github.io/doc-guidelines/bpm/)
+[Contributing to KIE documentation](https://redhat-documentation.github.io/doc-guidelines/bpm/)
 
 This guide provides information about the source repository for documentation of Drools and jBPM (KIE community software) and Red Hat JBoss BPM Suite and Red Hat JBoss BRMS (Red Hat enterprise products). Learn more about BPM products at [redhat.com](https://www.redhat.com/en/technologies/jboss-middleware/bpm).
 

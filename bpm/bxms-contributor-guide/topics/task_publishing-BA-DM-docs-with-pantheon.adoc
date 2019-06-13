@@ -1,7 +1,7 @@
 
-= Publishing BA/DM Guides Using Pantheon
+= Publishing {GROUP_BA} documents using Pantheon
 
-Starting with enterprise version 7.0, the documentation needs to be translated from the `kie-docs` repo in GitHub to the `kie-docs-translator` repo in GitLab using the `bxms-translate` script, and then published in Pantheon.
+Starting with enterprise version 7.0, the documentation needs to be translated from the `kie-docs` repo in GitHub to the `kie-docs-translator` repo in GitLab using the `ba-translate` script, and then published in Pantheon.
 
 [float]
 == Prerequisites
@@ -14,66 +14,89 @@ Starting with enterprise version 7.0, the documentation needs to be translated f
 [float]
 == Procedure
 
-. In your terminal application, navigate to your local copy of the `kie-docs` repo, fetch all updates, and create a working branch based on the upstream branch to be published. In this example, `7.5.x` is the publishing branch for this release.
+. In your terminal application, navigate to your local copy of the `kie-docs` repo, fetch all updates, and create a working branch based on `master`:
 +
 [source,bash]
 ----
 $ cd ~/kie-docs  #Or the name you have given it
 $ git fetch --all  #To retrieve any updates
-$ git checkout 7.5.x  #The branch to be published
-$ git rebase upstream/7.5.x
+$ git checkout master
+$ git rebase upstream/master
 $ git push  #To update your fork
-$ git checkout -b <JIRA-name>  #Working branch based on 7.5.x
+$ git checkout -b BXMSDOC-1234-master  #Working branch based on master, using publish JIRA ID
 ----
 +
 . Open the `~/kie-docs/docs/shared-kie-docs/src/main/asciidoc/document-attributes.adoc` file in a text editor and update the `:REBUILT:` variable with today's date. Save the file.
-. Add and commit the changes with a descriptive commit message, for example:
+. Add and commit the changes with a descriptive commit message, and push to your fork:
 +
 [source,bash]
 ----
-$ git commit -m "Update rebuilt variables" docs/shared-kie-docs/src/main/asciidoc/document-attributes.adoc
+$ git add --all
+$ git commit -m "BXMSDOC-1234-master Update rebuilt variable"
+$ git push --set-upstream $YOUR_FORK_NAME BXMSDOC-1234-master  #First-time push
 ----
++
+. Switch to the upstream branch to be published, in this example `7.5.x`, and likewise rebase it against upstream `7.5.x` and create a similar working branch (`BXMSDOC-1234-7.5.x`). Then cherry-pick the commit you made in the `master` working branch (`BXMSDOC-1234-master`) for updating the `:REBUILT:` variable.
++
+[source,bash]
+----
+$ cd ~/kie-docs
+$ git checkout 7.5.x  #The branch to be published
+$ git rebase upstream/7.5.x
+$ git push  #To update your fork
+$ git checkout -b BXMSDOC-1234-7.5.x  #Working branch based on 7.5.x, using publish JIRA ID
+$ git cherry-pick 971aee7  #Commit hash for the :REBUILT: variable update in master
+----
++
 . Tag the commit with a tag that describes which version was published and the current date:
 +
 --
 [source,bash]
 ----
-$ git tag "$VERSION-rel-$DATE"
+$ git tag "$PRODUCT-$VERSION-rel-$DATE"
 ----
 
-In this example, `$VERSION` is the version of the product, and `$DATE` is the current date in the ISO 8601 format (`YYYY-MM-DD`). For example, the following tag is for version 7.0, which is released on Aug 22 2018:
-
-[source,bash]
-----
-$ git tag "7.0-rel-2018-08-22"
-----
-
-Additionally, if you are publishing drafts, for example an alpha draft, use the following format:
+The `_$PRODUCT_` is `DM` or `BA`, the `_$VERSION_` is the version of the product, and the `_$DATE_` is the current date in the ISO 8601 format (`YYYY-MM-DD`). For example, the following tag is for {DM} version 7.1, released on April 30, 2018:
 
 [source,bash]
 ----
-$ git tag "$VERSION-$BUILD-rel-$DATE-guide"
+$ git tag "DM-7.1-rel-2018-04-30"
+----
+
+If this is a combination release of both DM and BA, then add two tags:
+
+[source,bash]
+----
+$ git tag "DM-7.1-rel-2018-04-30"
+$ git tag "BA-7.0-rel-2018-04-30"
+----
+
+If you are publishing a draft, for example an alpha draft, use the following format:
+
+[source,bash]
+----
+$ git tag "$PRODUCT-$VERSION-$BUILD-rel-$DATE-$GUIDE"
 ----
 
 For example:
 
 [source,bash]
 ----
-$ git tag "7.0-alpha-1-rel-28-jun-2018-getting-started"
+$ git tag "DM-7.2-alpha-1-rel-2018-07-30-getting-started"
 ----
 
 --
-. Push the changes and tags:
+. Push the cherry-picked branch and the new tags:
 +
 [source,bash]
 ----
-$ git push
+$ git push --set-upstream $YOUR_FORK_NAME BXMSDOC-1234-7.5.x  #First-time push
 $ git push --tags
 ----
-+
-. Create an upstream pull request to merge your working branch with upstream `7.5.x`, and notify a `kie-docs` gatekeeper. For details, see <<create_pull_request_upstream>>.
+. Create an upstream pull request to merge the two new working branches (`BXMSDOC-1234-master` and `BXMSDOC-1234-7.5.x`) with upstream `master` and `7.5.x`, respectively, and notify a `kie-docs` gatekeeper. For details, see <<create_pull_request_upstream>>.
 . After the request is merged, navigate to the `kie-docs` level of the `kie-docs` repo in your terminal application and run the following commands again to fetch your changes and update the applicable branch to be published. In this example, `7.5.x` is the publishing branch for this release.
 +
+--
 [source,bash]
 ----
 $ cd ~/kie-docs  #Or the name you have given it
@@ -82,19 +105,22 @@ $ git checkout 7.5.x  #The branch to be published
 $ git rebase upstream/7.5.x
 $ git push  #Not necessary for translation, but best
 ----
+--
+. Now that the rebuilt date is changed and merged, run the `ba-translate $RELEASE_BRANCH` command in your computer (the location is not important):
 +
-. Now that your local copy of `kie-docs` and the publishing branch are updated, run the `bxms-translate` command from the same location (in top-level `kie-docs` directory):
-+
+--
 [source,bash]
 ----
-$ bxms-translate
+$ ba-translate 7.11.x
 ----
-+
-The translate script can take several minutes to run, or much longer depending on Internet connection.
-+
+
+NOTE: For release branches 7.7.x and earlier, run `bxms-translate-branch $RELEASE_BRANCH` instead.
+
+The translate script can take up to 15 minutes to run, or much longer with a slow Internet connection.
+
 If you see any permission errors for `bxms-docs` or `kie-docs-translator` in GitLab, contact a <<_contact_information,brms-docs team>> member for help.
-+
-. After the script completes, navigate to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and open the *{ba}* or *{dm}* product page (or both, if needed), depending on where the new documents need to be published. Wait for preview and stage build jobs to finish. These were started automatically.
+--
+. After the script completes, navigate to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and open the *{PAM}* or *{DM}* product page (or both, if needed), depending on where the new documents need to be published. Wait for preview and stage build jobs to finish. These were started automatically.
 . When the builds complete, click the preview icon image:pantheon-globe-icon.png[] for each document to preview the output.
 . In the guide, locate the new line in the revision history you added earlier in this process to ensure the guide was successfully updated.
 . Repeat for all the guides you want publish.
@@ -107,7 +133,7 @@ NOTE: If the guide is not updated, make sure you followed all steps in this proc
 . Wait for up to a few minutes for the guide to be uploaded to the Customer Portal, then navigate to each guide on the portal and verify the updated revision history line..
 
 [float]
-== Related Information
+== Additional resources
 
 * https://pantheon.cee.redhat.com/#/help/troubleshooting[Troubleshooting] chapter in the Pantheon User Guide.
 * https://pantheon.cee.redhat.com/#/help/workflow-publishing[Staging and publishing] chapter in the Pantheon User Guide.

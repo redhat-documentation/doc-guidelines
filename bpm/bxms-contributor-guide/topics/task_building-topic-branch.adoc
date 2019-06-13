@@ -1,5 +1,5 @@
 
-= Previewing a Topic Branch Online
+= Previewing a topic branch online
 
 [float]
 == Prerequisites
@@ -23,4 +23,3 @@ To preview the content from your topic branch online, do the following:
 . Click *index.html*.
 
 NOTE: You can provide the URL to the `index.html` file to a reviewer because anyone on Red Hat's internal network can access it.
-

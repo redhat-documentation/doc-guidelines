@@ -1,0 +1,19 @@
+[id='_contributing']
+= Contributing to the kie-docs repository
+
+The `kie-docs` documentation workflow is based on topic branches as described in the https://guides.github.com/introduction/flow/[the GitHub flow]. Using topic branches, you do not commit changes directly to the mainline branch, but instead create a new branch (a topic branch) for every set of related changes (a topic). As an added layer of security, you work in your own fork of the upstream `kie-docs` GitHub repository, and push changes from a cloned local copy of your fork to your GitHub fork first to avoid introducing bugs upstream. After technical and stylistic reviews of the changes are complete, a team gatekeeper can then test and merge the pull requests into the appropriate upstream `kie-docs` branches.
+
+The following is a high-level view of the content workflow between the upstream `kie-docs` GitHub repo, your GitHub fork of the repo, and your locally cloned copy of your fork:
+
+.Overview of Git content workflow
+image::github-content-overview.png[Git content workflow]
+
+
+The process for contributing to the `kie-docs` repository in this workflow consists of the following steps:
+
+. <<fork_upstream_repo,Fork the kie-docs repository and add remotes>>
+. <<update_fork,Update your fork branches>>
+. <<make_changes,Create working branches and make changes in your fork>>
+. <<create_pull_request_fork,Create a pull request in your fork and assign SME and peer reviews>>
+. <<cherry_pick_pull_request,Create a release working branch and cherry-pick the pull request>>
+. <<create_pull_request_upstream,Create upstream pull requests>>

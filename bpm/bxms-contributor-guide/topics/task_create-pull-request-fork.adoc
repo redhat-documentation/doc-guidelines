@@ -1,6 +1,6 @@
 [id='create_pull_request_fork']
 
-= Create a Pull Request in Your Fork and Assign SME and Peer Reviews
+= Create a pull request in your fork and assign SME and peer reviews
 
 Before you create a pull request for upstream merging, consider creating an initial pull request in your fork first to merge your working branch with your preliminary target branch, for which an SME and peer can validate changes before you merge upstream. Although this initial in-fork pull request is not required, it creates a cleaner upstream pull request later and enables you to resolve potential merge conflicts before you create the upstream pull request.
 
@@ -27,7 +27,7 @@ IMPORTANT: Use only your fork for these steps, not the central `kie-docs` reposi
 
 +
 --
-.Example Pull Request
+.Example pull request
 image::github-pull-request-fork.png[Example of fork pull request]
 
 
@@ -41,8 +41,4 @@ ifdef::PUBLIC[]
 . In the pull request, add links to any needed documentation resources, such as a related JIRA or a shared public directory with the rendered document preview.
 endif::Public[]
 
-. After SME and peer reviews are complete, merge the pull request in your fork.
-+
-You do not need the gatekeeper to accept this first pull request in your fork. The gatekeeper only merges upstream pull requests, which come next.
-
-. As a precaution, after the pull request has been merged, change into the local `BXMSDOC-1433-master-final` branch in your terminal application and run `git pull --rebase` to update your local branch with the merged version from your fork. Then rebuild the output locally to ensure that the updated branch builds successfully. For details about building locally, see <<building_locally,Building and Previewing>>.
+. To make changes for SME and peer review results, change files and commit them as described in <<make_changes>>. The pull request is automatically updated as soon as you push a commit to your fork.

@@ -1,0 +1,16 @@
+
+[id='github-pull-request-reviews']
+= GitHub pull request reviews
+
+GitHub is not used for tracking issues or development progress of the documentation, only for managing pull requests. To report an issue, use <<jira-introduction, JIRA>>.
+
+ifdef::INTERNAL[]
+Pull requests concerning the enterprise documentation set are internally tracked in JIRA.
+endif::INTERNAL[]
+
+Each pull request is subject to the same review from the Engineering team, and from the CCS Gatekeeper or a writer.
+
+.GitHub pull request review process
+image::github-pull-request-flowchart.png[]
+
+NOTE: A writer can be appointed to perform tasks marked "Gatekeeper," especially in situations when too many contributions must be reviewed in a short time frame.

@@ -1,12 +1,12 @@
-[id='bxmsdoc-issue-lifecycle-{chapter}']
-= BXMSDOC Issue Life cycle
+[id='bxmsdoc-issue-lifecycle']
+= BXMSDOC issue life cycle
 
-During its standard life cycle, an issue in the documentation JIRA project (<<bxmsdoc-{chapter}, BXMSDOC>>) goes through the following statuses. Details are provided in the <<jira-status-descriptions-{chapter}>>.
+During its standard life cycle, an issue in the documentation JIRA project (BXMSDOC) goes through the following statuses. Details are provided in the <<jira-status-descriptions>>.
 
 .JIRA Status Diagram
 image::jira-workflow.png[JIRA Status Diagram]
 
-[id='jira-status-descriptions-{chapter}']
+[id='jira-status-descriptions']
 == BXMSDOC JIRA Status Descriptions
 
 Open:: Every filed issue starts in the *Open* status. This status means no one is actively working on the issue, and no progress is being done.

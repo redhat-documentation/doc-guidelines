@@ -1,6 +1,6 @@
 [id='cherry_picking_branches']
 
-= Cherry-picking Changes Between Branches
+= Cherry-picking changes between branches
 
 If you are working in multiple branches--for example when fixing an issue that is present in multiple versions of the documents--the most efficient way to make the same change in all relevant branches is to make it in one branch, commit it, and cherry-pick it into the other branches using Git.
 
@@ -9,13 +9,11 @@ If the differences between the versions (across branches) of the same document a
 [float]
 == Prerequisites
 
-* More than one branch where changes should be applied (presumably <<_branches,topic branches>>).
+* More than one branch where changes should be applied.
 * One or more commits with the changes, applied in one of the relevant branches.
 
 [float]
 == Procedure
-
-.Cherry-picking Changes from One Branch to Another
 . In a terminal application, navigate to the repository.
 . Check out the branch with the changes already applied:
 +
@@ -68,7 +66,7 @@ $ git cherry-pick e1c8dc3 4b5a575
 
 WARNING: You must apply the changes from oldest to newest, otherwise you can get merge conflicts.
 
-If you get merge conflicts, resolve them. For more information, see <<_resolving_merge_conflicts_using_meld>>.
+If you get merge conflicts, resolve them. For more information, see <<resolving-merge-conflict>>.
 --
 . Push the changes.
 +

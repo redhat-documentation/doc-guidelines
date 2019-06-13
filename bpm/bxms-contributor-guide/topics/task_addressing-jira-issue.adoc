@@ -1,16 +1,15 @@
 
-[id='addressing-jira-issue-{chapter}']
-= Addressing JIRA Issue
+[id='addressing-jira-issue']
+= Addressing a JIRA issue
+
+As you plan and execute your JIRA work in a sprint, ensure that you address JIRA issues in a way that tracks your work completely and efficiently.
 
 [float]
-== Prerequisites
-
-* An account on JBoss JIRA with proper permissions.
+== Prerequisite
+You have an account on JBoss JIRA with proper permissions.
 
 [float]
 == Procedure
-
-.Addressing JIRA Issue
 . Ensure that you are logged in to JIRA.
 . Select the issue that you want to address.
 . Click the *Assign to me* link next to the *Assignee* field if the issue is not already assigned to you.
@@ -32,7 +31,7 @@ include::snippet_review-workflow.adoc[]
 
 :PEER_REVIEW!:
 . Ensure all pull requests related to the current issue are merged.
-. If there are engineering issues (most likely from the `RHBPMS`, `RHBRMS`, or `BPMSPL` projects) linked to the current issue, add a comment into each of them saying that the documentation was updated.
+. If there are engineering issues (most likely from the `RHPAM`, `RHDM`, or `BAPL` projects) linked to the current issue, add a comment into each of them saying that the documentation was updated.
 +
 Example:
 +
@@ -45,6 +44,6 @@ In the example above, `$ID` stands for the issue ID.
 . Mark the current issue as `RESOLVED`.
 
 [float]
-== Related Information
+== Additional resources
 
-* <<jira-introduction-technical, List of BxMS JIRA projects>>
+<<jira-introduction, List of BxMS JIRA projects>>

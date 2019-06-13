@@ -1,25 +1,24 @@
 [id='_contact_information']
-= Contact Information
+= Contact information
 
-== Community
+If you have questions about {GROUP_BOTH} technical documentation or the guidelines described in this document, contact community or enterprise correspondents as needed. They will be happy to assist you.
 
-If you have questions about the documentation of the community software, join one of the following channels at `chat.freenode.net`:
+{GROUP_KIE} community contact::
++
+--
+For questions about the {GROUP_KIE} community, join one of the following channels at `chat.freenode.net`:
 
 * `#drools` for Drools-related discussions
 * `#jbpm` for jBPM-related discussions
 * `#guvnor` for Guvnor-related discussions
-* `#optaplanner` for Optaplanner-related discussions
+* `#optaplanner` for OptaPlanner-related discussions
 * `#logicabyss` for general public discussions
 
-To keep yourself informed about the latest developments in the community documentation, subscribe to one of the following services:
+To keep yourself informed about the latest developments in the community documentation, subscribe to the https://groups.google.com/forum/#!forum/drools-development[Drools Development Google Group] (check daily for updates).
+--
 
-* https://groups.google.com/forum/#!forum/drools-development[Drools Development Google Group] (check daily for updates)
-* RSS (TODO)
-
-== Enterprise
-
-For inquiries about the enterprise documentation, you have several options:
-
-* Send an e-mail to brms-docs@redhat.com.
-* Join the channel `#brms-docs` on the internal Red Hat IRC server.
-* File an issue on the https://issues.jboss.org/secure/CreateIssue!default.jspa[JBoss JIRA] under the project *BXMSDOC*.
+{GROUP_BA} contact::
++
+--
+For questions about {GROUP_BA}, send an e-mail to brms-docs@redhat.com or file an issue on the https://issues.jboss.org/secure/CreateIssue!default.jspa[JBoss JIRA] under the project *BXMSDOC*.
+--
