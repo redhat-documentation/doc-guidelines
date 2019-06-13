@@ -2,15 +2,16 @@
 
 ## Table of Contents
 
-*   [Red Hat JBoss AMQ 7 Internal Resources Guide](#red-hat-jboss-amq-7)
+*   [Red Hat AMQ 7 Internal Resources Guide](#red-hat-jboss-amq-7)
 *   [Contributing to KIE documentation](#kiebpm)
+*   [Contributing to OpenJDK documentation](#openjdk)
 *   [Red Hat Single Sign-On/Keycloak Documentation Contributor's Guide](#rh-ssokeycloak)
 
 The content in the following pages are used by documentation teams at Red Hat. They are shared here to help other open source teams in creating their own guidelines.
 
-### Red Hat JBoss AMQ 7
+### Red Hat AMQ 7
 
-[Red Hat JBoss AMQ 7 Internal Resources Guide](https://redhat-documentation.github.io/doc-guidelines/amq7/)
+[Red Hat AMQ 7 Internal Resources Guide](https://redhat-documentation.github.io/doc-guidelines/amq7/)
 
 This guide provides information about the source repository and contributions guidelines for the documentation for Red Hat JBoss AMQ 7\. Learn more about Red Hat JBoss AMQ 7 at [redhat.com](https://www.redhat.com/en/technologies/jboss-middleware/amq).
 
@@ -19,6 +20,12 @@ This guide provides information about the source repository and contributions gu
 [Contributing to KIE documentation](https://redhat-documentation.github.io/doc-guidelines/bpm/)
 
 This guide provides information about the source repository for documentation of Drools and jBPM (KIE community software) and Red Hat Decision Manager and Red Hat Process Automation Manager (Red Hat Business Automation enterprise products). Learn more about Red Hat Business Automation products at [redhat.com](https://www.redhat.com/en/technologies/jboss-middleware/bpm).
+
+### Red Hat distribution of OpenJDK
+
+[Red Hat distribution of OpenJDK Contributor's Guide](https://redhat-documentation.github.io/doc-guidelines/openjdk/)
+
+This guide provides information about the source repository and contributions guidelines for the documentation for the Red Hat distribution of OpenJDK. Learn more about OpenJDK at [redhat.com](https://www.redhat.com/en/resources/build-of-openjdk-datasheet).
 
 ### RH-SSO/Keycloak
 
