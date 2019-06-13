@@ -1,5 +1,3 @@
-include::common/attributes.adoc[]
-
 = OpenJDK documentation contributor guide
 
 include::introduction.adoc[leveloffset=+1]
@@ -22,6 +20,3 @@ include::git-tips.adoc[leveloffset=+1]
 
 [appendix]
 include::templates.adoc[leveloffset=+1]
-
-// Revision information
-include::common/revision-info.adoc[]
