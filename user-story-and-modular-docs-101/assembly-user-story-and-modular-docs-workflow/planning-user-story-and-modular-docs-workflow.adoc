@@ -1,0 +1,7 @@
+[id="planning-user-story-and-modular-docs-workflow-{context}"]
+= Planning for user story and modular docs workflow
+
+Determine the user stories that are required for each of the headings in the table of contents.
+Consider the heading and think about what the Customer will want to achieve for the given heading.
+Each user story will be represented as an assembly file.
+Once the user stories have been determined, flesh out the user stories with the templates (a concept file, a procedure file, and a reference file) from a Modular Docs framework.
