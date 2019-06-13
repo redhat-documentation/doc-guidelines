@@ -3,10 +3,10 @@
 ## Table of Contents
 
 *   [Red Hat JBoss AMQ 7 Internal Resources Guide](#red-hat-jboss-amq-7)
-*   [KIE/BPM Documentation Contributor Guide](#kiebpm)
+*   [Contributing to KIE documentation](#kiebpm)
 *   [Red Hat Single Sign-On/Keycloak Documentation Contributor's Guide](#rh-ssokeycloak)
 
-The content in the following pages are used to help documentation teams at Red Hat work with internal tools. They are shared here to help other open source teams in creating their own guidelines.
+The content in the following pages are used by documentation teams at Red Hat. They are shared here to help other open source teams in creating their own guidelines.
 
 ### Red Hat JBoss AMQ 7
 
@@ -14,11 +14,11 @@ The content in the following pages are used to help documentation teams at Red H
 
 This guide provides information about the source repository and contributions guidelines for the documentation for Red Hat JBoss AMQ 7\. Learn more about Red Hat JBoss AMQ 7 at [redhat.com](https://www.redhat.com/en/technologies/jboss-middleware/amq).
 
-### KIE/BPM
+### KIE and Red Hat Business Automation
 
 [Contributing to KIE documentation](https://redhat-documentation.github.io/doc-guidelines/bpm/)
 
-This guide provides information about the source repository for documentation of Drools and jBPM (KIE community software) and Red Hat JBoss BPM Suite and Red Hat JBoss BRMS (Red Hat enterprise products). Learn more about BPM products at [redhat.com](https://www.redhat.com/en/technologies/jboss-middleware/bpm).
+This guide provides information about the source repository for documentation of Drools and jBPM (KIE community software) and Red Hat Decision Manager and Red Hat Process Automation Manager (Red Hat Business Automation enterprise products). Learn more about Red Hat Business Automation products at [redhat.com](https://www.redhat.com/en/technologies/jboss-middleware/bpm).
 
 ### RH-SSO/Keycloak
 
