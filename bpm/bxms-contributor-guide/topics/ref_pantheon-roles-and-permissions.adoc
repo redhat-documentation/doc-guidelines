@@ -1,5 +1,5 @@
 
-= Pantheon Roles and Permissions
+= Pantheon roles and permissions
 
 To efficiently manage titles in Pantheon and publish documentation to the Customer Portal, documentation team members should have the following permissions:
 
@@ -39,4 +39,3 @@ Since the translations of the documentation set are handled by a separate team, 
 * Translation Title Manager
 * Translation Title Publisher
 * User Manager
-

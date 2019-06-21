@@ -1,8 +1,10 @@
 [id='make_changes']
 
-= Create Working Branches and Make Changes in Your Fork
+= Create working branches and make changes in your fork
 
 After you have cloned and set up your forked repository, you can create working branches and make changes that you will commit and push to your GitHub fork before merging upstream.
+
+Create a working branch for every separate task that you are performing on a set of files. Usually, a branch for every JIRA task is appropriate. However, sometimes you need to edit the same source files in several related JIRA tasks. In this case, create one branch for the tasks. If you edit the same files in several branches, merging the changes together can be complicated later and you might encounter issues with the Git workflow.
 
 [float]
 == Prerequisites
@@ -20,7 +22,7 @@ After you have cloned and set up your forked repository, you can create working 
 $ cd $REPOSITORY_NAME/kie-docs
 ----
 
-. Create two working branches: one for you to work in and one to use as the preliminary target branch within your fork to merge working-branch changes.
+. Create two working branches: one for you to work in and one to use as the preliminary target branch within your fork to merge working-branch changes. Push these branches into your fork.
 +
 NOTE: Although creating the additional target branch in your fork is not required, it is recommended for cleaner upstream pull requests. See <<create_pull_request_fork>> for details.
 
@@ -28,19 +30,19 @@ NOTE: Although creating the additional target branch in your fork is not require
 The branches must be based on the master branch into which you want to eventually merge.
 +
 The recommended naming format is `$JIRA_ID-$BASE_BRANCH` (working branch) and `$JIRA_ID-$BASE_BRANCH-final` (preliminary target branch).
-
 +
-Example: Creating branches for BXMSDOC-1433, based on `master`
+Example: Creating branches for BXMSDOC-1433, based on `master`; the remote name for your fork is `joeuser`. We create the `final` branch first because we want the work branch to be checked out when the commands are completed.
 +
 [source,bash]
 ----
 $ git checkout master
-$ git branch BXMSDOC-1433-master # Working branch where you make changes
 $ git branch BXMSDOC-1433-master-final # Target branch that you will merge BXMSDOC-1433-master with when finished and use for SME/peer reviews
+$ git push --set-upstream joeuser BXMSDOC-1433-master-final # create the branch in your fork and push it
+$ git branch BXMSDOC-1433-master # Working branch where you make changes
+$ git push --set-upstream joeuser BXMSDOC-1433-master # create the branch in your fork and push it
 ----
-
 +
-.Note on Master vs. Release Branches
+.Note on master vs. release branches
 [NOTE]
 ====
 If you are making a standard document update that applies to both the `master` and a release branch, such as `7.3.x`, then later you will also create a release-specific target branch in this same way (example: `BXMSDOC-1433-7.3.x-final`) and cherry-pick the changes that get merged into the `master` target branch (`BXMSDOC-1433-master-final`). For details, see <<cherry_pick_pull_request>>.
@@ -52,26 +54,27 @@ However, in the rare case that your document update applies to only a release br
 +
 [source,bash]
 ----
-$ cd $REPOSITORY_NAME/kie-docs/docs/$DOC_FOLDER/src/main/asciidoc
+$ cd $REPOSITORY_ROOT/kie-docs/doc-content/$DOC_FOLDER/src/main/asciidoc
+----
++
+Or, for enterprise-only topics:
++
+[source,bash]
+----
+$ cd $REPOSITORY_ROOT/kie-docs/doc-content/enterprise-only/$DOC_FOLDER
 ----
 +
 Examples:
 +
 --
-* To modify the community Drools documentation: `$REPOSITORY_NAME/kie-docs/docs/drools-docs/src/main/asciidoc`.
-* To modify the enterprise _User Guide_: `$REPOSITORY_NAME/kie-docs/docs/product-user-guide/src/main/asciidoc`
+* To modify the community Drools documentation: `$REPOSITORY_ROOT/kie-docs/doc-content/drools-docs/src/main/asciidoc`.
+* To modify the community shared documentation source: `$REPOSITORY_ROOT/kie-docs/doc-content/shared-kie-docs/src/main/asciidoc`.
+* To modify enterprise installation topics: `$REPOSITORY_ROOT/kie-docs/doc-content/enterprise-only/installation`
 --
-+
-Shared topic files and images are in the `shared-kie-docs`:
-
-* `shared-kie-docs/src/main/asciidoc`: Files shared both upstream and in enterprise books
-* `shared-kie-docs/src/main/asciidoc/Product`: Files shared in enterprise books
-* `shared-kie-docs/src/main/asciidoc/Product/images`: Images for enterprise books
-
 +
 The file is usually named the same as the header of the chapter or section it contains.
 
-. Check out your new working branch and open the file in an editor of your choice. To learn about the Atom text editor, see <<_system_requirements>>.
+. Check out your new working branch and open the file in an editor of your choice. To learn about the Atom text editor, see <<ref_required-doc-tools>>.
 +
 [source,bash]
 ----
@@ -80,20 +83,35 @@ $ atom $FILE_NAME #Opens the file in the Atom text editor, for example
 ----
 
 . Make the changes in the file and save your work.
+ifdef::INTERNAL[]
 +
-When writing, be sure you follow all the <<style_requirements, requirements>>. If not, you can be asked to modify your contribution. You can also receive a pull request against the branch in your repository that rectifies the problems.
+When writing, be sure you follow all the <<ref_corporate-style, requirements>>. If not, you can be asked to modify your contribution. You can also receive a pull request against the branch in your repository that rectifies the problems.
 +
-. Build the book locally using the link:https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[bxms-build tool] to validate your changes. For more information about building books, see <<building_locally,Building and Previewing>>.
+endif::[]
+. Build the book locally using the
+ifdef::INTERNAL[]
+link:https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[bxms-build tool] to validate your changes in enterprise output, and using the `mvn clean install -Dfull` command to validate your changes in community output (if applicable).
+endif::[]
+ifdef::PUBLIC[]
+`mvn clean install -Dfull` command.
+endif::[]
+For more information about building books, see <<building_locally,Building and Previewing>>.
 
-. Stage, commit, and push your changes to your GitHub fork. You should do this regularly, and in manageable increments. Large commits can be difficult to work with if merge conflicts arise.
+. Stage, commit, and push your changes to your GitHub fork. You should do this regularly to avoid keeping any work only on your local machine.
 +
 [source,bash]
 ----
 $ cd $REPOSITORY_NAME/kie-docs/docs #Recommended to move back "up" in the directory to ensure all modified files are staged and committed.
 $ git add --all # Stage all changes, including deleted or renamed files.
+$ git status  # review the list of changed files. Do not commit if any unexpected files are in the list
 $ git commit -m "BXMSDOC-1433-master Add new section on Guided Decision Tables." #Commit changes with a summary message.
 $ git push #Push changes to your GitHub fork.
 ----
+
+[NOTE]
+====
+If you see any unexpected files in the list displayed by `git status`, you can undo changes to these files, or else remove the files or directories themselves if they should not be present in this branch. Then run `git add --all` again and review the list in `git status` again.
+====
 
 [NOTE]
 ====
@@ -110,6 +128,6 @@ Run this command only once. When pushing the next time, run `git push`.
 ====
 
 [float]
-== Related Information
+== Additional resources
 
-* <<_filesystem_layout>> contains information about the repository structure and where to find particular files.
+* <<ref_kie-docs-repo-structure>> contains information about the repository structure and where to find particular files.

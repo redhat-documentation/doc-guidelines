@@ -1,0 +1,79 @@
+[id='task_reusing-modules-community-enterprise']
+= Reusing modules between {GROUP_KIE} community and {GROUP_BA} documents
+
+You can direct `include` statements in {GROUP_BA} assemblies to `.adoc` source files in {GROUP_KIE} community content folders (such as `drools-docs` and `jbpm-docs`). This enables single sourcing between community and enterprise documents, where community contains the single source that you can update and consolidate for both community and enterprise use. Single-sourcing prevents content duplication and creates a cleaner, more efficient, and more up-to-date documentation project.
+
+IMPORTANT: When you reuse modules between community and enterprise documents, ensure that all relevant document attributes and conditional elements are correctly applied so that the content renders properly in both community and enterprise outputs. 
+
+[float]
+== Prerequisites
+* You have reviewed the concepts and tasks described in <<reusing-modules>>.
+* You have access to the `proposal-d` repository (containing the required `ba-build` script) in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab], and a locally cloned copy of `proposal-d`. For more information, see the `README` file of the `proposal-d` repository.
+* You have updated your locally cloned `proposal-d` repository (`git pull --rebase`) to ensure that you have the latest `ba-build` script.
+
+[float]
+== Procedure
+. Ensure that the modules that you want to reuse and the assemblies that will direct to them contain the anchor, file, and `context` requirements for single-sourcing, as described <<reusing-modules>>.
+. Identify the modules that you want to reuse in both a {GROUP_BA} document and a {GROUP_KIE} document. If duplicate, slightly different versions of the module file exist in enterprise and community directories, update the file what will be used as the single source for both outputs.
+. Save or move the updated, consolidated module file into the relevant community content folder.
++
+For example, if DMN-related content is duplicated in both `enterprise-only/dmn` and `drools-docs/../../asciidoc/DMN`, choose which duplicate to make the new source file, update the file accordingly, and save or move the updated file to the Drools `../DMN` folder. Then delete the obsolete duplicate file.
+. Update the `include` statements in the relevant {GROUP_BA} `main.adoc` assembly to direct to the newly updated content files in the relevant community folder location.
++
+--
+The following directory variables are supported in `include` statements that specify the content location:
+
+* *{drools-dir}:* For content in `doc-content/drools-docs/src/main/asciidoc`
+* *{jbpm-dir}:* For content in `doc-content/jbpm-docs/src/main/asciidoc`
+* *{op-dir}:* For content in `doc-content/optaplanner-wb-es-docs/src/main/asciidoc`
+* *{shared-dir}:* For content in `doc-content/shared-kie-docs/src/main/asciidoc`
+* *{enterprise-dir}:* For content in `doc-content/enterprise-only`
+
+In this example, make the following changes to the {GROUP_BA} DMN assembly and the {GROUP_KIE} assembly:
+
+.Example `include` statements in enterprise assembly before single-sourcing
+[source]
+----
+= Designing a decision service using DMN models
+...
+include::{enterprise-dir}/dmn/dmn-con.adoc
+
+include::{enterprise-dir}/dmn/dmn-conformance-levels-con.adoc
+
+include::{enterprise-dir}/dmn/dmn-elements-ref.adoc
+
+include::{enterprise-dir}/dmn/dmn-feel-overview-ref.adoc
+----
+
+.Updated single-sourced `include` statements in enterprise assembly
+[source]
+----
+= Designing a decision service using DMN models
+...
+include::{drools-dir}/DMN/dmn-con.adoc
+
+include::{drools-dir}/DMN/dmn-conformance-levels-con.adoc
+
+include::{drools-dir}/DMN/dmn-elements-ref.adoc
+
+include::{drools-dir}/DMN/dmn-feel-overview-ref.adoc
+----
+.Corresponding `include` statements in community assembly
+[source]
+----
+= Decision Model and Notation (DMN)
+...
+include::DMN/dmn-con.adoc
+
+include::DMN/dmn-conformance-levels-con.adoc
+
+include::DMN/dmn-elements-ref.adoc
+
+include::DMN/dmn-feel-overview-ref.adoc
+----
+
+The above examples are two separate assembly files (one enterprise and one community) that both point to the same DMN source files housed in the Drools community folder.
+--
+. Build both the {GROUP_BA} assembly and the community document locally to verify the changes. Use `ba-build` to build enterprise assemblies and use Maven to build community documents.
++
+For instructions on building enterprise and community documents locally, see <<building_locally>>.

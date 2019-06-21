@@ -1,14 +1,14 @@
 
-[id='review-sub-task-lifecycle-{chapter}']
-= Review Status Life Cycle
+[id='review-sub-task-lifecycle']
+= Review status life cycle
 
-The review sub-tasks (SME review, peer review, QE review) go through the following statuses. Details are provided in the <<review-status-descriptions-{chapter}>>.
+The review sub-tasks (SME review, peer review, QE review) go through the following statuses. Details are provided in the <<review-status-descriptions>>.
 
-.Review Status Diagram
+.Review status diagram
 image::review-workflow.png[Review Status Diagram,525,425]
 
-[id='review-status-descriptions-{chapter}']
-== Review Status Descriptions
+[id='review-status-descriptions']
+== Review status descriptions
 
 Open:: The reviewer is not working on the issue, and no progress is being made.
 

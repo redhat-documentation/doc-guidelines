@@ -1,0 +1,9 @@
+[id='ref_corporate-style']
+
+= Corporate-specific style requirements
+
+For all Red Hat documentation published to the https://access.stage.redhat.com/[Red Hat Customer Portal], follow the style conventions prescribed in these resources:
+
+* *_The IBM Style Guide_*: The primary reference for Red Hat product documentation. For a condensed IBM editorial resource online, see the https://www.ibm.com/developerworks/library/styleguidelines/[developerWorks editorial style guide].
+* https://doc-stage.usersys.redhat.com/documentation/en-us/ccs_internal_documentation/1.0/html-single/glossary_of_terms_and_conventions_for_product_documentation/[*The Red Hat Glossary of Terms and Conventions for Product Documentation:*] The supplemental reference for Red Hat product documentation that specifies style considerations that are not in or that differ from _The IBM Style Guide_.
+* *_Chicago Manual of Style_*: The general reference for all other style considerations not covered in _The IBM Style Guide_ or the Red Hat Glossary of Terms and Conventions for Product Documentation.

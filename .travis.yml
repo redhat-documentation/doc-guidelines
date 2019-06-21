@@ -10,6 +10,7 @@ services:
 before_install:
   - mkdir -p output/amq7
   - mkdir -p output/bpm/topics
+  - mkdir -p output/openjdk
   - cp index.html output/
   - cp -r bpm/shared/ output/bpm/topics/
   - docker pull asciidoctor/docker-asciidoctor
@@ -17,14 +18,17 @@ before_install:
 script:
   - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html-amq7 asciidoctor/docker-asciidoctor asciidoctor --destination-dir=/documents/output/amq7 --out-file=index.html amq7/master.adoc
   - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html-bpm asciidoctor/docker-asciidoctor asciidoctor --destination-dir=/documents/output/bpm --out-file=index.html bpm/bxms-contributor-guide/public/master.adoc
+  - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html-openjdk asciidoctor/docker-asciidoctor asciidoctor --destination-dir=/documents/output/openjdk --out-file=index.html openjdk/master.adoc
 
 after_error:
   - docker logs asciidoc-to-html-amq7
   - docker logs asciidoc-to-html-bpm
+  - docker logs asciidoc-to-html-openjdk
 
 after_failure:
   - docker logs asciidoc-to-html-amq7
   - docker logs asciidoc-to-html-bpm
+  - docker logs asciidoc-to-html-openjdk
 
 deploy:
   provider: pages

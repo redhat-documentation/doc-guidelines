@@ -1,0 +1,149 @@
+[id='ref_update-2018-08-31']
+
+= Important update: August 31, 2018
+
+On August 31, 2018, the `kie-docs` repository that contains {GROUP_KIE} community and {GROUP_BA} documentation was updated substantially to enable shared content between {GROUP_KIE} community and {GROUP_BA} enterprise documentation, to remove obsolete content, and to prepare for an improved content building tool coming soon (Aura).
+
+== Summary of {GROUP_BOTH} documentation changes
+
+Note the following changes that apply to {GROUP_BOTH} documentation:
+
+New `kie-docs` repository structure::
+The `kie-docs` repository has been restructured to prepare for an improved content building tool coming soon (Aura) and to conform to modular documentation conventions. In the new structure, all assembly folders (enterprise document maps) are consolidated in a single `assemblies` directory. All `.adoc` content files are in a single `doc-content` directory. Community `drools-docs`, `jbpm-docs`, and `optaplanner-wb-es-docs` folders within this directory are in a Maven structure to enable a `mvn clean install -Dfull` build. All content files in community folders are or can be used in enterprise assembly builds from the `assemblies` folder for the Red Hat Customer Portal. Content files in the `enterprise-only` folder either apply only to {GROUP_BA} products or are files that have not yet been reconciled with community content. Each content folder contains sub-directories divided roughly by subject matter.
++
+For more details about the new `kie-docs` structure, see <<ref_kie-docs-repo-structure>>.
+
+ifdef::PUBLIC[]
+Centralized `_images` directory::
+Going forward, save all new images to only the central `kie-docs/_images` directory instead of in separate sub-directories within the community content folders. Existing images have been moved already, or deleted if unused. Any images that you save outside of that central images folder will not be rendered in the output.
+
+
+Removed `:imagesdir:` declaration in modules::
+Going forward, do not specify an `:imagesdir:` declaration in any module files or in any {GROUP_KIE} `index.adoc` assembly files. The images directory specification is now configured globally in the {GROUP_KIE} community project `pom.xml` settings, and directs to the central `kie-docs/_images` directory. Only {GROUP_BA} `main.adoc` assembly files require an `:imagesdir:` specification.
+endif::PUBLIC[]
+ifdef::INTERNAL[]
+Assembly `include` statements now require content sub-directory specification::
+To accommodate the centralized `.adoc` content files, you must now specify the `doc-content` sub-directory location of the file being included in assembly `main.adoc` files. Previously, this was handled automatically by enterprise build scripts, but to enable single-sourcing and other {GROUP_KIE} community document considerations, you must now use content location variables in assembly `include` statements. You can include content from any of the three {GROUP_KIE} community folders or the `enterprise-only` folder.
++
+--
+Use the following directory variables in `include` statements to specify the content location:
+
+* *{drools-dir}:* For content in `doc-content/drools-docs/src/main/asciidoc`
+* *{jbpm-dir}:* For content in `doc-content/jbpm-docs/src/main/asciidoc`
+* *{op-dir}:* For content in `doc-content/optaplanner-wb-es-docs/src/main/asciidoc`
+* *{shared-dir}:* For content in `doc-content/shared-kie-docs/src/main/asciidoc`
+* *{enterprise-dir}:* For content in `doc-content/enterprise-only`
+
+.Examples of required `include` statement format
+[source]
+----
+include::{enterprise-dir}/installation/controller-con.adoc
+...
+include::{drools-dir}/DMN/dmn-conformance-levels-con.adoc
+...
+include::{jbpm-dir}/BPMN2/processes-con.adoc
+...
+include::{op-dir}/Workbench/planner-con.adoc
+----
+
+IMPORTANT: This new `include` format is required for {GROUP_BA} assemblies only, not for {GROUP_KIE} community assemblies. The community assemblies are located under `doc-content` together with the content files.
+
+--
+
+New support for reusing modules between community and enterprise documents::
+With the new `kie-docs` repository structure and the updated `include` statement format, {GROUP_BA} assemblies can now include content from any of the three {GROUP_KIE} community folders or the `enterprise-only` folder. This means that instead of duplicating source content between community and enterprise documents, both {GROUP_KIE} community `index.adoc` assemblies and {GROUP_BA} `main.adoc` assemblies can point to the same `.adoc` source files in the community directories. Gradually, we can update and consolidate source content from the `enterprise-only` folder into community folders as the single source.
++
+--
+.Single-sourced `include` statements in enterprise assembly
+[source]
+----
+= Designing a decision service using DMN models
+...
+include::{drools-dir}/DMN/dmn-con.adoc
+
+include::{drools-dir}/DMN/dmn-conformance-levels-con.adoc
+
+include::{drools-dir}/DMN/dmn-elements-ref.adoc
+
+include::{drools-dir}/DMN/dmn-feel-overview-ref.adoc
+----
+.Corresponding `include` statements in community assembly
+[source]
+----
+= Decision Model and Notation (DMN)
+...
+include::DMN/dmn-con.adoc
+
+include::DMN/dmn-conformance-levels-con.adoc
+
+include::DMN/dmn-elements-ref.adoc
+
+include::DMN/dmn-feel-overview-ref.adoc
+----
+
+The above examples are two separate assembly files (one enterprise and one community) that both point to the same DMN source files housed in the Drools community folder.
+
+For more details about content reuse between community and enterprise documents, see <<task_reusing-modules-community-enterprise>>.
+--
+
+New build scripts in `proposal-d` repository::
+To accommodate the new `kie-docs` repository structure and to enable single-sourcing between community and enterprise documents, the following new build scripts are available in the `proposal-d` repository in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab]:
++
+--
+* *ba-build:* Use this script instead of `bxms-build` to compile {GROUP_BA} 7.1.x documents and later in either Asciidoctor (`ba-build -a`) or `ccutil` (`ba-build`).
+* *ba-translate:* Use this script instead of `bxms-translate` to prepare all 7.11.x branches and later in the upstream `kie-docs` repository for publishing in Pantheon.
+* *bxms-build / bxms-translate-branch:* Use these scripts instead of `ba-build` and `ba-translate` (respectively) for all {GROUP_BA} 7.0 content, as before.
+
+NOTE: To build and publish Red Hat JBoss BPMS/BRMS 6.x content, use `ccutil` or Asciidoctor directly, without `proposal-d` tools.
+
+To get the latest `master` branch with these tools, navigate to your locally cloned `proposal-d` directory and run `git pull --rebase`.
+
+For installation instructions and information about other `proposal-d` scripts, see the `proposal-d` repository and `README` file in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab].
+--
+endif::INTERNAL[]
+
+== Getting the latest {GROUP_BOTH} repository changes
+
+To get the latest changes made to the `kie-docs` repository, delete and re-pull the upstream `kie-docs` master branch.
+ifdef::INTERNAL[]
+You must also pull the latest version of the `proposal-d` master branch to get the latest build tools.
+endif::INTERNAL[]
+
+WARNING: Do not rebase your existing master branch against `kie-docs` master branch to get the latest updates. The new `master` is substantially different so rebasing creates extensive conflicts that, even when resolved, can introduce errors into the new structure.
+
+[float]
+=== Prerequisites
+* You have access to the `kie-docs` repository in https://github.com/kiegroup/kie-docs[GitHub] with your own fork of the repository and a locally cloned copy of your `kie-docs` fork. If you have not yet set up your `kie-docs` fork or clone, then skip this procedure and see <<_contributing>>.
+ifdef::INTERNAL[]
+* You have access to the `proposal-d` repository in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab] and a locally cloned copy of the repository. If you have not yet set up your `proposal-d` repository, see the `proposal-d` repository and `README` file in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab].
+endif::INTERNAL[]
+
+[float]
+=== Procedure
+. In your terminal application, navigate to your locally cloned copy of the `kie-docs` repository and switch to a branch other than `master`.
+. Delete the `master` branch from your local clone, re-pull the new `master` from upstream `kie-docs`, and force push to your fork:
++
+--
+[source]
+----
+$ cd ~kie-docs
+$ git checkout <branch-other-than-master>
+$ git branch -d master
+$ git fetch --all
+$ git checkout --track upstream/master
+$ git push --set-upstream $FORKED_REPO_NAME master
+----
+Replace $FORKED_REPO_NAME with the remote name of your forked repository; for instructions on setting its remote name, see <<fork_upstream_repo>>.
+
+If you have any active, master-based working branches before this update, create new working branches based on the new `master` branch and manually apply the updates to the new working branch.
+--
+ifdef::INTERNAL[]
+. In your terminal application, navigate to your locally cloned `proposal-d` repository containing the `ba-build` script and pull the latest version of the `master` branch to ensure you have the latest tool:
++
+[source]
+----
+$ cd ~/proposal-d
+$ git pull --rebase
+----
+endif::INTERNAL[]
+. Continue contributing to `kie-docs` documentation as described in this document.

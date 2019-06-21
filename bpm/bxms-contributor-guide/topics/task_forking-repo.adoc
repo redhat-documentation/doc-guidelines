@@ -1,13 +1,13 @@
 [id='fork_upstream_repo']
 
-= Fork the kie-docs Repository and Add Remotes
+= Fork the kie-docs repository and add remotes
 
 You must use your own fork of the `kie-docs` repository to commit, push, and review changes before merging the changes (in branches) with the main upstream repository. This provides a safe testing ground to minimize problems upstream. When your contribution is finished, it is reviewed and added into the main repository.
 
 [float]
 == Prerequisites
 
-* Git is installed on your system. For more information, see <<_system_requirements>>.
+* Git is installed on your system. For more information, see <<ref_required-doc-tools>>.
 * You have a https://github.com/join[GitHub account].
 * link:https://help.github.com/articles/connecting-to-github-with-ssh/[SSH keys] have been generated and added to your GitHub account.
 

@@ -1,7 +1,7 @@
 [id='document_attributes']
 = Attributes (Variables)
 
-The {PRODUCT} documentation uses many attributes (variables in other languages) to make writing easier and more consistent. When authoring or modifying content, always use attributes instead of writing the text they replace in full. This way, updating the documentation to a new version or changing the URLs of all books can be done easily.
+The {GROUP} documentation uses many attributes (variables in other languages) to make writing easier and more consistent. When authoring or modifying content, always use attributes instead of writing the text they replace in full. This way, updating the documentation to a new version or changing the URLs of all books can be done easily.
 
 .Using Attributes
 ====
@@ -52,7 +52,7 @@ Example:
 [source,asciidoc]
 ----
 \ifdef::ENTERPRISE_ONLY[]
-This feature is supported in {PRODUCT} version 6 and later.
+This feature is supported in {GROUP} version 6 and later.
 \endif::[]
 ----
 
@@ -79,7 +79,7 @@ Example:
 [source,asciidoc]
 ----
 \ifdef::COMMUNITY_ONLY[]
-You can run {PRODUCT} on JBoss WildFly.
+You can run {GROUP} on JBoss WildFly.
 \endif::[]
 ----
 
@@ -238,7 +238,7 @@ The names of the products frequently referenced in the documentation set.
 PRODUCT::
 +
 --
-The {PRODUCT} product name, dependent on which product the documentation is built for.
+The {GROUP} product name, dependent on which product the documentation is built for.
 
 .Values of Attribute
 [cols="1,1,1", options="header"]
@@ -423,7 +423,7 @@ NOTE: Do not use unless necessary. Use `\{EAP\}` instead.
 
 == Book Names
 
-The full names of the books from the {PRODUCT} documentation set.
+The full names of the books from the {GROUP} documentation set.
 
 ADMIN_GUIDE::
 +
@@ -683,7 +683,7 @@ The product name URL component.
 
 == Book URLs
 
-The full URLs to the current versions of the books in the {PRODUCT} documentation set.
+The full URLs to the current versions of the books in the {GROUP} documentation set.
 
 URL_ADMIN_GUIDE::
 +
