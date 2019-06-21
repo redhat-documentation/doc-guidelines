@@ -1,5 +1,6 @@
 [id="planning-user-story-and-modular-docs-workflow-{context}"]
-= Planning for user story and modular docs workflow
+
+= Planning
 
 Determine the user stories that are required for each of the headings in the table of contents.
 Consider the heading and think about what the Customer will want to achieve for the given heading.

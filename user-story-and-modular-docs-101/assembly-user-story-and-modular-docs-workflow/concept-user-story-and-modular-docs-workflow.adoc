@@ -4,6 +4,6 @@
 This document informs you about one approach to creating documentation that is based on a user story, and is created using a Modular Docs framework.
 The approach consists of three stages in the following sequence:
 
-* Analysis.
-* Planning.
-* Execution.
+. Analysis.
+. Planning.
+. Execution.

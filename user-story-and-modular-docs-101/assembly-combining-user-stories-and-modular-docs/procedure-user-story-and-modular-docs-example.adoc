@@ -17,17 +17,17 @@ This section describes how to create an assembly similar to the  *User story and
 
 . Within this folder, create an *adoc* file and name it _concept-user-story-and-modular-docs.adoc_.
 
-. Open the *concept-user-story-and-modular-docs.adoc* file and add the contents from an _concept_ component, for example, link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_CONCEPT_concept-explanation.adoc[TEMPLATE_CONCEPT_concept-explanation.adoc].
+. Open the *concept-user-story-and-modular-docs.adoc* file and add the contents from an _concept_ component, for example, link:https://raw.githubusercontent.com/redhat-documentation/modular-docs/master/modular-docs-manual/files/TEMPLATE_CONCEPT_concept-explanation.adoc[TEMPLATE_CONCEPT_concept-explanation.adoc].
 
 . Within this folder, create an *adoc* file and name it _reference-user-story-principle.adoc_.
 
-. Open the *reference-user-story-principle.adoc* file and add the contents from an reference component, for example, link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_REFERENCE_reference-material.adoc[TEMPLATE_REFERENCE_reference-material.adoc].
+. Open the *reference-user-story-principle.adoc* file and add the contents from an reference component, for example, link:https://raw.githubusercontent.com/redhat-documentation/modular-docs/master/modular-docs-manual/files/TEMPLATE_REFERENCE_reference-material.adoc[TEMPLATE_REFERENCE_reference-material.adoc].
 
 . Within this folder, create an *adoc* file and name it _reference-modular-docs-principle.adoc_.
 
-. Open the *reference-modular-docs-principle.adoc* file and add the contents from an reference component, for example, link:https://github.com/redhat-documentation/modular-docs/blob/master/modular-docs-manual/files/TEMPLATE_REFERENCE_reference-material.adoc[TEMPLATE_REFERENCE_reference-material.adoc].
+. Open the *reference-modular-docs-principle.adoc* file and add the contents from an reference component, for example, link:https://raw.githubusercontent.com/redhat-documentation/modular-docs/master/modular-docs-manual/files/TEMPLATE_REFERENCE_reference-material.adoc[TEMPLATE_REFERENCE_reference-material.adoc].
 
-. Edit the *assembly-user-story-and-modular-docs-101.adoc* and include the *concept-user-story-and-modular-docs.adoc*, *reference-user-story-principle.adoc*, and *reference-user-story-principle.adoc* files.
+. Edit the *assembly-user-story-and-modular-docs-101.adoc* and include the *concept-user-story-and-modular-docs.adoc*, *reference-user-story-principle.adoc*, and *reference-modular-docs-principle.adoc* files.
 
 .Verification steps
 

@@ -1,5 +1,5 @@
 [id="analysis-user-story-and-modular-docs-workflow-{context}"]
-= Analysis for user story and modular docs workflow
+= Analysis
 
 Consider what the end product is going to be and with this in mind, identify the headings that will require documentation.
 Please consult with members of Customer Content Services should you require assistance.
