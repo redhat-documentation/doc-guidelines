@@ -11,7 +11,7 @@ The following tables contrasts the differences between user stories and features
 [options="header"]
 |====
 |toc| Heading
-|Title| Stafford IDE Basics.
+|Title| Wexford IDE Basics.
 |Heading 1| Overview.
 |Heading 2| Projects and Files.
 |Heading 3| Editor and Code Assistance.
@@ -22,8 +22,8 @@ The following tables contrasts the differences between user stories and features
 [options="header"]
 |====
 |toc| Heading
-|Title| Setting up your first project using the Stafford IDE.
-|Heading 1| Understanding the purpose of Stafford.
+|Title| Setting up your first project using the Wexford IDE.
+|Heading 1| Understanding the purpose of a Wexford IDE.
 |Heading 2| Creating a Project and adding a File.
 |Heading 3| Using Editor to write code and engaging Code Assistance.
 |Heading 4| Debugging Locally.
