@@ -20,7 +20,7 @@ If the new documents are for a new product not already listed, then click *Set u
 * *Version*: Enter the version number.
 * *GitLab Group*: Select `Documentation - Red Hat JBoss BxMS`.
 * *GitLab Project*: Select `kie-docs-translator`. This is the publishing repo created by the `bxms-translate` script.
-* *Preview Branch*: Select the branch to be published. This is the output preview, but is the same as the stage branch. Example: `7.5.x`.
+* *Preview Branch*: Select the branch to be published. This is the output preview, but is the same as the stage branch. Example: `7.11.x`.
 * *Stage Branch*: Select the same branch to be published that you selected for the preview branch. Ignore the suggestion to use a separate branch for preview and stage.
 * *Content Title*: Enter the document title exactly as it appears in the doc assembly. If the title is not an exact match, the doc will not build.
 * *Content Directory*: For BA, enter `docs/$ASSEMBLY_FOLDER/src/main/asciidoc/ba`, or for DM, enter `docs/$ASSEMBLY_FOLDER/src/main/asciidoc/dm`. Replace `$ASSEMBLY_FOLDER` with the name of the folder. This specifies the `kie-docs-translator` build path to the assembly build folder for BA or for DM. Example: `docs/product-assembly_guided rules/src/main/asciidoc/dm`.
@@ -35,3 +35,4 @@ If the new documents are for a new product not already listed, then click *Set u
 image::pantheon-new-titles.png[Example Setup for New Document]
 +
 . Click *Add additional title* to continue adding other documents with the same product specifications, or click *Submit* to finish.
+

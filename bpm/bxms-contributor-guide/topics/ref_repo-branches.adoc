@@ -2,39 +2,61 @@
 
 = Branches in kie-docs repository
 
-The branches in the {GROUP} documentation repository consist of a `master` branch with the latest content, and `$VERSION.x.x` branches that correlate with {GROUP_KIE} community software release versions. The branch version does not correlate with the {GROUP_BA} version, so
+The branches in the {GROUP} documentation repository consist of a `master` branch with the latest content, and `$VERSION.x.x` branches that correlate with {GROUP_KIE} community software release versions. Each {GROUP_BA} software release is based on a designated {GROUP_KIE} community software release, but follows a separate sequential version numbering.
 
-.Example branches in {GROUP_BOTH} repository as of August 2018
+The following table lists the {GROUP_BOTH} repository branches and corresponding {GROUP_KIE} community and {GROUP_BA} software release versions:
+
+.Branches in {GROUP_BOTH} repository and corresponding product versions as of October 2019
 [cols="1,1,1,2", opts=header]
 |===
 | Branch name
 | Community software version
 | Enterprise software version
-| Contents
+| Notes
 
 | master
 | Latest release, plus unreleased updates
 | Latest release, plus unreleased updates
-| Latest documentation, plus unreleased updates
+|
 
 | 7.5.x
 | 7.5.0.Final
-| 7.0
-| Documentation for Drools/jBPM 7.5.0.Final and for {DM_INIT} 7.0
+| 7.0 ({DM_INIT} only)
+| Enterprise release of {DM_INIT} only, no {PAM_INIT} release
 
 | 7.7.x
 | 7.7.0.Final
-| 7.0
-| Documentation for Drools/jBPM 7.7.0.Final and for {PAM_INIT} 7.0
+| 7.0 ({PAM_INIT} only)
+| Enterprise release of {PAM_INIT} only, no {DM_INIT} release
 
 
 | 7.11.x
 | 7.11.0.Final
 | 7.1
-| Documentation for Drools/jBPM 7.11.0.Final and for {DM_INIT}/{PAM_INIT} 7.1
+| Combined enterprise release of both {DM_INIT} and {PAM_INIT} in unison going forward
 
-| ...
-| ...
-| ...
-| ...
+| 7.14.x
+| 7.14.0.Final
+| 7.2
+|
+
+| 7.18.x
+| 7.18.0.Final
+| 7.3
+|
+
+| 7.23.x
+| 7.23.0.Final
+| 7.4
+|
+
+| 7.26.x
+| 7.26.0.Final
+| 7.5
+|
+
+| 7.30.x
+| 7.30.0.Final
+| 7.6
+|
 |===

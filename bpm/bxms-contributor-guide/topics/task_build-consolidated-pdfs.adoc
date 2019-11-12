@@ -1,0 +1,59 @@
+[id='task_build-consolidated-pdfs']
+
+= Building and sharing {GROUP_BA} consolidated PDF files (INTERNAL USE ONLY)
+
+Red Hat GSS and other field associates have consistently requested a consolidated PDF format of all {GROUP_BA} assemblies. Therefore, each release, a writer on the {GROUP_BA} documentation team must use the `ba-bigbuild` script to generate the consolidated PDF files of the {DM} and {PAM} assemblies (two PDF files), upload those PDF files to the shared PDF folder in the CCS Google Drive, and provide the links in the shared Mojo page in the BA Community of Practice space.
+
+This is a temporary workaround until (if ever) the Red Hat Customer Portal provides an option to download all titles in a single PDF, or until we find a better solution.
+
+IMPORTANT: This workaround is for internal use only. Never publish consolidated PDFs for direct customer access.
+
+[float]
+== Prerequisites
+* In the `kie-docs/assemblies` directory of the branch that you want to build (branches 7.23.x and later), the `assemblies-DM` and `assemblies-PAM` files contain all assembly file names in the order listed in the Red Hat Customer Portal page for the https://access.redhat.com/documentation/en-us/red_hat_decision_manager[{DM}] and https://access.redhat.com/documentation/en-us/red_hat_process_automation_manager[{PAM}] documentation version that you want to build.
+* You have installed all standard {GROUP_BA} documentation tools, especially `ccutil` and an up-to-date `proposal-d` repository. For more information, see <<ref_required-doc-tools>>.
+
+[float]
+== Procedure
+. In a command terminal, navigate to a local directory *outside of the `kie-docs` repository* where you want to place the consolidated {GROUP_BA} documentation PDF files.
++
+--
+Example:
+
+[source]
+----
+$ cd Documents/ba-consolidated-pdfs
+----
+--
+. Enter the following command:
++
+--
+[source]
+----
+$ ba-bigbuild <branchname>
+----
+
+Example:
+
+[source]
+----
+$ ba-bigbuild 7.23.x
+----
+
+The `ba-bigbuild` script is compatible with `kie-docs` repository branches `7.23.x` and later. The script pulls its own copy of the `kie-docs` repository from GitHub, builds a PDF file containing the entire documentation set for each product, and places the two resulting PDF files for {DM} and {PAM} into the directory where you ran the script.
+
+For more information about this script, see the `README.adoc` file in the https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d[`proposal-d` repository].
+
+The build process can take several minutes. If you encounter build errors, contact the writer who managers the `proposal-d` repository or the {GROUP_BA} team DPM.
+--
+. After you build and verify the consolidated PDF files, navigate to the https://drive.google.com/drive/u/1/folders/1i88S3NRTfSpBEcHcpsg_mrY_DIayQQJ3[Consolidated product documentation PDFs] Google Drive folder (in the shared CCS drive) and upload the two new PDF files.
++
+--
+If you encounter permission issues, contact the CCS Google Drive administrator or the {GROUP_BA} team DPM.
+--
+. Navigate to the https://mojo.redhat.com/docs/DOC-1204386[Business Automation Product Documentation Links] page in Mojo, add the new product version of {DM} and {PAM} to the running list in the format shown in that list, and add a link for each to the corresponding PDF file in the Google Drive.
++
+--
+NOTE: This Mojo page is typically accessed by Red Hat GSS and field contacts from *https://mojo.redhat.com/community/communities-at-red-hat/applications/business-automation-community-of-practice/pages/home[Business Automation Community of Practice] -> Product -> PAM & DM Product Documentation* in Mojo.
+
+--

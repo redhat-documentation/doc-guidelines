@@ -12,6 +12,8 @@ Before you begin, please note:
 
 The newly updated `master`-based branch in your fork (`BXMSDOC-1433-master-final`) can now be merged to upstream `master`, but it cannot be merged into the relevant release-specific branch, such as `7.3.x`. To be able to merge the new changes into `7.3.x`, you must first create a second working branch based on `7.3.x` and cherry-pick the changes merged in `BXMSDOC-1433-master-final`.
 
+For the list of active {GROUP_BOTH} repository branches and corresponding community and enterprise release versions, see <<ref_kie-docs-repo-branches>>.
+
 [float]
 == Prerequisites
 
@@ -36,7 +38,7 @@ fatal: bad revision
 $ git fetch --all
 $ git checkout 7.3.x # If the branch is not listed locally, use git checkout --track upstream/7.3.x
 $ git rebase upstream/7.3.x
-$ git push
+$ git push # If pushing for the first time, git push -u origin 7.3.x
 ----
 +
 For details, see <<update_fork>>.
@@ -47,7 +49,7 @@ For details, see <<update_fork>>.
 ----
 $ git checkout 7.3.x
 $ git checkout -b BXMSDOC-1433-7.3.x-final # New target branch that will cherry-pick BXMSDOC-1433-master-final
-$ git push --set-upstream origin BXMSDOC-1433-7.3.x-final #First-time push only. Next time use `git push`.
+$ git push -u origin BXMSDOC-1433-7.3.x-final #First-time push only. Next time use `git push`.
 ----
 +
 For details, see <<make_changes>>.

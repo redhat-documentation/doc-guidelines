@@ -18,3 +18,6 @@ endif::PUBLIC[]
 :GROUP_BOTH: KIE/BA
 :GROUP_BA: Red Hat Business Automation
 :GROUP_KIE: KIE
+
+:BPMS: Red Hat JBoss BPM Suite
+:BRMS: Red Hat JBoss BRMS

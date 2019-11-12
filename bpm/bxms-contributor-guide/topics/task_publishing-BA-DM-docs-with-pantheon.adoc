@@ -33,22 +33,22 @@ $ git checkout -b BXMSDOC-1234-master  #Working branch based on master, using pu
 ----
 $ git add --all
 $ git commit -m "BXMSDOC-1234-master Update rebuilt variable"
-$ git push --set-upstream $YOUR_FORK_NAME BXMSDOC-1234-master  #First-time push
+$ git push -u $YOUR_FORK_NAME BXMSDOC-1234-master  #First-time push
 ----
 +
-. Switch to the upstream branch to be published, in this example `7.5.x`, and likewise rebase it against upstream `7.5.x` and create a similar working branch (`BXMSDOC-1234-7.5.x`). Then cherry-pick the commit you made in the `master` working branch (`BXMSDOC-1234-master`) for updating the `:REBUILT:` variable.
+. Switch to the upstream branch to be published, in this example `7.11.x`, and likewise rebase it against upstream `7.11.x` and create a similar working branch (`BXMSDOC-1234-7.11.x`). Then cherry-pick the commit you made in the `master` working branch (`BXMSDOC-1234-master`) for updating the `:REBUILT:` variable.
 +
 [source,bash]
 ----
 $ cd ~/kie-docs
-$ git checkout 7.5.x  #The branch to be published
-$ git rebase upstream/7.5.x
+$ git checkout 7.11.x  #The branch to be published
+$ git rebase upstream/7.11.x
 $ git push  #To update your fork
-$ git checkout -b BXMSDOC-1234-7.5.x  #Working branch based on 7.5.x, using publish JIRA ID
+$ git checkout -b BXMSDOC-1234-7.11.x  #Working branch based on 7.11.x, using publish JIRA ID
 $ git cherry-pick 971aee7  #Commit hash for the :REBUILT: variable update in master
 ----
 +
-. Tag the commit with a tag that describes which version was published and the current date:
+. (Optional) Tag the commit with a tag that describes which version was published and the current date:
 +
 --
 [source,bash]
@@ -56,19 +56,11 @@ $ git cherry-pick 971aee7  #Commit hash for the :REBUILT: variable update in mas
 $ git tag "$PRODUCT-$VERSION-rel-$DATE"
 ----
 
-The `_$PRODUCT_` is `DM` or `BA`, the `_$VERSION_` is the version of the product, and the `_$DATE_` is the current date in the ISO 8601 format (`YYYY-MM-DD`). For example, the following tag is for {DM} version 7.1, released on April 30, 2018:
+The `_$PRODUCT_` is `BA` (for Business Automation, comprising {DM} and {PAM}), the `_$VERSION_` is the version of the product, and the `_$DATE_` is the current date in the ISO 8601 format (`YYYY-MM-DD`). For example, the following tag is for {DM} and {PAM} version 7.1, released on April 30, 2018:
 
 [source,bash]
 ----
-$ git tag "DM-7.1-rel-2018-04-30"
-----
-
-If this is a combination release of both DM and BA, then add two tags:
-
-[source,bash]
-----
-$ git tag "DM-7.1-rel-2018-04-30"
-$ git tag "BA-7.0-rel-2018-04-30"
+$ git tag "BA-7.1-rel-2018-04-30"
 ----
 
 If you are publishing a draft, for example an alpha draft, use the following format:
@@ -82,39 +74,43 @@ For example:
 
 [source,bash]
 ----
-$ git tag "DM-7.2-alpha-1-rel-2018-07-30-getting-started"
+$ git tag "BA-7.2-alpha-1-rel-2018-07-30-getting-started"
 ----
-
 --
-. Push the cherry-picked branch and the new tags:
+
+. Push the cherry-picked branch and the optional tags:
 +
 [source,bash]
 ----
-$ git push --set-upstream $YOUR_FORK_NAME BXMSDOC-1234-7.5.x  #First-time push
-$ git push --tags
+$ git push -u $YOUR_FORK_NAME BXMSDOC-1234-7.11.x  #First-time push
+$ git push --tags  #Optional, if applicable
 ----
-. Create an upstream pull request to merge the two new working branches (`BXMSDOC-1234-master` and `BXMSDOC-1234-7.5.x`) with upstream `master` and `7.5.x`, respectively, and notify a `kie-docs` gatekeeper. For details, see <<create_pull_request_upstream>>.
-. After the request is merged, navigate to the `kie-docs` level of the `kie-docs` repo in your terminal application and run the following commands again to fetch your changes and update the applicable branch to be published. In this example, `7.5.x` is the publishing branch for this release.
+. Create an upstream pull request to merge the two new working branches (`BXMSDOC-1234-master` and `BXMSDOC-1234-7.11.x`) with upstream `master` and `7.11.x`, respectively, and notify a `kie-docs` gatekeeper. For details, see <<create_pull_request_upstream>>.
+. (Optional) After the request is merged, navigate to the `kie-docs` level of the `kie-docs` repo in your terminal application and run the following commands again to fetch your changes and update the applicable branch to be published. In this example, `7.11.x` is the publishing branch for this release.
 +
 --
+This step is not necessary for publishing, but is recommended to maintain a clean branch workflow.
+
 [source,bash]
 ----
 $ cd ~/kie-docs  #Or the name you have given it
 $ git fetch --all  #Should list your update
-$ git checkout 7.5.x  #The branch to be published
-$ git rebase upstream/7.5.x
-$ git push  #Not necessary for translation, but best
+$ git checkout 7.11.x  #The branch to be published
+$ git rebase upstream/7.11.x
+$ git push
 ----
 --
-. Now that the rebuilt date is changed and merged, run the `ba-translate $RELEASE_BRANCH` command in your computer (the location is not important):
+. Now that you have updated the rebuilt date and merged, navigate to any location in your command terminal (does not need to be in the `kie-docs` repository) and run the `ba-translate $RELEASE_BRANCH` command:
 +
 --
+For example:
+
 [source,bash]
 ----
 $ ba-translate 7.11.x
 ----
 
-NOTE: For release branches 7.7.x and earlier, run `bxms-translate-branch $RELEASE_BRANCH` instead.
+IMPORTANT: For release branches 7.7.x and earlier, run `bxms-translate-branch $RELEASE_BRANCH` instead (for example, `bxms-translate-branch 7.7.x`).
 
 The translate script can take up to 15 minutes to run, or much longer with a slow Internet connection.
 
@@ -128,9 +124,9 @@ If you see any permission errors for `bxms-docs` or `kie-docs-translator` in Git
 NOTE: If the guide is not updated, make sure you followed all steps in this procedure. If you are sure you did everything correctly, file a ticket on https://redhat.service-now.com[Helpdesk].
 +
 
-. Click the *Publish* button to publish the guide. For multiple guides, select the check box for each guide and click *Bulk actions* -> *Publish* in the upper-right corner of the page.
+. Click *Publish* to publish the guide. For multiple guides, select the check box for each guide and click *Bulk actions* -> *Publish* in the upper-right corner of the page.
 +
-. Wait for up to a few minutes for the guide to be uploaded to the Customer Portal, then navigate to each guide on the portal and verify the updated revision history line..
+. Wait for up to a few minutes for the guide or guides to be uploaded to the Customer Portal, then navigate to each guide on the portal and verify the updated revision history line.
 
 [float]
 == Additional resources

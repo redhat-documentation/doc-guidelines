@@ -66,4 +66,4 @@ upstream https://github.com/kiegroup/kie-docs.git (push)
 ----
 
 +
-TIP: Consider renaming `origin` your GitHub user name to avoid confusion with other contributors' forks (also named `origin` by default) when you need to collaborate across forks. To rename your remote, go to the `kie-docs` repository in your terminal application and run `git remote rename origin $USERNAME`. Please note that going forward, in any Git commands that refer to `origin` you will need to use the new remote name instead (example: `git push --set-upstream $NEW_NAME $BRANCH_NAME`)
+TIP: Consider renaming `origin` your GitHub user name to avoid confusion with other contributors' forks (also named `origin` by default) when you need to collaborate across forks. To rename your remote, go to the `kie-docs` repository in your terminal application and run `git remote rename origin $USERNAME`. Please note that going forward, in any Git commands that refer to `origin` you will need to use the new remote name instead (example: `git push -u $NEW_NAME $BRANCH_NAME`)

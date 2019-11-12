@@ -1,0 +1,7 @@
+<productname>{GROUP}</productname>
+<productnumber>7.x</productnumber>
+<subtitle>For {GROUP} contributors</subtitle>
+<abstract>
+	<para>The contributor guide for {GROUP} documentation contributors.</para>
+</abstract>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />

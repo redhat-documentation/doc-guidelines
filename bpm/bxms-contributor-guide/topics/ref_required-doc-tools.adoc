@@ -91,6 +91,18 @@ NOTE: Do not use the old `bxms-translate` script, which translated every branch.
 
 For complete installation instructions and information about `proposal-d` scripts, see the `proposal-d` repository and `README` file in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab].
 --
+
+Pandoc (for ODT previews)::
+A command-line utility for converting between document formats. You can use this tool to create an ODT version of a local preview; you can then upload this version to Google for team review as a Google Document.
++
+--
+To install Pandoc on Fedora, CentOS, or RHEL, run the following command (in Fedora, replace `yum` with `dnf`):
+[source,bash]
+----
+# yum install pandoc
+----
+--
+
 endif::INTERNAL[]
 
 Meld (optional)::

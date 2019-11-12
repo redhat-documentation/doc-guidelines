@@ -15,7 +15,7 @@ After merging the pull request, you must rebase the final branch on the current 
 
 [NOTE]
 ====
-In this example, you are developing documentation under the `master` branch, as is most common, and your target/final branch is `BXMSDOC-1433-master-final`. Replace the branch names as appropriate.
+In this example, you are developing documentation under the `master` branch, as is most common, and your target/final branch is `BXMSDOC-1433-master-final`. Replace the branch names as apropriate.
 ====
 
 [float]

@@ -49,11 +49,13 @@ include::task_resolving-merge-conflict.adoc[leveloffset=+1]
 [id='building_locally']
 == Building and previewing
 
-include::task_build-assemblies-locally.adoc[leveloffset=+2]
-
 include::task_build-community-locally.adoc[leveloffset=+2]
 
 ifdef::INTERNAL[]
+include::task_build-assemblies-locally.adoc[leveloffset=+2]
+
+include::task_build-consolidated-pdfs.adoc[leveloffset=+2]
+
 == Publishing in Pantheon
 
 include::task_adding-docs-in-pantheon.adoc[leveloffset=+2]

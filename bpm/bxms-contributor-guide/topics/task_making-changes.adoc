@@ -37,9 +37,9 @@ Example: Creating branches for BXMSDOC-1433, based on `master`; the remote name 
 ----
 $ git checkout master
 $ git branch BXMSDOC-1433-master-final # Target branch that you will merge BXMSDOC-1433-master with when finished and use for SME/peer reviews
-$ git push --set-upstream joeuser BXMSDOC-1433-master-final # create the branch in your fork and push it
+$ git push -u joeuser BXMSDOC-1433-master-final # create the branch in your fork and push it
 $ git branch BXMSDOC-1433-master # Working branch where you make changes
-$ git push --set-upstream joeuser BXMSDOC-1433-master # create the branch in your fork and push it
+$ git push -u joeuser BXMSDOC-1433-master # create the branch in your fork and push it
 ----
 +
 .Note on master vs. release branches
@@ -115,13 +115,13 @@ If you see any unexpected files in the list displayed by `git status`, you can u
 
 [NOTE]
 ====
-If this is your first push to the branch, you can get an error that a remote is not set for this branch. In that case, run `git push --set-upstream $FORK_NAME $BRANCH_NAME`.
+If this is your first push to the branch, you can get an error that a remote is not set for this branch. In that case, run `git push -u $FORK_NAME $BRANCH_NAME`.
 
 Example:
 
 [source,bash]
 ----
-$ git push --set-upstream origin BXMSDOC-1433-master
+$ git push -u origin BXMSDOC-1433-master
 ----
 
 Run this command only once. When pushing the next time, run `git push`.

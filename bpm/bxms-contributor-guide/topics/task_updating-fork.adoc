@@ -41,5 +41,5 @@ $ git push
 .The branch is not listed in my terminal application
 [NOTE]
 ====
-To bring the branch into your local directory, run `git checkout --track upstream/$BRANCH_NAME`. For example, if the branch that you need is `7.3.x`, then enter `git checkout --track upstream/7.3.x`. Then push to your fork either for the first time (`git push --set-upstream origin $BRANCH_NAME`) or for an update (`git push`). You can similarly track a branch from your fork using `origin` instead of `upstream` (`git checkout --track origin/$BRANCH_NAME`), but to ensure that your fork branches are up to date with upstream, always track from upstream and push to your fork.
+To bring the branch into your local directory, run `git checkout --track upstream/$BRANCH_NAME`. For example, if the branch that you need is `7.3.x`, then enter `git checkout --track upstream/7.3.x`. Then push to your fork either for the first time (`git push -u origin $BRANCH_NAME`) or for an update (`git push`). You can similarly track a branch from your fork using `origin` instead of `upstream` (`git checkout --track origin/$BRANCH_NAME`), but to ensure that your fork branches are up to date with upstream, always track from upstream and push to your fork.
 ====

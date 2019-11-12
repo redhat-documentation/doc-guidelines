@@ -131,7 +131,7 @@ $ git checkout <branch-other-than-master>
 $ git branch -d master
 $ git fetch --all
 $ git checkout --track upstream/master
-$ git push --set-upstream $FORKED_REPO_NAME master
+$ git push -u $FORKED_REPO_NAME master
 ----
 Replace $FORKED_REPO_NAME with the remote name of your forked repository; for instructions on setting its remote name, see <<fork_upstream_repo>>.
 

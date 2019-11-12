@@ -76,7 +76,7 @@ $ git rebase 6.4-preview
 ----
 $ git push
 ----
-. Navigate to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and open the *{BPMS}* or *{BRMS}* product page (or both, if needed), depending on where the new documents need to be published. Wait for preview and stage build jobs to finish. These were started automatically.
+. Navigate to the *Products* page in https://pantheon.cee.redhat.com/#/titles[Pantheon] and open the relevant version of the *{BPMS}* or *{BRMS}* product page (or both, if needed), depending on where the new documents need to be published. Wait for preview and stage build jobs to finish. These were started automatically.
 . When the builds complete, click the preview icon image:pantheon-globe-icon.png[] for each document to preview the output.
 . In the guide, locate the new line in the revision history you added earlier in this process to ensure the guide was successfully updated.
 . Repeat for all the guides you want publish.

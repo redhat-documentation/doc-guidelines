@@ -60,9 +60,18 @@ $ google-chrome build/master.html
 NOTE: Replace `google-chrome` with a browser of your choice.
 
 --
+. Optional: After building an HTML preview using ccutil, you can build an ODT preview from the HTML version. You can then upload the ODT preview to Google for team review as a Google Document.
+.. In the same directory where you ran `ba-build`, run `ba-odt`.
+.. Go to https://drive.google.com[Google Drive].
+.. Click *New*, then *File upload*.
+.. Navigate to the directory where you ran the `ba-build` and `ba-odt` scripts, then to `build/tmp/en-US/odt`. Select the ODT file in the directory to upload it.
+.. Click the uploaded file, then click *Open with Google Docs* at the top of the screen.
+.. Change the Google Document name if necessary and then share the Google Document as needed.
 
 [float]
 == Additional resources
 
 * https://pantheon.cee.redhat.com/help/user-guide/#ccutil-commands[List of ccutil commands] on the Pantheon help site
-* `proposal-d` repository in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab]
+* `proposal-d` repository in https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d/tree/master[GitLab]. This repository contains the `README.adoc` file that documents all scripts.
+
+NOTE: The `ba-bigbuild` script, which is a temporary solution that creates a PDF version of all product documentation, is also present in the `proposal-d` repository. For information about this script, see <<task_build-consolidated-pdfs>> and the `README.adoc` file in the https://gitlab.cee.redhat.com/red-hat-jboss-bxms-documentation/proposal-d[`proposal-d` repository]. Do not use this script unless requested by the DPM.
