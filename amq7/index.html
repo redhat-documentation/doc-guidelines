@@ -1,0 +1,4466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>AMQ 7 internal resources</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>AMQ 7 internal resources</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">1. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#dependencies">1.1. Dependencies</a></li>
+<li><a href="#project_layout">1.2. Project layout</a></li>
+<li><a href="#book_layout">1.3. Book layout</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-git">2. Setting up git</a>
+<ul class="sectlevel2">
+<li><a href="#documentation_repositories">2.1. Documentation repositories</a></li>
+<li><a href="#install-git">2.2. Installing git</a></li>
+<li><a href="#configure-git">2.3. Configuring git</a></li>
+<li><a href="#fork-upstream">2.4. Forking the upstream (GitHub) repository</a></li>
+<li><a href="#add-ssh-github">2.5. Adding your SSH keys to GitHub</a></li>
+<li><a href="#clone-forked">2.6. Cloning your forked upstream repository</a></li>
+<li><a href="#add-upstream">2.7. Adding the upstream as a remote repository</a></li>
+<li><a href="#url-update">2.8. Updating repository URLs</a></li>
+<li><a href="#git-setup-references">2.9. References</a></li>
+</ul>
+</li>
+<li><a href="#contributing-to-docs">3. Contributing to the documentation</a>
+<ul class="sectlevel2">
+<li><a href="#contribution-getting-started">3.1. Getting started</a></li>
+<li><a href="#contributing">3.2. Contributing to the documentation</a></li>
+<li><a href="#merging-contributions">3.3. Merging commits</a></li>
+</ul>
+</li>
+<li><a href="#build-configuration">4. Configuring your environment to build the documentation</a>
+<ul class="sectlevel2">
+<li><a href="#installing_ccutil">4.1. Installing ccutil</a></li>
+<li><a href="#using_ccutil">4.2. Using ccutil</a></li>
+</ul>
+</li>
+<li><a href="#make-tooling">5. Using Make With AMQ 7 documentation</a>
+<ul class="sectlevel2">
+<li><a href="#make_commands_to_build_documentation">5.1. Make commands to build documentation</a></li>
+<li><a href="#make_commands_to_refresh_upstream_repositories">5.2. Make commands to refresh upstream repositories</a></li>
+</ul>
+</li>
+<li><a href="#formatted-text-reference">6. AsciiDoc format reference</a></li>
+<li><a href="#style-guide">7. Style guidelines</a>
+<ul class="sectlevel2">
+<li><a href="#style-guides">7.1. Style guides to reference</a></li>
+<li><a href="#style-guidelines">7.2. Style guidelines</a></li>
+<li><a href="#style-references">7.3. See also</a></li>
+</ul>
+</li>
+<li><a href="#terms_and_conventions">8. Terms and conventions</a></li>
+<li><a href="#information-architecture">9. Information architecture guidelines</a></li>
+<li><a href="#screenshot_guidelines">10. Screenshot guidelines</a>
+<ul class="sectlevel2">
+<li><a href="#screenshot-summary">10.1. Summary</a></li>
+<li><a href="#screenshot-general">10.2. General guidelines</a></li>
+<li><a href="#screenshot-specs">10.3. Tech specs</a></li>
+<li><a href="#screenshot-accessibility">10.4. Accessibility</a></li>
+<li><a href="#screenshot-asciidoc">10.5. AsciiDoc syntax</a></li>
+<li><a href="#screenshot-questions">10.6. Additional questions</a></li>
+<li><a href="#screenshot-extensions">10.7. Browser extensions</a></li>
+</ul>
+</li>
+<li><a href="#doc-admin-guide">11. Administrating AMQ 7 documentation</a>
+<ul class="sectlevel2">
+<li><a href="#documentation_repositories_2">11.1. Documentation repositories</a></li>
+<li><a href="#branching_overview">11.2. Branching overview</a></li>
+<li><a href="#processing_pull_requests">11.3. Processing pull requests</a></li>
+<li><a href="#pushing_to_gitlab_for_doc_builds">11.4. Pushing to GitLab for doc builds</a></li>
+<li><a href="#preparing_amq_documentation_for_release">11.5. Preparing AMQ documentation for release</a></li>
+</ul>
+</li>
+<li><a href="#files-and-attributes">Appendix A: Files and attributes</a>
+<ul class="sectlevel2">
+<li><a href="#important_files">A.1. Important files</a></li>
+<li><a href="#anchor-and-file-names">A.2. Anchor names and file names</a></li>
+<li><a href="#amq7-books">A.3. AMQ 7 books</a></li>
+<li><a href="#amq7-standard-attributes">A.4. Standard attributes</a></li>
+</ul>
+</li>
+<li><a href="#git-tips">Appendix B: Git tips</a>
+<ul class="sectlevel2">
+<li><a href="#deleting_branches">B.1. Deleting branches</a></li>
+<li><a href="#resolving_conflicts">B.2. Resolving conflicts</a></li>
+<li><a href="#reseting_your_fork">B.3. Reseting your fork</a></li>
+<li><a href="#accessing_another_writers_unmerged_commits">B.4. Accessing another writer’s unmerged commits</a></li>
+</ul>
+</li>
+<li><a href="#templates">Appendix C: Templates</a>
+<ul class="sectlevel2">
+<li><a href="#doing-one-procedure_template">C.1. Doing one procedure</a></li>
+<li><a href="#concept-explanation-template">C.2. Concept explanation</a></li>
+<li><a href="#reference-material_template">C.3. Reference material</a></li>
+</ul>
+</li>
+<li><a href="#additional_resources_3">Appendix D: Additional resources</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="introduction">1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide is meant to assist contributors to the AMQ 7 documentation.</p>
+</div>
+<div class="sect2">
+<h3 id="dependencies">1.1. Dependencies</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>asciidoctor</p>
+</li>
+<li>
+<p>ccutil</p>
+</li>
+<li>
+<p>make</p>
+</li>
+<li>
+<p>python</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="project_layout">1.2. Project layout</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs"><em>BOOK_DIR</em>/                          # The source for a book
+common/                              # Shared include files
+common/attributes.adoc               # Global book attributes
+images/                              # Shared image files
+scripts/                             # Build scripts
+upstreams/                           # Copies of upstream docs</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="book_layout">1.3. Book layout</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs"><em>BOOK_DIR</em>/master.adoc               # The main asciidoc entry point
+<em>BOOK_DIR</em>/master-docinfo.xml        # Book metadata
+<em>BOOK_DIR</em>/common/                   # Symlink to ../commmon/
+<em>BOOK_DIR</em>/images/                   # Symlink to ../images/
+<em>BOOK_DIR</em>/<em>CHAPTER</em>.adoc            # Book-local chapter files
+<em>BOOK_DIR</em>/<em>CHAPTER</em>-<em>SECTION</em>.adoc  # Book-local section files</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-git">2. Setting up git</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AMQ 7 uses git to manage repositories.  This guide explains how to set up your system to connect to the proper git repositories.</p>
+</div>
+<div class="sect2">
+<h3 id="documentation_repositories">2.1. Documentation repositories</h3>
+<div class="paragraph">
+<p>AMQ 7 documentation uses the following documentation repositories:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://github.com/rh-messaging/amq7-documentation-contrib" target="_blank" rel="noopener"><code>amq7-documentation-contrib</code></a> (GitHub)</dt>
+<dd>
+<p>A private GitHub repo that hosts all of the AMQ 7 documentation.
+All downstream contributions to the documentation are made in this repo.</p>
+</dd>
+<dt class="hdlist1"><a href="https://gitlab.cee.redhat.com/AMQ7-documentation/amq7-documentation" target="_blank" rel="noopener"><code>amq7-docs</code></a> (GitLab)</dt>
+<dd>
+<p>A GitLab repo for pushing doc updates to Pantheon for publication on the <a href="https://access.redhat.com/products/red-hat-amq" target="_blank" rel="noopener">Red Hat Customer Portal</a>.
+This repo essentially functions as a "mirror" of amq7-documentation-contrib;
+no doc updates should be made in it.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install-git">2.2. Installing git</h3>
+<div class="paragraph">
+<p>If using RHEL or Fedora, open your terminal and enter the proper installation command.</p>
+</div>
+<h4 id="rhel" class="discrete">RHEL</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ sudo yum install git</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To get sudo access for RHEL 7, go to Applications &gt; Red Hat Internal &gt; Switch the &#8230;&#8203;, and then select the <strong>I need sudo access</strong> checkbox.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To bypass the need for sudo access go to Applications &gt; System Tools &gt; Software, and in the Search box, type Git and press Enter. Select the check box for "Fast Version Control System git-1.8.3.1-6.el7_2.1 (64-bit)" and press <strong>Enter</strong> to install.
+</td>
+</tr>
+</table>
+</div>
+<h4 id="fedora" class="discrete">Fedora</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ yum install git (up to Fedora 21)
+$ dnf install git (Fedora 22 and later)</code></pre>
+</div>
+</div>
+<h4 id="other_operating_systems" class="discrete">Other operating systems</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Download Git</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-git">2.3. Configuring git</h3>
+<div class="paragraph">
+<p>Once you have git installed you&#8217;ll want to set up your git account.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Open <strong>Terminal</strong></p>
+</li>
+<li>
+<p>Set your name and email</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git config --global user.name "<em>YOUR_NAME</em>"
+$ git config --global user.email "<em>YOUR_EMAIL</em>"</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+The email you specify should be the same one found in your <a href="https://help.github.com/articles/adding-an-email-address-to-your-github-account/" target="_blank" rel="noopener">email settings</a>. To keep your email address hidden, see <a href="https://help.github.com/articles/keeping-your-email-address-private" target="_blank" rel="noopener">Keeping your email address private</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Set your git defaults</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git config --global pull.rebase true
+$ git config --global push.default simple</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fork-upstream">2.4. Forking the upstream (GitHub) repository</h3>
+<div class="paragraph">
+<p>Fork the <code>amq7-documentation-contrib</code> upstream repository to create a copy under your own GitHub ID. This allows you to work on multiple features and push changes to branches in your own GitHub instance so that you do not have to worry about losing work. When you are ready, you can request the changes to be merged back into the upstream repository.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the upstream repository located at <a href="https://github.com/rh-messaging/amq7-documentation-contrib" target="_blank" rel="noopener">https://github.com/rh-messaging/amq7-documentation-contrib</a></p>
+</li>
+<li>
+<p>Click <strong>Fork</strong> located in the upper right under your profile icon.</p>
+</li>
+<li>
+<p>Select your user account for the location of the forked repository. This creates your own copy of the repository under your own GitHub ID.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-ssh-github">2.5. Adding your SSH keys to GitHub</h3>
+<div class="paragraph">
+<p>If you choose to use the SSH address for your clones, you will need to add an SSH Key to GitHub first.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Open <strong>Terminal</strong>.</p>
+</li>
+<li>
+<p>Check to see if you have a public SSH key:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ ls ~/.ssh/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you don&#8217;t have a key, generate one:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ ssh-keygen -t rsa -C "<em>YOUR_EMAIL</em>"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open your key in an editor:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ cd ~/.ssh/
+$ vi id_rsa.pub</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copy the contents of the file to your clipboard.</p>
+</li>
+<li>
+<p>Visit <a href="https://github.com/settings/keys" target="_blank" rel="noopener">https://github.com/settings/keys</a></p>
+</li>
+<li>
+<p>Click <strong>New SSH Key</strong>.</p>
+</li>
+<li>
+<p>Give your key a name and paste the contents of your key file.</p>
+</li>
+<li>
+<p>Click <strong>Add SSH Key</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clone-forked">2.6. Cloning your forked upstream repository</h3>
+<div class="paragraph">
+<p>Clone your forked repository to bring your GitHub repository files to your local machine. Your forked repository is now the <code>origin</code> repository for your local files.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For more information about <a href="http://doc.gitlab.com/ee/workflow/forking_workflow.html" target="_blank" rel="noopener">forking</a> and <a href="http://doc.gitlab.com/ce/gitlab-basics/command-line-commands.html#clone-your-project" target="_blank" rel="noopener">cloning</a>, consult the official <a href="http://doc.gitlab.com/ce/" target="_blank" rel="noopener">Gitlab documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+<h4 id="using_ssh" class="discrete">Using SSH</h4>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Open <strong>Terminal</strong>.</p>
+</li>
+<li>
+<p>Navigate to the directory where you want to create the new repository folder.</p>
+</li>
+<li>
+<p>Type the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git clone git@github.com:<em>USERNAME</em>/amq7-documentation-contrib.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the newly created <code>amq7-documentation-contrib</code> folder.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ cd amq7-documentation-contrib/</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h4 id="using_https" class="discrete">Using HTTPS</h4>
+<div class="paragraph">
+<p>While there are fewer steps in this option, you have to enter your GitHub credentials with every change you make.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Open <strong>Terminal</strong>.</p>
+</li>
+<li>
+<p>Navigate to the directory where you want to create the new repository folder.</p>
+</li>
+<li>
+<p>Type the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git clone https://github.com/<em>USERNAME</em>/amq7-documentation-contrib.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter your GitHub credentials to complete the clone.</p>
+</li>
+<li>
+<p>Navigate to the newly created <code>amq7-documentation-contrib</code> folder.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ cd amq7-documentation-contrib/</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-upstream">2.7. Adding the upstream as a remote repository</h3>
+<div class="paragraph">
+<p>Once you have your fork checked out and cloned locally, add the downstream repository as a remote.</p>
+</div>
+<h4 id="using_ssh_2" class="discrete">Using SSH</h4>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the current remote repositories:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git remote -v
+origin	git@github.com:<em>USERNAME</em>/amq7-documentation-contrib.git (fetch)
+origin	git@github.com:<em>USERNAME</em>/amq7-documentation-contrib.git (push)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the upstream as a remote repository and fetch its contents. This allows you to check out and work with the latest source code.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git remote add -f upstream  git@github.com:rh-messaging/amq7-documentation-contrib.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter your GitHub credentials to complete the remote add process.</p>
+</li>
+<li>
+<p>Verify the new remote was added:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git remote -v
+origin	git@github.com:<em>USERNAME</em>/amq7-documentation-contrib.git (fetch)
+origin	git@github.com:<em>USERNAME</em>/amq7-documentation-contrib.git (push)
+upstream	git@github.com:rh-messaging/amq7-documentation-contrib.git (fetch)
+upstream	git@github.com:rh-messaging/amq7-documentation-contrib.git (push)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h4 id="using_https_2" class="discrete">Using HTTPS</h4>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the current remote repositories:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git remote -v
+origin	https://github.com/<em>USERNAME</em>/amq7-documentation-contrib.git (fetch)
+origin	https://github.com/<em>USERNAME</em>/amq7-documentation-contrib.git (push)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the upstream as a remote repository and fetch its contents. This allows you to check out and work with the latest source code.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git remote add -f upstream  https://github.com/rh-messaging/amq7-documentation-contrib.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter your GitHub credentials to complete the remote add process.</p>
+</li>
+<li>
+<p>Verify the new remote was added:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git remote -v
+origin	https://github.com/<em>USERNAME</em>/amq7-documentation-contrib.git (fetch)
+origin	https://github.com/<em>USERNAME</em>/amq7-documentation-contrib.git (push)
+upstream	https://github.com/rh-messaging/amq7-documentation-contrib.git (fetch)
+upstream	https://github.com/rh-messaging/amq7-documentation-contrib.git (push)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="url-update">2.8. Updating repository URLs</h3>
+<div class="paragraph">
+<p>If the upstream repository is moved, you can change the downstream URL by using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git remote set-url upstream https://github.com/rh-messaging/amq7-documentation-contrib.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the following command any time you need to fetch the latest source code locally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git fetch upstream</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="git-setup-references">2.9. References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://git-scm.com" target="_blank" rel="noopener">Official Git Site</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributing-to-docs">3. Contributing to the documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following guide walks you through contributing to the AMQ 7 documentation.</p>
+</div>
+<div class="sect2">
+<h3 id="contribution-getting-started">3.1. Getting started</h3>
+<div class="paragraph">
+<p>Before you begin you need to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#setting-up-git">Install and set up Git</a></p>
+</li>
+<li>
+<p><a href="#build-configuration">Install and set up ccutil</a></p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="refreshing_upstream_content">3.1.1. Refreshing upstream content</h4>
+<div class="paragraph">
+<p>If you plan on contributing to content in the upstream you want to be sure to have a fresh copy of that content before beginning.</p>
+</div>
+<div class="paragraph">
+<p>We use special <code>make</code> targets to fetch and update in-tree copies of upstream content. After using these targets, be sure to commit the changes.</p>
+</div>
+<div class="paragraph">
+<p>The syntax used is <code>make refresh-upstream-<em>UPSTREAM_NAME</em></code></p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ make refresh-upstream-qpid-dispatch
+$ make refresh-upstream-qpid-jms
+$ make refresh-upstream-qpid-proton</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributing">3.2. Contributing to the documentation</h3>
+<div class="paragraph">
+<p>Once you have your local repository set up and have up to date copies of upstream content you need to follow these steps to contribute to the documentation.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Open your terminal</p>
+</li>
+<li>
+<p><code>cd</code> to the directory where your documentation resides</p>
+</li>
+<li>
+<p>Checkout the contrib branch</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git checkout contrib</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update your local repository and fork with the upstream content</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git pull upstream contrib
+$ git push origin contrib --force</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a new branch for your work (using the JIRA number is helpful)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git checkout -b <em>BRANCH_NAME</em></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make your edits in the editor of your choice</p>
+</li>
+<li>
+<p>Save your changes locally</p>
+</li>
+<li>
+<p>If you are creating new files, add the files to the repository</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git status
+$ git add <em>FILE_NAME</em></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is best to not use <code>git add *</code>.  Adding everything can accidentally add files you do not intend to. It is better to use the command reflected here.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Build your changes by using <a href="#build-configuration">ccutil</a> or <a href="#make-tooling">make-based tooling</a> to confirm your edits are correct</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If adding an entirely new section or making complex edits, be sure to share your build on your Red Hat fileshare so that you can provide a link to those reviewing your content</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ cd <em>GUIDE_NAME</em>
+$ ./buildGuide.sh</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Commit your changes</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git commit -a -m "<em>MESSAGE</em>"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that your commit only includes the files you edited.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">[amqdoc2870 f144b8d] AMQDOC 2870: Add note about not committing all
+ 1 file changed, 2 insertions(+)</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the number of files edited in your commit is more than than you worked on, you might have added files you did not intend to.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If you have been working on your edits for a while, it is possible that content in the repository has changed. It is good practice to fetch any new content before your push your changes to your fork.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git fetch --all
+$ git rebase origin/contrib</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push your changes to your fork</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git push origin HEAD</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the update is rejected because the commit is behind, merge your changes</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git pull upstream contrib
+$ git push -f origin HEAD</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Visit your fork on GitHub</p>
+</li>
+<li>
+<p>Click <strong>Compare &amp; pull request</strong></p>
+</li>
+<li>
+<p>If a SME review is needed:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add <strong>SME Review Needed</strong> label.</p>
+</li>
+<li>
+<p>When SME review is complete, remove <strong>SME Review Completed</strong> label and go to step 16.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Add <strong>Peer Review Needed</strong> label and assign a Reviewer.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>When peer review has been completed, the reviewer deletes the <strong>Peer Review Needed</strong> label and adds the <strong>Peer Review Done</strong> label.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>When <strong>Peer Review Done</strong> label has been added:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If no changes are needed, remove <strong>Peer Review Done</strong> label and add <strong>Ready for Merge</strong> label.</p>
+</li>
+<li>
+<p>If changes are needed and the changes are minor, make changes to the files, commit, and push, and then remove <strong>Peer Review Done</strong> label and add <strong>Ready for Merge</strong> label.</p>
+</li>
+<li>
+<p>If you want an additional review on the updated content, add the <strong>Peer Review Needed</strong> label and ask for another review in a comment.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merging-contributions">3.3. Merging commits</h3>
+<div class="paragraph">
+<p>Commits are merged weekly on Friday by the "Mergemaster" following the instructions in the <a href="#doc-admin-guide">Documentation Administration Guide</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="build-configuration">4. Configuring your environment to build the documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you make changes to the documentation, it is a good practice to perform a local test build to verify the book builds successfully and renders as you expect before you submit the merge request back to upstream master. This section describes how to configure your environment to build the documentation.</p>
+</div>
+<div class="paragraph">
+<p>You can build the books by using either <a href="#make-tooling">make-based tooling</a> or Red Hat&#8217;s ccutil, however, be aware that only ccutil catches build errors such as invalid xrefs and missing includes.</p>
+</div>
+<div class="paragraph">
+<p>For that reason, you must install ccutil to test the build before you merge your changes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The ccutil utility requires Ruby. If you have not installed Ruby, you can use this command to install it: <code>yum -y install ruby</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="installing_ccutil">4.1. Installing ccutil</h3>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Configure the engineering and <code>ccs-tools</code> repositories by creating two files:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In a text editor, create a repo file with the following lines (where <code><em>VERSION</em></code> is the major release version number of RHEL installed on your personal computer, for example, 7):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">[eng-rhel-<em>VERSION</em>]
+name=ENG Internal - $releasever
+baseurl=http://download.devel.redhat.com/rel-eng/repos/eng-rhel-<em>VERSION</em>/$basearch/
+enabled=1
+gpgcheck=0
+skip_if_unavailable=1
+priority=1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save the file as <code>/etc/yum.repos.d/eng-rhel-<em>VERSION</em>.repo</code></p>
+</li>
+<li>
+<p>In a text editor, create another repo file with the following lines:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[ccs-tools]
+name=CCS Tools for RHEL $releasever
+baseurl=http://ccs-tools.usersys.redhat.com/yum/$releasever/$basearch/
+enabled=1
+gpgcheck=0
+skip_if_unavailable=1
+priority=1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save the file as <code>/etc/yum.repos.d/ccs-tools.repo</code></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+If you do not have root access, you can not move the files to the correct location
+by using the File Manager. Instead save the file to your home folder and use Terminal
+to copy the files to the correct location:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">sudo cp ~/ccs-tools.repo /etc/yum.repos.d/
+sudo cp ~/eng-rhel-<em>VERSION</em>.repo /etc/yum.repos.d/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Remember to replace <code><em>VERSION</em></code> where indicated with the correct version number.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify that you are connected to the internal network and run the following command to install the ccutil utility:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ sudo yum install ccutil</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check that ccutil is installed correctly by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ ccutil --help</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If ccutil was successfully installed, then you should see the help printed like the example below.
+Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Usage: ccutil [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -c, --config CONFIG  Specify a config file to use.
+  --debug              Print debugging information.
+  --verbose            Print detailed information about each step.
+  -v, --version        Print the version of the application.
+  -h, --help           Show this message and exit.
+
+Commands:
+  clean    Clean any build data left on the local machine.
+  compile  Builds the book locally.
+  history  Show the history for a book/article.
+  list     Lists the books/articles currently available.
+  logout   Logout and close any current authenticated sessions.
+  video    Transcode, upload or list videos.
+  whoami   Prints details about authenticated sessions.</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using_ccutil">4.2. Using ccutil</h3>
+<div class="paragraph">
+<p>Ccutil can be used to build a local copy of the documentation for review.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the guide folder.</p>
+</li>
+<li>
+<p>In <strong>Terminal</strong>, type <code>./buildGuide.sh</code></p>
+</li>
+<li>
+<p>The output can be found in <code>build/tmp/en-US/html-single/index.html</code> or you can click the link presented in <strong>Terminal</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">Finished html-single
+broker (AsciiDoctor) is located at:  file:///home/<em>USER</em>/amq7docs/amq7-documentation-contrib/docs/broker/html/broker.html
+broker (ccutil) is located at:  file:///home/<em>USER</em>/amq7docs/amq7-documentation-contrib/docs/broker/build/tmp/en-US/html-single/index.html</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To share your results with others, publish your results to your personal Red Hat file share.  <a href="https://redhat.service-now.com/rh_ess/kb_view.do?sysparm_article=KB0003945" target="_blank" rel="noopener">Learn more about setting up your personal file share</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="make-tooling">5. Using Make With AMQ 7 documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you make changes to the documentation, it is a good practice to do a local test build to verify the book builds successfully and renders as you expect before you submit the merge request back to upstream master.</p>
+</div>
+<div class="paragraph">
+<p>Make is a useful tool for building your documentation and pushing it to your public Red Hat file share so that peer and quality reviewers can see your edits as the customer would.</p>
+</div>
+<div class="paragraph">
+<p>You can also build your documentation with <a href="#build-configuration">ccutil</a>. Be aware that only ccutil catches build errors such as invalid xrefs and missing includes.</p>
+</div>
+<div class="sect2">
+<h3 id="make_commands_to_build_documentation">5.1. Make commands to build documentation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ cd <em>PROJECT_DIR</em>
+
+$ make help
+[default]      Equivalent to 'make preview'
+preview        Generate asciidoctor output (faster)
+build          Generate ccutil and asciidoctor output (slower)
+test           Run all build scripts and output checks
+clean          Removes build/ and other build artifacts
+publish        Copy output to http://file.rdu.redhat.com/~<em>USERNAME</em>/amq-docs/
+
+$ make preview
+[...]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the output in your browser at file: <code><em>PROJECT-DIR</em>/build/welcome/index.html</code></p>
+</div>
+<div class="paragraph">
+<p>The entry point for the resulting output is <code>build/welcome/index.html</code> in your checkout.</p>
+</div>
+<div class="paragraph">
+<p>To publish your results to your personal file share, use make publish. It copies the local output to a Red Hat file server. <a href="https://redhat.service-now.com/rh_ess/kb_view.do?sysparm_article=KB0003945" target="_blank" rel="noopener">Learn more about setting up your personal file share</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="make_commands_to_refresh_upstream_repositories">5.2. Make commands to refresh upstream repositories</h3>
+<div class="paragraph">
+<p>We use special <code>make</code> targets to fetch and update in-tree copies of upstream content. After using these targets, be sure to commit the changes.</p>
+</div>
+<div class="paragraph">
+<p>The syntax used is <code>make refresh-upstream-<em>UPSTREAM_NAME</em></code></p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ make refresh-upstream-qpid-dispatch
+$ make refresh-upstream-qpid-jms
+$ make refresh-upstream-qpid-proton</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="formatted-text-reference">6. AsciiDoc format reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tips for which AsciiDoc markup to use when formatting text.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Monospace (<code>`</code>)</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File names and paths</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The `/home/user/.bashrc` file &#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Literal values</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the value is `true` &#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration attributes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the `enabled` attribute &#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java class names</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The `java.sql.Connection` class &#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java annotations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The `@Clustered` annotation &#8230;&#8203;</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Italics (<code>_</code>)</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Guide titles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See the _Installation Guide_ &#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Emphasis for a term <em>(only emphasize first time)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">_High availability_ refers to the &#8230;&#8203;</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Bold (<code>*</code>)</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GUI items <em>(menus, buttons)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Click the *Add* button and &#8230;&#8203;</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Underline (<code><span class="underline">value</span></code>)</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default item in a multi-select</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">`yes|[.underline]#no#|maybe`</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="style-guide">7. Style guidelines</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="style-guides">7.1. Style guides to reference</h3>
+<div class="paragraph">
+<p>When writing content we use the following style guides in order:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>IBM Style Guide (printed)</p>
+</li>
+<li>
+<p><a href="https://www.ibm.com/developerworks/library/styleguidelines/" target="_blank" rel="noopener">IBM DeveloperWorks Editorial Style Guide</a></p>
+</li>
+<li>
+<p><a href="http://brand.redhat.com/" target="_blank" rel="noopener">Red Hat Brand Standards</a></p>
+</li>
+<li>
+<p><a href="#red-hat-jboss-amq7-conventions">AMQ 7 Terms and Conventions</a></p>
+</li>
+<li>
+<p>Red Hat Glossary of Terms and Conventions</p>
+</li>
+<li>
+<p><a href="https://mojo.redhat.com/docs/DOC-28115" target="_blank" rel="noopener">Red Hat Corporate Style Guide</a></p>
+</li>
+<li>
+<p><a href="#information-architecture">AMQ 7 Documentation Information Architecture Guidelines</a></p>
+</li>
+<li>
+<p><a href="#screenshot_guidelines">AMQ 7 Screenshot Guidelines</a></p>
+</li>
+<li>
+<p>This document (which does include some of the most commonly used rules from the previous guides)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="style-guidelines">7.2. Style guidelines</h3>
+<div class="sect3">
+<h4 id="general-styles">7.2.1. General styles</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. General quick reference</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Use</th>
+<th class="tableblock halign-left valign-top">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File system names and paths, symbols, and literals.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>`filename`</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GUI items (<em>Match the capitalization of the button</em>)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*bold*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Navigation link text</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*bold*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Superuser console commands</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>$ sudo</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>#</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Emphasis</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>_yay_</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*yay*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of options (<em>underline the default if there is one</em>)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1|[.underline]#2#|3</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1/2/3</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decimal integers &lt; 10</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>four</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>4</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decimal integers &gt;= 10</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>12</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>twelve</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hexadecimal integers (<em>always numeric, lowercase x</em>)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>0x123</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>0X13</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number ranges (<em>always use numerals</em>)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1-20</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1-twenty</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Do not use Latin abbreviations</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>that is</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>i.e.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">and so on</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>etc.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for example</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>e.g.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cannot</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>cannot</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>can not</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">And</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>and</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>&amp;</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Choices</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>and</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>and/or</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">or</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heartbeating</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>heartbeating</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>heart-beating</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<div class="title">Additional general guidelines</div>
+<ul>
+<li>
+<p>Stick to one file per chapter unless the content is too long,
+excluding reusable topics.</p>
+</li>
+<li>
+<p>Don&#8217;t use contractions, ;).</p>
+</li>
+<li>
+<p>Document IDs are book-scoped, so they don&#8217;t need the book title in
+them.</p>
+</li>
+<li>
+<p>End bulleted and numbered lists with periods unless the items
+listed are simple names.</p>
+</li>
+<li>
+<p>The words "server" and "broker" are not capitalized unless they
+begin a sentence or appear in a title.</p>
+</li>
+<li>
+<p>Avoid the word "simply" unless it clarifies.</p>
+</li>
+<li>
+<p>For substitution of <code>{attr}</code> in code blocks, use <code>[subs=+attributes]</code>.</p>
+</li>
+<li>
+<p>For styling of <code>*bold*</code> (<code><strong>bold</strong></code>) in code blocks, use
+<code>[subs=+quotes]</code>.</p>
+</li>
+<li>
+<p>Do not use the word 'the' before 'Broker'. It is just 'Broker'</p>
+</li>
+<li>
+<p>When referring the reader to more information, use: "For more information about <code><em>TOPIC</em></code>, see <code><em>RESOURCE</em></code>."</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="naming-files-style">7.2.2. Naming files</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. File Names Quick Reference</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Use</th>
+<th class="tableblock halign-left valign-top">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Custom attributes</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>`ThisStyle`</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>`this-style`</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">`this_style`</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">File and directory names</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>`module_this-style`</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>`module-this_style`</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">`ModuleThisStyle`</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Learn more about naming files in the <a href="#files-and-attributes">Files and Attributes</a> appendix.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="headings-titles">7.2.3. Styling headings and titles</h4>
+<div class="paragraph">
+<p>AMQ 7 uses sentence-case headings for modules, tables, and figures.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Headings Quick Reference</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Use</th>
+<th class="tableblock halign-left valign-top">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Section headings</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>Configuring the system with RHEL</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Configuring the System with RHEL</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuring The System With RHEL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Procedure Titles (<em>gerund</em>)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Configuring</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Configure</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Table and block titles</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>This is an example</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>This is an Example</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This Is An Example</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Hyphenated headings</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>Configuring point-to-point messaging</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Configuring Point-To-Point Messaging</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuring Point-to-point Messaging</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unnumbered titled sections</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><em>[discrete]</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="ids">7.2.4. Section IDs</h4>
+<div class="paragraph">
+<p>The format defined here is recommended because it is the most stable and versatile of anchor formats, and supports variables that enable topics to be reused and cross-referenced properly. Other anchor formats include <code>[[anchor-name]]</code> and <code>[#anchor-name]</code>, but these formats either do not support variables for content reuse or do not support certain character types, such as periods. These limitations cause errors at build time.</p>
+</div>
+<div class="paragraph">
+<p>Learn more about reusing content in the <a href="https://redhat-documentation.github.io/modular-docs/#reusing-modules" target="_blank" rel="noopener">Modular Documentation Reference Guide</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. IDs quick reference</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Use</th>
+<th class="tableblock halign-left valign-top">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Document IDs</p></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><div class="content"><div class="paragraph">
+<p>[id="same-as-section-heading-{context}"]</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>[[this-heading-here]]</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[[ThisHeadingHere]]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[#anchor-name]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="replaceables">7.2.5. Styling replaceables</h4>
+<div class="paragraph">
+<p>Replaceable values in the text and code should be styles using monospace, lowercase, arrow brackets, and hyphens.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Replaceables quick reference</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replaceable value</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>`&lt;some-value&gt;`</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Location of broker instance</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>`&lt;broker-instance-dir&gt;`</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component install directory</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>`&lt;install-dir&gt;`</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+If using a replaceable within a source block, you will need to add
+<code>subs="+quotes"`</code> to the source tag for it to render. (For example : <code>[source,options="nowrap",subs="+quotes"]</code>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="styling_links">7.2.6. Styling links</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. Links quick reference</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Item</th>
+<th class="tableblock halign-left valign-top">Use</th>
+<th class="tableblock halign-left valign-top">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Zip files</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>zip</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><em>.zip</em></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZIP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Tar files</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>tar</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><em>.tar</em></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TAR</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External links</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>link:github.com[GitHub^]</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>link:github.com[GitHub]</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internal links</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>xref:doc_id[Section Title]</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>xref:doc_id[Section Title^]</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you use the caret syntax more than once in a single paragraph, you may need to
+escape the first occurrence with a backslash.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Links with attributes (including the subject and body segments on mailto links)
+are a feature unique to Asciidoctor. When they are enabled, you must surround the link text
+in double quotes if it contains a comma.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Additional link guidelines</div>
+<ul>
+<li>
+<p>Refer to the top-level sections of books as chapters, not sections
+or topics.</p>
+</li>
+<li>
+<p>Do not split link paths across lines when wrapping text. This will cause issues with the doc builds.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="punctuation-guide">7.2.7. Styling punctuation</h4>
+<div class="ulist">
+<div class="title">General punctuation guidelines</div>
+<ul>
+<li>
+<p>Do not refer to an individual punctuation mark or special character by its symbol alone.</p>
+</li>
+<li>
+<p>Use the name alone, or use the name followed by the symbol in parentheses.</p>
+</li>
+<li>
+<p>Use the name alone if the punctuation mark or special character is standard, such as a comma or period, and including the symbol would clutter the text.</p>
+</li>
+<li>
+<p>Include the symbol in parentheses when a punctuation mark or special character is not well known or when including the symbol improves clarity.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. Punctuation quick reference</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Character</th>
+<th class="tableblock halign-left valign-top">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&amp;</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Ampersand</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; &gt;</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Angle brackets, opening angle bracket, or closing angle bracket</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">" "</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Double quotation marks, opening quotation marks, or closing quotation marks (not quotes or quote marks)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">' '</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Single quotation marks, opening quotation mark,or closing quotation mark (not quotes or quote marks)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">%</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Percent sign</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">( )</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Parentheses, opening parenthesis, or closing parenthesis</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Dollar sign</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Asterisk (not star)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">#</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Number sign</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">!</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Exclamation point (not exclamation mark or bang)</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="style-references">7.3. See also</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#formatted-text-reference">AsciiDoc Format Reference</a></p>
+</li>
+<li>
+<p><a href="#screenshot_guidelines">Screenshot Guidelines</a></p>
+</li>
+<li>
+<p><a href="http://titlecase.com">titlecase.com</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="terms_and_conventions">8. Terms and conventions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following list of Terms and Conventions are specific to AMQ 7.  In addition to this guide, see the <em>Red Hat Glossary of Terms and Conventions</em> for the usage conventions for the more commonly used documentation terms.</p>
+</div>
+<div id="red-hat-jboss-amq7-conventions" class="paragraph">
+<p>Responsible person: Ben Hardesty (<a href="mailto:bhardest@redhat.com">bhardest@redhat.com</a>)</p>
+</div>
+<h5 id="acceptor_noun" class="discrete">acceptor (noun)</h5>
+<div id="acceptor" class="paragraph">
+<p><strong>Description</strong>: An acceptor defines the way a client can connect to a broker instance.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="amq_broker_noun" class="discrete">AMQ Broker (noun)</h5>
+<div id="amq-broker" class="paragraph">
+<p><strong>Description</strong>: A component of Red Hat AMQ, it is a full-featured, message-oriented middleware broker. It offers specialized queueing behaviors, message persistence, and manageability.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: A-MQ Broker, The AMQ Broker, Red Hat Broker, JBoss Broker</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#broker-distribution">broker distribution</a>, <a href="#broker-instance">broker instance</a></p>
+</div>
+<h5 id="amq_clients_noun" class="discrete">AMQ Clients (noun)</h5>
+<div id="amq-clients" class="paragraph">
+<p><strong>Description</strong>: A suite of messaging libraries supporting multiple languages and platforms. It enables users to write messaging applications that send and receive messages. AMQ Clients is a component of Red Hat AMQ.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: A-MQ Clients, Red Hat Clients, JBoss Clients</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#client-application">client application</a>, <a href="#messaging-api">messaging API</a></p>
+</div>
+<h5 id="amq_console_noun" class="discrete">AMQ Console (noun)</h5>
+<div id="amq-console" class="paragraph">
+<p><strong>Description</strong>: A management tool for administering AMQ brokers and routers in a single graphical interface.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: A-MQ Console, Red Hat Console, JBoss Console</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="amq_core_protocol_jms_noun" class="discrete">AMQ Core Protocol JMS (noun)</h5>
+<div id="amq-core-protocol-jms" class="paragraph">
+<p><strong>Description</strong>: An implementation of JMS using the ActiveMQ Artemis Core protocol. This is sometimes called Core JMS.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#jms">JMS</a>, <a href="#core-protocol">Core protocol</a></p>
+</div>
+<h5 id="amq_interconnect_noun" class="discrete">AMQ Interconnect (noun)</h5>
+<div id="amq-interconnect" class="paragraph">
+<p><strong>Description</strong>: A component of Red Hat AMQ, it is a messaging router that provides flexible routing of messages between any AMQP-enabled endpoints, whether they are clients, servers, brokers, or any other entity that can send or receive standard AMQP messages.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: Interconnect, Router, A-MQ Interconnect, Red Hat Interconnect, JBoss Interconnect</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#router">router</a></p>
+</div>
+<h5 id="amqp_noun" class="discrete">AMQP (noun)</h5>
+<div id="amqp" class="paragraph">
+<p><strong>Description</strong>: Advanced Message Queuing Protocol. It is an open standard for passing business messages between applications or organizations (<a href="https://www.amqp.org/about/what" class="bare">https://www.amqp.org/about/what</a>). AMQ Broker supports AMQP, and AMQ Interconnect uses AMQP to route messages and links.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="artemis_noun" class="discrete">Artemis (noun)</h5>
+<div id="artemis" class="paragraph">
+<p><strong>Description</strong>: The upstream project for AMQ Broker (<a href="https://activemq.apache.org/artemis/">Apache ActiveMQ Artemis</a>). When referring to AMQ Broker, always use the Red Hat product name.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: with caution</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#amq-broker">AMQ Broker</a></p>
+</div>
+<h5 id="autolink_noun" class="discrete">autolink (noun)</h5>
+<div id="autolink" class="paragraph">
+<p><strong>Description</strong>: An AMQ Interconnect configurable entity that defines a link between the router and a queue, topic, or service in an external broker.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: auto-link, AutoLink</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="broker_distribution_noun" class="discrete">broker distribution (noun)</h5>
+<div id="broker-distribution" class="paragraph">
+<p><strong>Description</strong>: The platform-independent AMQ Broker archive containing the product binaries and libraries.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#amq-broker">AMQ Broker</a>, <a href="#broker-instance">broker instance</a></p>
+</div>
+<h5 id="broker_instance_noun" class="discrete">broker instance (noun)</h5>
+<div id="broker-instance" class="paragraph">
+<p><strong>Description</strong>: A configurable instance of AMQ Broker. Each broker instance is a separate directory containing its own runtime and configuration data. Use this term to refer to the instance, not the product.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#amq-broker">AMQ Broker</a>, <a href="#broker-distribution">broker distribution</a></p>
+</div>
+<h5 id="broker_cluster_noun" class="discrete">broker cluster (noun)</h5>
+<div id="broker-cluster" class="paragraph">
+<p><strong>Description</strong>: A group of brokers to be grouped together in order to share message processing load. In A-MQ 6, this was called a <em>network of brokers</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="brokered_messaging_noun" class="discrete">brokered messaging (noun)</h5>
+<div id="brokered-messaging" class="paragraph">
+<p><strong>Description</strong>: Any messaging configuration that uses a message broker to deliver messages to destinations. Brokered messaging can include brokers only, or a combination of brokers and routers.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="client_application_noun" class="discrete">client application (noun)</h5>
+<div id="client-application" class="paragraph">
+<p><strong>Description</strong>: An application or server that connects to broker instances, routers, or both to send or receive messages. This should not be confused with AMQ Clients, which is the messaging library used to create the client application.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#producer">producer</a>, <a href="#consumer">consumer</a>, <a href="#amq-clients">AMQ Clients</a>, <a href="#messaging-api">messaging API</a></p>
+</div>
+<h5 id="connection_noun" class="discrete">connection (noun)</h5>
+<div id="connection" class="paragraph">
+<p><strong>Description</strong>: A channel for communication between two peers on a network. For AMQ, connections can be made between containers (clients, brokers, and routers). These are sometimes also called network connections.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#acceptor">acceptor</a>, <a href="#listener">listener</a>, <a href="#connector">connector</a>, <a href="#amq-container">amq-container</a>, <a href="#session">session</a></p>
+</div>
+<h5 id="connection_factory_noun" class="discrete">connection factory (noun)</h5>
+<div id="connection-factory" class="paragraph">
+<p><strong>Description</strong>: An object used by a JMS client to create a connection to a broker.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="connector_noun" class="discrete">connector (noun)</h5>
+<div id="connector" class="paragraph">
+<p><strong>Description</strong>: A configurable entity for AMQ brokers and routers. They define an outgoing connection from either a router to another endpoint, or from a broker to another endpoint.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#connection">connection</a></p>
+</div>
+<h5 id="consumer_noun" class="discrete">consumer (noun)</h5>
+<div id="consumer" class="paragraph">
+<p><strong>Description</strong>: A client that receives messages.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#client-application">client application</a></p>
+</div>
+<h5 id="container_noun" class="discrete">container (noun)</h5>
+<div id="amq-container" class="paragraph">
+<p><strong>Description</strong>: A top-level application, such as a broker or client. Connections are established between containers.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#connection">connection</a></p>
+</div>
+<h5 id="core_api_noun" class="discrete">Core API (noun)</h5>
+<div id="core-api" class="paragraph">
+<p><strong>Description</strong>: An API for the ActiveMQ Artemis Core protocol. It is not supported by AMQ Broker.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#core-protocol">Core protocol</a>, <a href="#amq-core-protocol-jms">AMQ Core Protocol JMS</a></p>
+</div>
+<h5 id="core_protocol_noun" class="discrete">Core protocol (noun)</h5>
+<div id="core-protocol" class="paragraph">
+<p><strong>Description</strong>: The native messaging protocol for ActiveMQ Artemis.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#amq-core-protocol-jms">AMQ Core Protocol JMS</a></p>
+</div>
+<h5 id="delivery_noun" class="discrete">delivery (noun)</h5>
+<div id="delivery" class="paragraph">
+<p><strong>Description</strong>: The process by which a message is sent to a receiver. Delivery includes the message content and metadata, and the protocol exchange required to transfer that content. When the delivery is completed, it is settled.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#message-settlement">message settlement</a></p>
+</div>
+<h5 id="destination_noun" class="discrete">destination (noun)</h5>
+<div id="destination" class="paragraph">
+<p><strong>Description</strong>: In JMS, this is a named location for messages, such as a queue or a topic. Clients use destinations to specify the queue or topic from which to send or receive messages. Only use this term in the context of JMS. In all other instances, use <em>address</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: with caution</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#message-address">message address</a></p>
+</div>
+<h5 id="direct_routed_messaging_noun" class="discrete">direct routed messaging (noun)</h5>
+<div id="direct-routed-messaging" class="paragraph">
+<p><strong>Description</strong>: A messaging configuration that uses routers only to deliver messages to destinations. This can also be called routed messaging.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="dispatch_router_noun" class="discrete">Dispatch Router (noun)</h5>
+<div id="dispatch-router" class="paragraph">
+<p><strong>Description</strong>: The upstream component for AMQ Interconnect (<a href="https://qpid.apache.org/components/dispatch-router/">Apache Qpid Dispatch Router</a>). When referring to AMQ Interconnect, always use the Red Hat product name.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: with caution</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#amq-interconnect">AMQ Interconnect</a></p>
+</div>
+<h5 id="jms_noun" class="discrete">JMS (noun)</h5>
+<div id="jms" class="paragraph">
+<p><strong>Description</strong>: The Java Message Service API for sending messages between clients.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="link_noun" class="discrete">link (noun)</h5>
+<div id="link" class="paragraph">
+<p><strong>Description</strong>: A message path between endpoints. Links are established over connections, and are responsible for tracking the exchange status of the messages that flow through them.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="link_routing_noun" class="discrete">link routing (noun)</h5>
+<div id="link-routing" class="paragraph">
+<p><strong>Description</strong>: A routing mechanism in AMQ Interconnect. A link route is a set of links that represent a private message path between a sender and receiver. Link routes can traverse multiple brokers and routers. With link routing, a router makes a routing decision when it receives link-attach frames, and it enables the sender and receiver to use the full AMQP link protocol.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#message-routing">message routing</a></p>
+</div>
+<h5 id="listener_noun" class="discrete">listener (noun)</h5>
+<div id="listener" class="paragraph">
+<p><strong>Description</strong>: A configurable entity for AMQ routers and messaging APIs. A listener defines a context for accepting multiple, incoming connections on a particular TCP address and port.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#connection">connection</a></p>
+</div>
+<h5 id="live_only_noun" class="discrete">live-only (noun)</h5>
+<div id="live-only" class="paragraph">
+<p><strong>Description</strong>: A broker high availability policy for scaling down brokers. If the broker is shut down, its messages and transaction state are copied to another live broker.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: live only</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="master_slave_group_noun" class="discrete">master-slave group (noun)</h5>
+<div id="master-slave-group" class="paragraph">
+<p><strong>Description</strong>: A broker high availability configuration in which a master broker is linked to slave brokers. If a failover event occurs, the slave broker(s) take over the master broker&#8217;s workload.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: live-backup group</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="master_broker_noun" class="discrete">master broker (noun)</h5>
+<div id="master-broker" class="paragraph">
+<p><strong>Description</strong>: The broker that serves client requests in a master-slave group.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: live broker</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#master-slave-group">master-slave group</a>, <a href="#slave-broker">slave broker</a></p>
+</div>
+<h5 id="message_noun" class="discrete">message (noun)</h5>
+<div id="message" class="paragraph">
+<p><strong>Description</strong>: A mutable holder of application content.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="message_address_noun" class="discrete">message address (noun)</h5>
+<div id="message-address" class="paragraph">
+<p><strong>Description</strong>: The name of a source or destination endpoint for messages within the messaging network. Message addresses can designate entities such as queues and topics. The term <em>address</em> is also acceptable, but should not be confused with TCP/IP addresses. In JMS, the term <em>destination</em> may be used.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: with caution</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#destination">destination</a></p>
+</div>
+<h5 id="message_routing_noun" class="discrete">message routing (noun)</h5>
+<div id="message-routing" class="paragraph">
+<p><strong>Description</strong>: A routing mechansim in AMQ Interconnect. A message route is the message distribution pattern to be used for a message address. With message routing, a router makes a routing decision on a per-message basis when a message arrives.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#link-routing">link routing</a></p>
+</div>
+<h5 id="message_settlement_noun" class="discrete">message settlement (noun)</h5>
+<div id="message-settlement" class="paragraph">
+<p><strong>Description</strong>: The process for confirming that a message delivery has been completed, and propagating that confirmation to the appropriate endpoints. The term <em>settlement</em> is also acceptable.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#delivery">delivery</a></p>
+</div>
+<h5 id="messaging_api_noun" class="discrete">messaging API (noun)</h5>
+<div id="messaging-api" class="paragraph">
+<p><strong>Description</strong>: The client libraries and APIs used to create client applications. These libraries are provided by AMQ Clients.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#amq-clients">AMQ Clients</a>, <a href="#client-application">client application</a></p>
+</div>
+<h5 id="mqtt_noun" class="discrete">MQTT (noun)</h5>
+<div id="mqtt" class="paragraph">
+<p><strong>Description</strong>: MQ Telemetry Transport protocol. It is a lightweight, client-to-server, publish/subscribe messaging protocol (<a href="http://mqtt.org/" class="bare">http://mqtt.org/</a>). AMQ Broker supports MQTT.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="openwire_noun" class="discrete">OpenWire (noun)</h5>
+<div id="openwire" class="paragraph">
+<p><strong>Description</strong>: A cross-language wire protocol that enables JMS clients to communicate with AMQ Broker (<a href="http://activemq.apache.org/openwire.html" class="bare">http://activemq.apache.org/openwire.html</a>).</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="peer_to_peer_messaging_noun" class="discrete">peer-to-peer messaging (noun)</h5>
+<div id="peer-to-peer-messaging" class="paragraph">
+<p><strong>Description</strong>: A messaging operation in which a client sends messages directly to another client without using a broker or router. This term should only be used to refer to client-to-client communication, not direct routed messaging.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#direct-routed-messaging">direct routed messaging</a></p>
+</div>
+<h5 id="producer_noun" class="discrete">producer (noun)</h5>
+<div id="producer" class="paragraph">
+<p><strong>Description</strong>: A client that sends messages.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#client-application">client application</a></p>
+</div>
+<h5 id="qdmanage_noun" class="discrete">qdmanage (noun)</h5>
+<div id="qdmanage" class="paragraph">
+<p><strong>Description</strong>: A generic AMQP management client used for managing AMQ Interconnect.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: Qdmanage, QDMANAGE</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="qdstat_noun" class="discrete">qdstat (noun)</h5>
+<div id="qdstat" class="paragraph">
+<p><strong>Description</strong>: A management client used for monitoring the status of a AMQ Interconnect router network.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: Qdstat, QDSTAT</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="queue_noun" class="discrete">queue (noun)</h5>
+<div id="queue" class="paragraph">
+<p><strong>Description</strong>: A stored sequence of messages. In AMQ, queues are hosted on brokers.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="receiver_noun" class="discrete">receiver (noun)</h5>
+<div id="receiver" class="paragraph">
+<p><strong>Description</strong>: A channel for receiving messages from a source.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#consumer">consumer</a>, <a href="#source">source</a>, <a href="#sender">sender</a></p>
+</div>
+<h5 id="red_hat_amq_noun" class="discrete">Red Hat AMQ (noun)</h5>
+<div id="red-hat-jboss-amq-term" class="paragraph">
+<p><strong>Description</strong>: A lightweight messaging platform that delivers information and easily integrates applications. It consists of several components (message broker, interconnect router, and clients) that support a variety of configurations. Always use the full product name (Red Hat AMQ) or short product name (AMQ).</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: A-MQ, Red Hat A-MQ</p>
+</div>
+<h5 id="router_noun" class="discrete">router (noun)</h5>
+<div id="router" class="paragraph">
+<p><strong>Description</strong>: A configurable instance of AMQ Interconnect. Routers are application layer programs that route AMQP messages between message producers and consumers. Routers are typically deployed in networks of multiple routers with redundant paths. When using this term, be careful not to confuse it with network device routers.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#amq-interconnect">AMQ Interconnect</a></p>
+</div>
+<h5 id="routing_mechanism_noun" class="discrete">routing mechanism (noun)</h5>
+<div id="routing-mechanism" class="paragraph">
+<p><strong>Description</strong>: The type of routing to be used for an address. Routing mechanisms include message routing and link routing.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="routing_pattern_noun" class="discrete">routing pattern (noun)</h5>
+<div id="routing-pattern" class="paragraph">
+<p><strong>Description</strong>: The path messages sent to a particular address can take across the network. Messages can be distributed in balanced, closest, and multicast routing patterns.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="sender_noun" class="discrete">sender (noun)</h5>
+<div id="sender" class="paragraph">
+<p><strong>Description</strong>: A channel for sending messages to a target.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#producer">producer</a>, <a href="#target">target</a>, <a href="#receiver">receiver</a></p>
+</div>
+<h5 id="session_noun" class="discrete">session (noun)</h5>
+<div id="session" class="paragraph">
+<p><strong>Description</strong>: A serialized context for producing and consuming messages. Sessions are established between AMQ peers over connections. Sending and receiving links are established over sessions. Use this term with caution, as users typically do not need to understand it to use AMQ.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: with caution</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#connection">connection</a></p>
+</div>
+<h5 id="sharded_queue_noun" class="discrete">sharded queue (noun)</h5>
+<div id="sharded-queue" class="paragraph">
+<p><strong>Description</strong>: A distributed queue in which a single logical queue is hosted on multiple brokers. Routers are typically used with sharded queues to enable clients to access the entire sharded queue instead of only a single shard of the queue.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#queue">queue</a></p>
+</div>
+<h5 id="slave_broker_noun" class="discrete">slave broker (noun)</h5>
+<div id="slave-broker" class="paragraph">
+<p><strong>Description</strong>: In a master-slave group, this is the broker (or brokers) that takes over for the master broker to which it is linked.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: passive broker</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#master-slave-group">master-slave group</a>, <a href="#master-broker">master broker</a></p>
+</div>
+<h5 id="source_noun" class="discrete">source (noun)</h5>
+<div id="source" class="paragraph">
+<p><strong>Description</strong>: A message&#8217;s named point of origin.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#target">target</a></p>
+</div>
+<h5 id="ssltls_noun" class="discrete">SSL/TLS (noun)</h5>
+<div id="brokerless" class="paragraph">
+<p><strong>Description</strong>: The Secure Socket Layer protocol (SSL) and its successor, the Transport Layer Security protocol (TLS). As both of these protocols are frequently called "SSL", always use "SSl/TLS" to avoid confusion.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>: SSL, TLS, TLS/SSL</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="stomp_noun" class="discrete">STOMP (noun)</h5>
+<div id="stomp" class="paragraph">
+<p><strong>Description</strong>: Simple (or Streaming) Text Oriented Message Protocol. It is a text-oriented wire protocol that enables STOMP clients to communicate with STOMP brokers. AMQ Broker can accept connections from STOMP clients.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+<h5 id="target_noun" class="discrete">target (noun)</h5>
+<div id="target" class="paragraph">
+<p><strong>Description</strong>: A message&#8217;s destination. This is usually a queue or topic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>: <a href="#source">source</a></p>
+</div>
+<h5 id="topic_noun" class="discrete">topic (noun)</h5>
+<div id="topic" class="paragraph">
+<p><strong>Description</strong>: A stored sequence of messages for read-only distribution.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use it</strong>: yes</p>
+</div>
+<div class="paragraph">
+<p><strong>Incorrect forms</strong>:</p>
+</div>
+<div class="paragraph">
+<p><strong>See also</strong>:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="information-architecture">9. Information architecture guidelines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At Red Hat, we write modular documentation that is based on user-stories. This means that each assembly documents a user story. Learn more in the <a href="https://redhat-documentation.github.io/modular-docs/" target="_blank" rel="noopener">Modular Documentation Reference Guide</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="screenshot_guidelines">10. Screenshot guidelines</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="screenshot-summary">10.1. Summary</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Images should be saved as <strong>PNG</strong> or <strong>JPG</strong>, with a width of at least <strong>660 px</strong>, at <strong>110 dpi</strong>. Try to keep file size less than <strong>300 KB</strong>.</p>
+</li>
+<li>
+<p>Screenshots supplement the text, not replace it.  <strong>Do not rely on images to provide information or context</strong>.</p>
+</li>
+<li>
+<p><strong>Do not include any testing/pre-release labels</strong>.</p>
+</li>
+<li>
+<p><strong>Do not include any personally identifying information</strong>.</p>
+</li>
+<li>
+<p>Capture just the part of the screen or window that users must focus on; <strong>do not include window headers in the final screenshots unless completely necessary</strong>.</p>
+</li>
+<li>
+<p>Manipulate your screenshots to <strong>condense important information</strong> in them and limit empty GUI space and other inconsequential parts.</p>
+</li>
+<li>
+<p>Give the image file the same name as the anchor used in it (which is the same as or similar to the module heading) separated by dashes. Add the <code>image</code> prefix a with an underscore to the file. For example, <code>image_guided-decision-example.adoc</code> for a screenshot or image in the guided decision module.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="screenshot-general">10.2. General guidelines</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Screen captures can be useful and successful when they achieve one or more of these objectives:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Illustrate a user interface that is fairly complex or difficult to explain in text</p>
+</li>
+<li>
+<p>Help the user find a small element in a complex user interface</p>
+</li>
+<li>
+<p>Show the results of a series of steps or user actions</p>
+</li>
+<li>
+<p>Orient readers who are reading the publication without the user interface in front of them</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use the smallest number of screenshots possible.</p>
+</li>
+<li>
+<p>Use screenshots to provide verification for the reader, rather than instruction. For example, screenshots are meant to supplement the text, not replace it.  <strong>Do not rely on images to provide information or context</strong>. Instead, use them only to provide the reader with orientation.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Example 1:  Do not tell the reader to fill out a form according to the image; instead list the values needed for the form in text.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Example 2: Do not include an image of the directory tree; instead tell the user exactly where to find the file in running text (…​/standalone/configuration/standalone.xml).
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Bearing in mind the affect on localization and accessibility, aim to write your document so that, were you to remove all screenshots from the book, the text still makes sense.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For example: Do not write "see image below" or "as is shown in the image"
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>When you are snapping a GUI form, fill it with relevant input first.</p>
+</li>
+<li>
+<p>Verify that the screenshots <strong>do not include any testing/pre-release labels</strong>.</p>
+</li>
+<li>
+<p>Verifty that the screenshots <strong>do not include any personally identifying information</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For example: Always use 'test' as the username or fake contact information. If including the browser title bar hide your bookmarks and use a default browser theme.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Use Chrome Dev Tools to select elements on the page and rewrite their contents.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Include the cursor, mouse pointer, or menus only when their presence is significant.</p>
+</li>
+<li>
+<p>Increase font size in the browser if it is hard to read before snapping the image.</p>
+</li>
+<li>
+<p>Capture just the part of the screen or window that users must focus on.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For example: Unless necessary, <strong>do not include window headers in the final screenshots</strong> to indicate your currently used window manager or desktop environment.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If possible, try not to cut any elements on the screen.</p>
+</li>
+<li>
+<p>Show the user interface elements exactly as they are displayed for most users for quick recognition.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For example: If you have a custom theme on your system, disable it and take the screenshot using the default theme.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Do not add borders around or drop shadows to your screenshots.</p>
+</li>
+<li>
+<p>Do not use rounded corners. If the screenshot contains rounded corners, then that is acceptable. But, the screenshot should remain squared.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="screenshot-specs">10.3. Tech specs</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Image width should be at least <strong>660 px</strong> (internal tools will automatically resize the image to a max width of 660 px).</p>
+</li>
+<li>
+<p>The preferred format is <strong>PNG</strong> or <strong>JPG</strong> .</p>
+</li>
+<li>
+<p>The output resolution of images should be <strong>110 dpi</strong> to ensure good quality in the generated PDF.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+In GIMP, select <strong>Image/Scale Image&#8230;&#8203;</strong> to set resolution
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If possible, try to keep screenshot size less than <strong>300 KB</strong>.</p>
+</li>
+<li>
+<p>If possible, avoid snapping images in various terminals with 8-bit color scale or less.</p>
+</li>
+<li>
+<p>Manipulate your screenshots to condense important information in them and limit empty GUI space and other inconsequential parts.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You can do this by setting a low screen resolution or resizing your browser window to a smaller size. Remember that you should only do this if it does not adversely affect the readability of the image.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you need to take a screenshot of the entire window, use a tool such as the <a href="https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en" target="_blank" rel="noopener"><em>Window Resizer</em></a> Google Chrome extension to ensure the browser window is a set size before taking the screenshot. This helps ensure that all full window screenshots are of standard dimensions.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If necessary, call attention to hard to find parts of the screenshot with red outlines (border: #C00, width:1px) or with a transparent gray (#ECECEC) layer over unimportant parts of the picture.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="screenshot-accessibility">10.4. Accessibility</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Section 508 compliance requires that all of the information is available in a text format for accessibility reasons (for instance, screen readers can not extract information from images).</p>
+</li>
+<li>
+<p>Also, a large number of screenshots can possibly slow download of docs for those on slow connections (rarer for most enterprises these days).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="screenshot-asciidoc">10.5. AsciiDoc syntax</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Insert a block-level image, which uses a double colon (::). Good for screenshots, diagrams, etc.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Example 1: Include an image title in title case (which automatically appends a Figure #).</p>
+<div class="listingblock">
+<div class="content">
+<pre>.Image Title
+image::icon.png[Alt text, 50, 50]</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Example 2: Insert an inline image. Note, there is only one colon (:) used here.</p>
+<div class="listingblock">
+<div class="content">
+<pre>This is an inline image. image:icon.png[Alt text] Cool!</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="screenshot-questions">10.6. Additional questions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>When should I add a screenshot to my book?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When  introducing a new part of the UI.</p>
+</li>
+<li>
+<p>When the UI is suboptimal and some elements are difficult to find, located in unusual places, hidden, or somehow less visible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>When, in the development cycle, should I add my screenshots?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add them as late in the cycle as possible, preferably during the review process. At this late stage, hopefully there will be fewer UI changes to the product.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Add a placeholder for the screenshot early on in the development cycle. This way it will not be forgotten.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>What image editor should I use?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The recommended graphical editor is GIMP.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="screenshot-extensions">10.7. Browser extensions</h3>
+<div class="sect3">
+<h4 id="screenshot-resizing">10.7.1. Resizing screenshots</h4>
+<div class="paragraph">
+<p>There are a couple simple browser extensions that can assist in resizing your browser to the appropriate dimensions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Google Chrome extension: <a href="https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en" target="_blank" rel="noopener"><em>Window Resizer</em></a></p>
+</li>
+<li>
+<p>Firefox add-on: <a href="https://addons.mozilla.org/en-US/firefox/addon/firesizer/" target="_blank" rel="noopener"><em>Firesizer</em></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>You also need to install the Addon Bar: <a href="https://addons.mozilla.org/en-US/firefox/addon/the-addon-bar/" target="_blank" rel="noopener"><em>The Addon Bar (Restored)</em></a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="doc-admin-guide">11. Administrating AMQ 7 documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide describes how to administer the AMQ 7 documentation GitHub and GitLab repositories. All commits, with the exception of internal resources, are to be merged weekly on Friday by the "Mergemaster".</p>
+</div>
+<div class="sect2">
+<h3 id="documentation_repositories_2">11.1. Documentation repositories</h3>
+<div class="paragraph">
+<p>AMQ 7 documentation uses the following documentation repositories:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://github.com/rh-messaging/amq7-documentation-contrib" target="_blank" rel="noopener"><code>amq7-documentation-contrib</code></a> (GitHub)</dt>
+<dd>
+<p>A private GitHub repo that hosts all of the AMQ 7 documentation.
+All downstream contributions to the documentation are made in this repo.</p>
+</dd>
+<dt class="hdlist1"><a href="https://gitlab.cee.redhat.com/AMQ7-documentation/amq7-documentation" target="_blank" rel="noopener"><code>amq7-docs</code></a> (GitLab)</dt>
+<dd>
+<p>A GitLab repo for pushing doc updates to Pantheon for publication on the <a href="https://access.redhat.com/products/red-hat-amq" target="_blank" rel="noopener">Red Hat Customer Portal</a>.
+This repo essentially functions as a "mirror" of amq7-documentation-contrib;
+no doc updates should be made in it.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="branching_overview">11.2. Branching overview</h3>
+<div class="paragraph">
+<p>The <code>amq7-documentation-contrib</code> repo contains several branches, most of which are inactive or deprecated.
+The only ones that you need to use are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>contrib</code></dt>
+<dd>
+<p>The default branch. All doc contributions are merged into this branch, regardless of release.</p>
+</dd>
+<dt class="hdlist1"><code>master</code></dt>
+<dd>
+<p>The master branch for preparing doc builds.</p>
+</dd>
+<dt class="hdlist1"><code>release-amq-7.&lt;version-number&gt;.x</code></dt>
+<dd>
+<p>The branch for an AMQ 7.x.y doc release.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="processing_pull_requests">11.3. Processing pull requests</h3>
+<div class="paragraph">
+<p>After a pull request has passed SME and peer review, it is ready to be merged into the <code>contrib</code> branch in the GitHub repo.
+This can be done piecemeal, but the current practice is for the "Mergemaster" to merge all pull requests on a weekly basis (Friday, 1pm EDT/EST).</p>
+</div>
+<div class="sect3">
+<h4 id="opening_the_pull_request">11.3.1. Opening the pull request</h4>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the <code>amq7-documentation-contrib</code> repo, click <strong>Pull Requests</strong>.</p>
+</li>
+<li>
+<p>Verify that the pull request that you want to merge has the <strong>Ready to Merge</strong> label applied.</p>
+<div class="paragraph">
+<p>This label specifies that the changes in the pull request have passed SME and peer reviews.</p>
+</div>
+</li>
+<li>
+<p>Click the pull request to open it.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reviewing_the_pull_request">11.3.2. Reviewing the pull request</h4>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Under the pull request title, verify that the pull request is being merged into <code>rh-messaging:contrib</code>.</p>
+</li>
+<li>
+<p>Review the conversation to ensure all comments have been resolved and that there are not any outstanding, glaring issues that need to be addressed.</p>
+</li>
+<li>
+<p>Determine if the pull request can be merged automatically, or if conflicts need to be resolved.</p>
+<div class="paragraph">
+<p>If the pull request can be merged automatically, you will see <code>This branch has no conflicts with the base branch</code>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="merge_the_pull_request">11.3.3. Merge the pull request</h4>
+<div class="paragraph">
+<p>In most cases, you should be able to merge the pull request automatically.
+However, if there are any conflicts, you must resolve them.</p>
+</div>
+<h5 id="automatic-merging" class="discrete">Merging the pull request automatically</h5>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>Squash and merge</strong> button.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You might need to click the arrow next to <strong>Create a merge commit</strong> to select this option.</p>
+</div>
+<div class="paragraph">
+<p>Use the squash and merge option rather than the option to create a merge commit. Squashing the commits makes for a cleaner commit history.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Confirm squash and merge</strong>.</p>
+<div class="paragraph">
+<p>The pull request is merged into <code>contrib</code> and closed.</p>
+</div>
+</li>
+</ol>
+</div>
+<h5 id="handling_a_pull_request_with_conflicts" class="discrete">Handling a pull request with conflicts</h5>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Click <strong>Resolve conflicts</strong> to determine the extent of the conflicts.</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If the conflict is minor, and you can easily see how to resolve it, make the change in the web editor, and then click <strong>Mark as resolved</strong>.
+Your changes are committed and added to the pull request.</p>
+</li>
+<li>
+<p>If the conflict is extensive or the resolution is unclear, notify the author and ask him or her to make the necessary corrections.</p>
+<div class="paragraph">
+<p>For additional information about handling complex merge conflicts, see <a href="https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/contributor-guide.adoc#fix_rebase_merge_conflicts" target="_blank" rel="noopener">Fix Rebase Merge Conflicts</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>When the conflicts are resolved, <a href="#automatic-merging">merge the pull request</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pushing_to_gitlab_for_doc_builds">11.4. Pushing to GitLab for doc builds</h3>
+<div class="paragraph">
+<p>The <code>amq7-docs</code> repo is the source for the AMQ 7 Preview, Stage, and Production environments.
+Therefore, to build the doc, you need to push the content from GitHub to GitLab.</p>
+</div>
+<div class="sect3">
+<h4 id="merge-to-github">11.4.1. Merge to the GitHub <code>master</code> branch</h4>
+<div class="paragraph">
+<p>In <code>amq7-documentation-contrib</code>, you need to merge to <code>master</code> everything that you want to be included in the doc build.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In <code>amq7-documentation-contrib</code>, navigate to the <strong>Pull requests</strong> tab and then click <strong>New pull request</strong>.</p>
+</li>
+<li>
+<p>Click the <strong>base: contrib</strong> button and select <code>master</code>.</p>
+<div class="paragraph">
+<p>The first button should be <code>base: master</code>, and the second button should be <code>compare: contrib</code>.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Create pull request</strong>.</p>
+</li>
+<li>
+<p>In the <code>Title</code> field, enter a descriptive name (for example, "Doc Build").</p>
+</li>
+<li>
+<p>Click <strong>Create pull request</strong>.</p>
+</li>
+<li>
+<p>In the pull request, click <strong>Squash and merge</strong>.</p>
+<div class="paragraph">
+<p>All of the commits from <code>contrib</code> are merged to <code>master</code>, and the pull request is closed.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="push_to_gitlab">11.4.2. Push to GitLab</h4>
+<div class="paragraph">
+<p>After merging to <code>master</code> everything that you want to be in the doc build, you pull the changes down to a local branch, and then push the commits to the <code>amq7-docs</code> GitLab repo.
+After pushing to <code>amq7-docs</code>, Pantheon automatically builds the docs in the Preview and Stage environments.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In git, if you do not have a remote repository for <code>amq7-docs</code>, then add one:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ git remote add -f <em>REPO_NAME</em> git@gitlab.cee.redhat.com:AMQ7-documentation/amq7-documentation.git</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For <code><em>REPO_NAME</em></code>, you can use whatever name you want. For simplicity, you should probably name it <code>amq7-docs</code> to match the name of the actual repo.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Fetch the latest from the upstream repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ git fetch upstream</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Do one of the following:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Check out a new local branch based on the GitHub <code>master</code> branch:</div>
+<div class="content">
+<pre class="nowrap">$ git checkout -b <em>BRANCH_NAME</em> upstream/master</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Reset an existing local branch with the GitHub <code>master</code> branch:</div>
+<div class="content">
+<pre class="nowrap">$ git checkout <em>BRANCH_NAME</em>
+$ git reset --hard <em>BRANCH_NAME</em> upstream/master</pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the branch contains everything that you expect:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ git log</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push the changes to the <code>master</code> branch on the <code>amq7-docs</code> repo:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ git push -f <em>GITLAB_REMOTE_REPO</em> HEAD:master</pre>
+</div>
+</div>
+</li>
+<li>
+<p>If necessary, in <code>amq7-docs</code>, verify that everything was pushed to the <code>master</code> branch the way you expected.</p>
+</li>
+<li>
+<p>Verify that each doc builds successfully on Preview and Stage in Pantheon: <a href="https://pantheon.cee.redhat.com/<mark>/titles/red_hat_amq" target="_blank" rel="noopener"><a href="https://pantheon.cee.redhat.com/" class="bare">https://pantheon.cee.redhat.com/</a></mark>/titles/red_hat_amq</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="preparing_amq_documentation_for_release">11.5. Preparing AMQ documentation for release</h3>
+<div class="paragraph">
+<p>When an AMQ product release is ready, there are several tasks you must complete to prepare the documentation for the release and push it to Pantheon for publication on the customer portal.</p>
+</div>
+<div class="sect3">
+<h4 id="creating_a_release_branch">11.5.1. Creating a release branch</h4>
+<div class="paragraph">
+<p>When it is time to publish the AMQ docs for a release, you should create a release branch.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a release branch from master:</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Release branch names should follow this syntax: <code>release-amq-7.<em>VERSION_NUMBER</em>.x</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git fetch upstream
+git checkout -b release-amq-7.1.x upstream/master
+git push upstream HEAD:release-amq-7.1.x</pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Push the release branch to GitLab:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git push amq-docs HEAD:release-amq-7.1.x</pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In Pantheon, navigate to the release.</p>
+</li>
+<li>
+<p>For each title, click the drop-down for the <code>Preview</code> branch, select <strong>Edit Configuration</strong>, and then select the release branch that you created.</p>
+</li>
+<li>
+<p>Repeat the previous step for the <code>Stage</code> branch.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tagging_a_release">11.5.2. Tagging a release</h4>
+<div class="paragraph">
+<p>A tag represents a snapshot of the repository at a particular point in time. After creating a release branch, you should create a tag to identify exactly what was delivered for the release. If you ever need to republish the documentation on the release branch (such as for a hotfix or asynchronous doc update after the initial release), the tag will identify what was originally published.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Check out the release branch.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git checkout release-amq-7.1.x</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the tag.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git tag 7.1.0 -m "Release 7.1"</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push the tag to the GitHub repo.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git push upstream HEAD --tags 7.1.0</pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the GitHub repo, view the tag to verify that it looks correct.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cherry_picking_a_commit_to_a_release_branch">11.5.3. Cherry-picking a commit to a release branch</h4>
+<div class="paragraph">
+<p>Even though release branches are created at the end of the release process (typically immediately prior to publishing the docs on the portal), it may be necessary to update a doc in this release after the release has been published. You can do this by cherry-picking the commit to the release branch.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Merge the PR into the default branch just as you would normally do.</p>
+</li>
+<li>
+<p>Fetch the latest changes from GitHub:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git fetch upstream</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a new topic branch from the release branch.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>In this example, a new branch for AMQDOC-2752 is being created for the 7.1.x release branch.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git checkout -b amqdoc-2752 upstream/release-amq-7.1.x</pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Using GitHub or the <code>git log</code> command, find the number of the commit that was merged to contrib.</p>
+</li>
+<li>
+<p>Cherry pick the commit into your topic branch.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git cherry-pick cafd2a9</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push the changes to your own forked repo:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git push origin HEAD</pre>
+</div>
+</div>
+</li>
+<li>
+<p>In GitHub, create a PR from your topic branch with the cherry-picked commit to the release branch.</p>
+</li>
+<li>
+<p>Merge the PR. Be sure to change the “base fork” to the release branch.</p>
+</li>
+<li>
+<p>If necessary, push to Pantheon to build the docs that are affected by the cherry-picked commit.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="files-and-attributes">Appendix A: Files and attributes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="important_files">A.1. Important files</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Standard attributes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">common/attributes.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shared includes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">common/</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Images</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">images/</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="anchor-and-file-names">A.2. Anchor names and file names</h3>
+<div class="paragraph">
+<p>To optimize modular documentation, follow these guidelines for naming module anchors and files:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Anchor names</dt>
+<dd>
+<p>Provide an anchor in the format <code>[id='anchor-name']</code> for every module so that it can be identified by Asciidoctor when reused or cross-referenced. Give the anchor the same or similar name as the module heading, separated by dashes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[id='anchor-name']
+= Module Heading
+
+First sentence of topic.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="title">Note on other anchor formats (Not Recommended)</div>
+<div class="paragraph">
+<p>The format defined here is recommended because it is the most stable and versatile of anchor formats, and supports variables that enable topics to be reused and cross-referenced properly. Other anchor formats include <code>[[anchor-name]]</code> and <code>[#anchor-name]</code>, but these formats either do not support variables for content reuse or do not support certain character types, such as periods. These limitations cause errors at build time.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1">File names</dt>
+<dd>
+<p>Give the module file the same name as the anchor used in it (which is the same as or similar to the module heading), also separated by dashes. Add a prefix with an underscore to the file name to indicate the module type in the format <code>prefix_file-name</code>. Use <code>snip_</code> for a snippet, <code>con_</code> for concept, <code>ref_</code> for reference, <code>proc_</code> for procedure, <code>assembly_</code> for assembly, and <code>image_</code> for images and screenshots.</p>
+<div class="ulist">
+<div class="title">Examples</div>
+<ul>
+<li>
+<p><code>snip_guided-decision-urls.adoc</code>  (Snippet of reusable content)</p>
+</li>
+<li>
+<p><code>con_guided-decision-tables.adoc</code>  (Concept module)</p>
+</li>
+<li>
+<p><code>proc_creating-guided-decision-tables.adoc</code>  (Procedure module for creating)</p>
+</li>
+<li>
+<p><code>proc_editing-guided-decision-tables.adoc</code>  (Procedure module for editing)</p>
+</li>
+<li>
+<p><code>ref_guided-decision-table-examples.adoc</code>  (Reference module with examples)</p>
+</li>
+<li>
+<p><code>ref_guided-decision-table-columns.adoc</code>  (Reference module with column types)</p>
+</li>
+<li>
+<p><code>assembly_guided-decision-tables.adoc</code>  (Assembly of guided decision table modules)</p>
+</li>
+<li>
+<p><code>image_guided-decision-example.adoc</code>  (Screenshot or image of guided decision table modules)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Learn more in the <a href="https://redhat-documentation.github.io/modular-docs/" target="_blank" rel="noopener">Modular Documentation Reference Guide</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="amq7-books">A.3. AMQ 7 books</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">product-intro/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Migration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">product-migration/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Broker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">broker/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Broker JON guide</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">broker-jon/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Broker release notes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">broker-release-notes/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interconnect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">router/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interconnect release notes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">router-release-notes/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client release notes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">client-release-notes/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Console</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ JMS Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">client-amqp-jms/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ C++ Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">client-amqp-cpp/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ JavaScript Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">client-amqp-javascript/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ Python Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">client-amqp-python/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ .NET Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">client-amqp-dotnet/master.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenWire JMS Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">client-openwire-jms/master.adoc</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="amq7-standard-attributes">A.4. Standard attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ProductLongName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Long product name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ProductName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Short product name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ProductVersion}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product X.Y version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ProductMajorVersion}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product X version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{BrokerCoreBridge}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Core bridge name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Core Bridge</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{BrokerLongName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Long broker name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat AMQ Broker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{BrokerName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Short broker name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ Broker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{BrokerVersion}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Broker X.Y version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{RouterLongName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Long router name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat AMQ Interconnect</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{RouterName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Short router name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ Interconnect</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{RouterVersion}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Router X.Y version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientsLongName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Long clients name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat AMQ Clients</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientsName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Short clients name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ Clients</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientsVersion}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clients X.Y version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ConsoleLongName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Long console name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat AMQ Console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ConsoleName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Short console name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ Console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ConsoleVersion}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Console X.Y version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientAmqpJmsName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQP JMS client name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ JMS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientAmqpCppName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQP C++ client name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ C++</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientAmqpPythonName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQP Python client name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ Python</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientAmqpJavaScriptName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQP JavaScript client name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ JavaScript</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientAmqpDotNetName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQP .NET client name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ .NET</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientCoreJmsName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Core Protocol JMS client name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ Core Protocol JMS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ClientOpenWireJmsName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenWire  JMS client name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AMQ OpenWire JMS</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="git-tips">Appendix B: Git tips</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="deleting_branches">B.1. Deleting branches</h3>
+<div class="paragraph">
+<p>To delete all of your branches except the branch you are on:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git checkout contrib
+$ for br in `git branch` ; do git branch -D $br ; done</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To delete one branch:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git checkout contrib
+$ git branch -D <em>BRANCH_NAME</em></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resolving_conflicts">B.2. Resolving conflicts</h3>
+<div class="paragraph">
+<p>To resolve a merge conflict in an existing pull request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git checkout <em>BRANCH_NAME</em>
+$ git branch -u origin <em>BRANCH_NAME</em>
+$ git pull --rebase upstream contrib
+$ git push -f origin HEAD</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reseting_your_fork">B.3. Reseting your fork</h3>
+<div class="paragraph">
+<p>If your fork is both ahead of and behind the origin you can reset your fork to match the origin and start with a clean slate.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git checkout contrib
+$ git reset --hard upstream/contrib
+$ git push origin contrib --force
+$ git pull upstream contrib
+$ git push origin contrib --force</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="accessing_another_writers_unmerged_commits">B.4. Accessing another writer’s unmerged commits</h3>
+<div class="paragraph">
+<p>This is the process you can use if you need commits another writer has submitted in a merge request that is not yet merged.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure you are on the contrib branch</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git checkout contrib</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check out a new topic branch from upstream/contrib as you normally do.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git fetch upstream
+$ git checkout -b <em>NEW_TOPIC_BRANCH</em> upstream/contrib</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you have not yet added that writer’s remote repository, add it now.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git remote add -f <em>USER</em> git@github.com:<em>USER</em>/amq7-documentation-contrib.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Rebase to bring in the changes that are in that user’s outstanding
+<code>origin/<em>MERGE_REQUEST_BRANCH</em></code> branch.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git rebase <em>USER</em>/<em>MERGE_REQUEST_BRANCH</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(you will see the following response)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">First, rewinding head to replay your work on top of it...
+Fast-forwarded <em>NEW_TOPIC_BRANCH</em> to <em>USER</em>/<em>MERGE_REQUEST_BRANCH</em></code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="committing_to_another_writers_branch">B.4.1. Committing to another writer&#8217;s branch</h4>
+<div class="paragraph">
+<p>If you have made changes to the content in someone else&#8217;s branch you&#8217;ll want to be sure to commit them back to that same branch/PR.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>While in your working branch, commit your changes</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git commit -m "<em>MESSAGE</em>"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push your changes to the existing PR</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ git push <em>USER</em> HEAD:<em>MERGE_REQUEST_BRANCH</em></code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="templates">Appendix C: Templates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following templates must be used to produce consistent modular documentation for AMQ 7. <a href="https://github.com/rh-messaging/amq7-documentation-contrib/blob/contrib/internal/templates/templates.zip">Download the <code>adoc</code> files in zip format</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="doing-one-procedure_template">C.1. Doing one procedure</h3>
+<div class="paragraph">
+<p>This paragraph is the procedure module introduction: a short description of the procedure.</p>
+</div>
+<h4 id="prerequisites" class="discrete">Prerequisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>A bulleted list of conditions that must be satisfied before the user starts following this assembly.</p>
+</li>
+<li>
+<p>You can also link to other modules or assemblies the user must follow before starting this assembly.</p>
+</li>
+<li>
+<p>Delete the section title and bullets if the assembly has no prerequisites.</p>
+</li>
+</ul>
+</div>
+<h4 id="procedure" class="discrete">Procedure</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start each step with an active verb.</p>
+</li>
+<li>
+<p>Include one command or action per step.</p>
+</li>
+<li>
+<p>Use an unnumbered bullet (*) if the procedure includes only one step.</p>
+</li>
+</ol>
+</div>
+<h4 id="additional_resources" class="discrete">Additional Resources</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>A bulleted list of links to other material closely related to the contents of the procedure module.</p>
+</li>
+<li>
+<p>For more details on writing procedure modules, see the <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+<li>
+<p>Use a consistent system for file names, IDs, and titles. For tips, see <em>Anchor Names and File Names</em> in <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="concept-explanation-template">C.2. Concept explanation</h3>
+<div class="paragraph">
+<p>This paragraph is the concept module introduction and is only optional. Include it to provide a short overview of the module.</p>
+</div>
+<div class="paragraph">
+<p>The contents of a concept module give the user descriptions and explanations needed to understand and use a product.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Look at nouns and noun phrases in related procedure modules and assemblies to find the concepts to explain to users.</p>
+</li>
+<li>
+<p>Explain only things that are visible to users. Even if a concept is interesting, it probably does not require explanation if it is not visible to users.</p>
+</li>
+<li>
+<p>Do not include any instructions to perform an action, such as executing a command. Action items belong in procedure modules.</p>
+</li>
+</ul>
+</div>
+<h4 id="additional_resources_2" class="discrete">Additional resources</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
+</li>
+<li>
+<p>For more details on writing concept modules, see the <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+<li>
+<p>Use a consistent system for file names, IDs, and titles. For tips, see <em>Anchor Names and File Names</em> in <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reference-material_template">C.3. Reference material</h3>
+<div class="paragraph">
+<p>This paragraph is the reference module introduction and is only optional. Include it to provide a short overview of the module.</p>
+</div>
+<div class="paragraph">
+<p>A reference module provide data that users might want to look up, but do not need to remember. It has a very strict structure, often in the form of a list or a table. A well-organized reference module enables users to scan it quickly to find the details they want. AsciiDoc markup to consider for reference data:</p>
+</div>
+<div class="ulist">
+<div class="title">Unordered lists</div>
+<ul>
+<li>
+<p>For more details on writing reference modules, see the <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+<li>
+<p>Use a consistent system for file names, IDs, and titles. For tips, see <em>Anchor Names and File Names</em> in <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+</ul>
+</div>
+<div class="dlist">
+<div class="title">Labeled lists</div>
+<dl>
+<dt class="hdlist1">Term 1</dt>
+<dd>
+<p>Definition</p>
+</dd>
+<dt class="hdlist1">Term 2</dt>
+<dd>
+<p>Definition</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. Tables</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column 1</th>
+<th class="tableblock halign-left valign-top">Column 2</th>
+<th class="tableblock halign-left valign-top">Column 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Row 1, column 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Row 1, column 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Row 1, column 3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Row 2, column 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Row 2, column 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Row 2, column 3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="additional_resources_3">Appendix D: Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gitlab.cee.redhat.com/AMQ7-documentation/amq7-documentation" target="_blank" rel="noopener">AMQ 7 docs repo in GitLab</a></p>
+</li>
+<li>
+<p><a href="https://doc-stage.usersys.redhat.com/documentation/en-us/ccs_internal_documentation/1.0/html-single/glossary_of_terms_and_conventions_for_product_documentation/" target="_blank" rel="noopener">Red Hat Glossary of Terms and Conventions</a></p>
+</li>
+<li>
+<p><a href="https://pantheon.cee.redhat.com/#/help" target="_blank" rel="noopener">Pantheon user guide</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation" target="_blank" rel="noopener">EAP docs repo</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/asciidoc-writing-guide.adoc" target="_blank" rel="noopener">EAP AsciiDoc style guide</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/contributor-guide.adoc" target="_blank" rel="noopener">EAP contributor guide</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/blob/master/internal-resources/create-a-new-guide.adoc" target="_blank" rel="noopener">EAP guide creation guide</a></p>
+</li>
+<li>
+<p><a href="https://docs.google.com/presentation/d/1AV-qETM104Nuff43ryPR4hBqfY_knB6rF4ozDE_UXvw/edit#slide=id.gc80b71c4f_4_22" target="_blank" rel="noopener">EAP presentation on docs workflow</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.cee.redhat.com/red-hat-jboss-enterprise-application-platform-documentation/eap-documentation/tree/master/internal-resources" target="_blank" rel="noopener">More EAP internal resources</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in master.adoc - include::common/revision-info.adoc[]</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-09-29 16:24:13 UTC
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+</body>
+</html>
